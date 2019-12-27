@@ -1,0 +1,40 @@
+package org.yunzhong.account.common.dict;
+
+public interface CphInfCode {
+	public static final String DICT_IFCODE_CURRTYPE_QUERY = "CDDICTCURR_QUERY";
+	public static final String ACCT_IFCODE_PRODTYPE_QUERY = "CDDICTPID_QUERY";
+	public static final String ACCT_IFCODE_TRXTYPE_QUERY = "CDDICTTRXCAT_QUERY";
+	public static final String ACCT_IFCODE_ACCTTYPE_QUERY = "CAACCTTYPE_QUERY";
+	public static final String ACCT_IFCODE_ACCTITEM_QUERY = "CAACCTITEM_QUERY";
+	public static final String ACCT_IFCODE_CATYPE_QUERY = "CAACCTCATYPE_QUERY";	
+	public static final String ACCT_IFCODE_CUS_CREATE = "CAACCTCUS_ADD";
+	public static final String ACCT_IFCODE_INNER_CREATE = "CAACCTINNER_ADD";
+	public static final String ACCT_IFCODE_CUSDT_QUERY = "CAACCTCUSDT_QUERY";
+	public static final String ACCT_IFCODE_CUSBC_QUERY = "CAACCTCUSBC_QUERY";
+	public static final String ACCT_IFCODE_CUSHZ_QUERYBYCUSID = "CAACCTCUSHZ_QUERYBYCUSID";
+	public static final String ACCT_IFCODE_CUSHZ_QUERYBYCAID = "CAACCTCUSHZ_QUERYBYCAID";	
+	public static final String ACCT_IFCODE_INNER_QUERY = "CAACCTINER_QUERY";
+	public static final String ACCT_IFCODE_LIMIT_QUERYCA = "CAACCTLIMIT_QUERYCA";
+	public static final String ACCT_IFCODE_LIMIT_QUERYCUS = "CAACCTLIMIT_QUERYCUS";
+	public static final String ACCT_IFCODE_LIMIT_UPDATECA = "CAACCTLIMIT_UPDATECA";
+	public static final String ACCT_IFCODE_LIMIT_UPDATECUS = "CAACCTLIMIT_UPDATECUS";
+	public static final String ACCT_IFCODE_LIMIT_UPDATEACCT = "CAACCTLIMIT_UPDATEACCT";
+	public static final String ACCT_IFCODE_AUTH_UPDATE = "CAACCTAUTH_UPDATE";
+	public static final String ACCT_IFCODE_STATUS_UPDATE = "CAACCTSTATUS_UPDATE";
+	public static final String ACCT_IFCODE_CUSCARELATE_UPDATE = "CAACCTCUSCARELATE_UPDATE";	
+	public static final String ACCT_IFCODE_TP_CHECKTRX = "CATP_CHECKTRX";
+	public static final String ACCT_IFCODE_TP_POSTTRX = "CATP_POSTTRX";
+	public static final String ACCT_IFCODE_TP_POSTTRXWITHCREATEACCT = "CATP_POSTTRXWITHCREATEACCT";	
+	public static final String ACCT_IFCODE_TP_POSTTRXBATCH = "CATP_POSTTRXBATCH";
+	public static final String ACCT_IFCODE_TP_POSTREV = "CATP_POSTREV";
+	public static final String ACCT_IFCODE_TPCUSENY_QUERY = "CATPCUSENY_QUERY";
+	public static final String ACCT_IFCODE_TPENY_QUERY = "CATPENY_QUERY";		
+	public static final String ACCT_IFCODE_TPBAL_QUERY = "CATPBAL_QUERY";
+	public static final String ACCT_IFCODE_TPGENLED_QUERY = "CATPGENLED_QUERY";
+	public static final String ACCT_IFCODE_TPGENELDDET_QUERY = "CATPGENELDDET_QUERY";
+	public static final String ACCT_IFCODE_CUSDT_DOWNLOAD = "CAACCTCUSDT_DOWNLOAD";
+	public static final String ACCT_IFCODE_INNER_DOWNLOAD = "CAACCTINER_DOWNLOAD";
+	public static final String ACCT_IFCODE_TPCUSENY_DOWNLOAD= "CATPCUSENY_DOWNLOAD";
+	public static final String ACCT_IFCODE_TPENY_DOWNLOAD = "CATPENY_DOWNLOAD";
+	public static final String ACCT_IFCODE_TPBAL_DOWNLOAD = "CATPBAL_DOWNLOAD";	
+}
