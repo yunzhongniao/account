@@ -1,6 +1,7 @@
 package org.yunzhong.account.admin.service;
 
 import org.yunzhong.account.admin.model.AppUser;
+import org.yunzhong.account.admin.model.Page;
 import org.yunzhong.account.common.ServiceException;
 
 public interface UserService extends AcctBasicService {

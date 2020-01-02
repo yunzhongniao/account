@@ -8,15 +8,15 @@ import lombok.Setter;
 public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = -6974873226640312872L;
 
-    private String code;
+    private String status;
     private String message;
 
     public ServiceException(String msg) {
         this.message = msg;
     }
 
-    public ServiceException(String code, String msg) {
-        this.code = code;
+    public ServiceException(String status, String msg) {
+        this.status = status;
         this.message = msg;
     }
 }

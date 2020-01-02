@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.yunzhong.account.admin.dao.OSBDao;
 import org.yunzhong.account.admin.dao.OrgDao;
@@ -45,7 +46,7 @@ public class OSBServiceImpl implements OSBService {
     @Transactional
     public void delete(String osbType) throws ServiceException {
         List<Organization> orgs = orgDao.getByOSBType(osbType);
-        if (CollectionUtils.isNotEmpty(orgs)) {
+        if (!CollectionUtils.isEmpty(orgs)) {
             log.error("osbType [" + osbType + "] has been used,can not be deleted.");
             throw new ServiceException(CphErrorCode.ERR_CODE_CA_PARAMNOTALLOW, "账套已使用，无法删除");
         }

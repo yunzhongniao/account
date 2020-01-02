@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.yunzhong.account.admin.dao.UserDao;
 import org.yunzhong.account.admin.model.AppUser;
+import org.yunzhong.account.admin.model.Page;
 import org.yunzhong.account.admin.service.UserService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
@@ -81,15 +82,15 @@ public class UserServiceImpl implements UserService {
             log.error("empty param.");
             throw new ServiceException(CphErrorCode.ERR_CODE_CA_PARAMNOTALLOW, "参数为空");
         }
-        userDao.appendRole(user.getUserId(),user.getAppId(), user.getRoles());
+        userDao.appendRole(user.getUserId(), user.getAppId(), user.getRoles());
     }
-    
+
     @Override
     public void removeRole(AppUser user) throws ServiceException {
         if (user == null || CollectionUtils.isEmpty(user.getRoles())) {
             log.error("empty param.");
             throw new ServiceException(CphErrorCode.ERR_CODE_CA_PARAMNOTALLOW, "参数为空");
         }
-        userDao.removeRole(user.getUserId(),user.getAppId(), user.getRoles());
+        userDao.removeRole(user.getUserId(), user.getAppId(), user.getRoles());
     }
 }

@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.yunzhong.account.admin.model.AcctCaType;
 import org.yunzhong.account.admin.service.AcctCaTypeService;
+import org.yunzhong.account.admin.vo.CphRspMsg;
+import org.yunzhong.account.admin.vo.RspHead;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
-import com.paytechsrv.cph.msg.CphRspMsg;
-import com.paytechsrv.cph.msg.RspHead;
 
 /**
  * @author yunzhong

@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.yunzhong.account.admin.model.AppUser;
 import org.yunzhong.account.admin.model.PageSearch;
 import org.yunzhong.account.admin.service.UserService;
+import org.yunzhong.account.admin.vo.CphRspMsg;
+import org.yunzhong.account.admin.vo.RspHead;
+import org.yunzhong.account.common.Md5Encoder;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
-import com.paytechsrv.cph.acctservice.servlet.Md5Encoder;
-import com.paytechsrv.cph.msg.CphRspMsg;
-import com.paytechsrv.cph.msg.RspHead;
 
 @Controller
 @RequestMapping("/manage/acct/user")
@@ -98,7 +98,7 @@ public class UserController {
         CphRspMsg response = new CphRspMsg();
         response.setHead(new RspHead());
         try {
-            if (StringUtils.isNotEmpty(user.getUserPwd())) {
+            if (!StringUtils.isEmpty(user.getUserPwd())) {
                 user.setUserPwd(Md5Encoder.encode(user.getUserPwd()));
             }
             userService.update(user);
@@ -135,7 +135,7 @@ public class UserController {
         }
         return response;
     }
-    
+
     @RequestMapping(value = "/append/role", method = RequestMethod.POST)
     @ResponseBody
     public CphRspMsg appendRole(@RequestBody AppUser user) {
@@ -155,6 +155,7 @@ public class UserController {
         }
         return response;
     }
+
     @RequestMapping(value = "/remove/role", method = RequestMethod.POST)
     @ResponseBody
     public CphRspMsg removeRole(@RequestBody AppUser user) {

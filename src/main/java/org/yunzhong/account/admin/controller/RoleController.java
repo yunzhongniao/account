@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.yunzhong.account.admin.model.AuthRole;
 import org.yunzhong.account.admin.model.PageSearch;
 import org.yunzhong.account.admin.service.RoleService;
+import org.yunzhong.account.admin.vo.CphRspMsg;
+import org.yunzhong.account.admin.vo.RspHead;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
-import com.paytechsrv.cph.msg.CphRspMsg;
-import com.paytechsrv.cph.msg.RspHead;
 
 @Controller
 @RequestMapping("/manage/acct/role")

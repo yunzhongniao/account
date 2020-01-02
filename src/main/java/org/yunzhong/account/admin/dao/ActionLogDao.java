@@ -1,6 +1,6 @@
 package org.yunzhong.account.admin.dao;
 
-import com.coxcmn.jms.log.JMSLogMessage;
+import org.yunzhong.account.admin.model.jms.JMSLogMessage;
 
 public class ActionLogDao extends AcctBasicDao<JMSLogMessage> {
 

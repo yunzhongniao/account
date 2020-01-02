@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.CollectionUtils;
 import org.yunzhong.account.admin.dao.AcctEFDao;
 import org.yunzhong.account.admin.model.AcctEF;
 import org.yunzhong.account.admin.model.AcctEFGroup;
@@ -54,10 +55,10 @@ public class AcctEFServiceImpl implements AcctEFService {
             }
         });
         efDao.deleteOther(acctEFGroup.getPid(), acctEFGroup.getTrxCode(), updateEFs);
-        if (CollectionUtils.isNotEmpty(newEFs)) {
+        if (!CollectionUtils.isEmpty(newEFs)) {
             efDao.batchAdd(newEFs);
         }
-        if (CollectionUtils.isNotEmpty(updateEFs)) {
+        if (!CollectionUtils.isEmpty(updateEFs)) {
             efDao.batchUpdate(updateEFs);
         }
     }
@@ -69,7 +70,7 @@ public class AcctEFServiceImpl implements AcctEFService {
             throw new ServiceException(CphErrorCode.ERR_CODE_CA_PARAMNOTALLOW, "分录规则参数为空");
         }
         List<AcctEF> efs = efDao.select(acctEFGroup.getPid(), acctEFGroup.getTrxCode());
-        if (CollectionUtils.isNotEmpty(efs)) {
+        if (!CollectionUtils.isEmpty(efs)) {
             log.error("There are efs of pid [" + acctEFGroup.getPid() + "] trxcode [" + acctEFGroup.getTrxCode() + "]");
             throw new ServiceException(CphErrorCode.ERR_CODE_CA_PARAMNOTALLOW,
                     "分录规则" + acctEFGroup.getPid() + "," + acctEFGroup.getTrxCode() + "已经存在");

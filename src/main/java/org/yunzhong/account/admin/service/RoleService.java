@@ -3,6 +3,7 @@ package org.yunzhong.account.admin.service;
 import java.util.List;
 
 import org.yunzhong.account.admin.model.AuthRole;
+import org.yunzhong.account.admin.model.Page;
 import org.yunzhong.account.common.ServiceException;
 
 public interface RoleService extends AcctBasicService {
