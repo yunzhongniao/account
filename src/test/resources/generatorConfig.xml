@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置文档：http://mybatis.org/generator/index.html -->
+<generatorConfiguration>
+    <!-- 为mybatis generator 添加classpath ，一般用于指定driver jar的位置。 -->
+    <classPathEntry
+        location="C:\Users\yunzhong\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />
+
+    <!-- targetRuntime: 1 MyBatis3DynamicSql（默认值）。忽略defaultModelType的设置，采用FLAT，主键不会抽取成独立的一个类。 
+        忽略javaClientGenerator的type配置，生成注解方式的sql，不会生成xml。 2 MyBatis3。会有by example的方法生成 
+        3 MyBatis3Simple。没有by example的方法生成 -->
+    <!-- defaultModelType: 1 conditional（默认值），如果主键是多个字段，将会抽取成单独的一个类。2 flat，一个表对应一个类，包含所有属性。 
+        3 hierarchical，主键会抽取成一个单独的类。 -->
+    <context id="context1" targetRuntime="MyBatis3Simple"
+        defaultModelType="flat">
+        <!-- property support:suppressAllComments,suppressDate,addRemarkComments,dateFormat -->
+        <!-- suppressAllComments: false(默认),生成注释；true，没有注释。 -->
+        <!-- suppressDate: false(默认),生成的注释都有时间戳；true，没有时间戳。 -->
+        <!-- addRemarkComments: false(默认),生成的注释没有数据库的注释信息；true，注释有数据库的注释信息。suppressAllComments=false则被忽略 -->
+        <!-- dateFormat: 时间格式。suppressAllComments=true或suppressDate=true则被忽略 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection
+            connectionURL="jdbc:mysql://localhost:3306/account?serverTimezone=UTC"
+            driverClass="com.mysql.jdbc.Driver" password="yunzhong"
+            userId="root" />
+        <!-- 必填项：targetPackage，生成java文件的包路径 -->
+        <!-- 必填项：targetProject，项目路径，和targetPackage联合定位路径。在Eclipse 下，需要项目名开始(account/src/main/java)。在其他环境下，相对路径就可以（./src/main/java）。 -->
+        <!-- 属性：enableSubPackages。是否在targetPackage后追加数据库表所在的模式名 -->
+        <javaModelGenerator
+            targetPackage="org.yunzhong.account.accounting.model"
+            targetProject="account/src/main/java" />
+
+        <!-- 必填项：targetPackage，同上 -->
+        <!-- 必填项：targetProject，同上 -->
+        <!-- 属性：enableSubPackages。是否在targetPackage后追加数据库表所在的模式名 -->
+        <sqlMapGenerator
+            targetPackage="org.yunzhong.account.accounting.dao.mapper"
+            targetProject="account/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 必填项：targetPackage，同上 -->
+        <!-- 必填项：targetProject，同上 -->
+        <!-- 属性：enableSubPackages。是否在targetPackage后追加数据库表所在的模式名 -->
+        <javaClientGenerator
+            targetPackage="org.yunzhong.account.accounting.dao"
+            targetProject="account/src/main/java" type="XMLMAPPER" />
+
+        <!-- 必填项：tableName. -->
+        <!-- 可选项：domainObjectName. model，mapper.java,mapper.xml将会在此名字上生成，而不是通过tableName生成 -->
+        <!-- 可选项：mapperName. mapper.xml将会在此名字上生成，而不是通过tableName生成。忽略domainObjectName的配置 -->
+        <!-- 可选项：modelType. 作用同上。如果targetRuntime为MyBatis3DynamicSql或MyBatis3Kotlin，则此配置不生效 -->
+        <table schema="" tableName="t_acct_currency_type"
+            domainObjectName="AcctCurrencyType">
+        </table>
+
+    </context>
+</generatorConfiguration>
