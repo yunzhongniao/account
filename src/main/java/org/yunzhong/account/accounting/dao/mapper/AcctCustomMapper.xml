@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctCustomMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctCustom">
+    <id column="acctno" jdbcType="VARCHAR" property="acctno" />
+    <id column="account_book_id" jdbcType="VARCHAR" property="accountBookId" />
+    <result column="currtype" jdbcType="VARCHAR" property="currtype" />
+    <result column="acctname" jdbcType="VARCHAR" property="acctname" />
+    <result column="cpflag" jdbcType="TINYINT" property="cpflag" />
+    <result column="acctstatus" jdbcType="VARCHAR" property="acctstatus" />
+    <result column="accttype" jdbcType="VARCHAR" property="accttype" />
+    <result column="acctpwd" jdbcType="VARCHAR" property="acctpwd" />
+    <result column="itemcode" jdbcType="VARCHAR" property="itemcode" />
+    <result column="balby" jdbcType="TINYINT" property="balby" />
+    <result column="cusid" jdbcType="VARCHAR" property="cusid" />
+    <result column="acctcatype" jdbcType="VARCHAR" property="acctcatype" />
+    <result column="acctcaid" jdbcType="VARCHAR" property="acctcaid" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="allowpay" jdbcType="TINYINT" property="allowpay" />
+    <result column="allowrecharge" jdbcType="TINYINT" property="allowrecharge" />
+    <result column="allowdeposit" jdbcType="TINYINT" property="allowdeposit" />
+    <result column="allowtfin" jdbcType="TINYINT" property="allowtfin" />
+    <result column="allowtfout" jdbcType="TINYINT" property="allowtfout" />
+    <result column="allowin" jdbcType="TINYINT" property="allowin" />
+    <result column="allowout" jdbcType="TINYINT" property="allowout" />
+    <result column="overdramamt" jdbcType="DECIMAL" property="overdramamt" />
+    <result column="drmaxamt" jdbcType="DECIMAL" property="drmaxamt" />
+    <result column="crmaxamt" jdbcType="DECIMAL" property="crmaxamt" />
+    <result column="drdtmaxamt" jdbcType="DECIMAL" property="drdtmaxamt" />
+    <result column="drdtamt" jdbcType="DECIMAL" property="drdtamt" />
+    <result column="drdtmaxcnt" jdbcType="DECIMAL" property="drdtmaxcnt" />
+    <result column="drdtcnt" jdbcType="DECIMAL" property="drdtcnt" />
+    <result column="drmtmaxamt" jdbcType="DECIMAL" property="drmtmaxamt" />
+    <result column="drmtamt" jdbcType="DECIMAL" property="drmtamt" />
+    <result column="drmtmaxcnt" jdbcType="DECIMAL" property="drmtmaxcnt" />
+    <result column="drmtcnt" jdbcType="DECIMAL" property="drmtcnt" />
+    <result column="crdtmaxamt" jdbcType="DECIMAL" property="crdtmaxamt" />
+    <result column="crdtamt" jdbcType="DECIMAL" property="crdtamt" />
+    <result column="crdtmaxcnt" jdbcType="DECIMAL" property="crdtmaxcnt" />
+    <result column="crdtcnt" jdbcType="DECIMAL" property="crdtcnt" />
+    <result column="crmtmaxamt" jdbcType="DECIMAL" property="crmtmaxamt" />
+    <result column="crmtamt" jdbcType="DECIMAL" property="crmtamt" />
+    <result column="crmtmaxcnt" jdbcType="DECIMAL" property="crmtmaxcnt" />
+    <result column="crmtcnt" jdbcType="DECIMAL" property="crmtcnt" />
+    <result column="lsttrxtime" jdbcType="TIMESTAMP" property="lsttrxtime" />
+    <result column="lstcintdat" jdbcType="VARCHAR" property="lstcintdat" />
+    <result column="cintcycle" jdbcType="VARCHAR" property="cintcycle" />
+    <result column="cintratect" jdbcType="VARCHAR" property="cintratect" />
+    <result column="cintratecode" jdbcType="VARCHAR" property="cintratecode" />
+    <result column="cintcn" jdbcType="DECIMAL" property="cintcn" />
+    <result column="crappid" jdbcType="VARCHAR" property="crappid" />
+    <result column="cruser" jdbcType="VARCHAR" property="cruser" />
+    <result column="crtime" jdbcType="TIMESTAMP" property="crtime" />
+    <result column="dtappid" jdbcType="VARCHAR" property="dtappid" />
+    <result column="dtuser" jdbcType="VARCHAR" property="dtuser" />
+    <result column="dttime" jdbcType="TIMESTAMP" property="dttime" />
+    <result column="acctreserved" jdbcType="VARCHAR" property="acctreserved" />
+    <result column="mainacct" jdbcType="TINYINT" property="mainacct" />
+    <result column="reglimitcusswitch" jdbcType="TINYINT" property="reglimitcusswitch" />
+    <result column="cqacct" jdbcType="TINYINT" property="cqacct" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_acct_custom
+    where acctno = #{acctno,jdbcType=VARCHAR}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctCustom">
+    insert into t_acct_custom (acctno, account_book_id, currtype, 
+      acctname, cpflag, acctstatus, 
+      accttype, acctpwd, itemcode, 
+      balby, cusid, acctcatype, 
+      acctcaid, balance, allowpay, 
+      allowrecharge, allowdeposit, allowtfin, 
+      allowtfout, allowin, allowout, 
+      overdramamt, drmaxamt, crmaxamt, 
+      drdtmaxamt, drdtamt, drdtmaxcnt, 
+      drdtcnt, drmtmaxamt, drmtamt, 
+      drmtmaxcnt, drmtcnt, crdtmaxamt, 
+      crdtamt, crdtmaxcnt, crdtcnt, 
+      crmtmaxamt, crmtamt, crmtmaxcnt, 
+      crmtcnt, lsttrxtime, lstcintdat, 
+      cintcycle, cintratect, cintratecode, 
+      cintcn, crappid, cruser, 
+      crtime, dtappid, dtuser, 
+      dttime, acctreserved, mainacct, 
+      reglimitcusswitch, cqacct, id
+      )
+    values (#{acctno,jdbcType=VARCHAR}, #{accountBookId,jdbcType=VARCHAR}, #{currtype,jdbcType=VARCHAR}, 
+      #{acctname,jdbcType=VARCHAR}, #{cpflag,jdbcType=TINYINT}, #{acctstatus,jdbcType=VARCHAR}, 
+      #{accttype,jdbcType=VARCHAR}, #{acctpwd,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, 
+      #{balby,jdbcType=TINYINT}, #{cusid,jdbcType=VARCHAR}, #{acctcatype,jdbcType=VARCHAR}, 
+      #{acctcaid,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{allowpay,jdbcType=TINYINT}, 
+      #{allowrecharge,jdbcType=TINYINT}, #{allowdeposit,jdbcType=TINYINT}, #{allowtfin,jdbcType=TINYINT}, 
+      #{allowtfout,jdbcType=TINYINT}, #{allowin,jdbcType=TINYINT}, #{allowout,jdbcType=TINYINT}, 
+      #{overdramamt,jdbcType=DECIMAL}, #{drmaxamt,jdbcType=DECIMAL}, #{crmaxamt,jdbcType=DECIMAL}, 
+      #{drdtmaxamt,jdbcType=DECIMAL}, #{drdtamt,jdbcType=DECIMAL}, #{drdtmaxcnt,jdbcType=DECIMAL}, 
+      #{drdtcnt,jdbcType=DECIMAL}, #{drmtmaxamt,jdbcType=DECIMAL}, #{drmtamt,jdbcType=DECIMAL}, 
+      #{drmtmaxcnt,jdbcType=DECIMAL}, #{drmtcnt,jdbcType=DECIMAL}, #{crdtmaxamt,jdbcType=DECIMAL}, 
+      #{crdtamt,jdbcType=DECIMAL}, #{crdtmaxcnt,jdbcType=DECIMAL}, #{crdtcnt,jdbcType=DECIMAL}, 
+      #{crmtmaxamt,jdbcType=DECIMAL}, #{crmtamt,jdbcType=DECIMAL}, #{crmtmaxcnt,jdbcType=DECIMAL}, 
+      #{crmtcnt,jdbcType=DECIMAL}, #{lsttrxtime,jdbcType=TIMESTAMP}, #{lstcintdat,jdbcType=VARCHAR}, 
+      #{cintcycle,jdbcType=VARCHAR}, #{cintratect,jdbcType=VARCHAR}, #{cintratecode,jdbcType=VARCHAR}, 
+      #{cintcn,jdbcType=DECIMAL}, #{crappid,jdbcType=VARCHAR}, #{cruser,jdbcType=VARCHAR}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{dtappid,jdbcType=VARCHAR}, #{dtuser,jdbcType=VARCHAR}, 
+      #{dttime,jdbcType=TIMESTAMP}, #{acctreserved,jdbcType=VARCHAR}, #{mainacct,jdbcType=TINYINT}, 
+      #{reglimitcusswitch,jdbcType=TINYINT}, #{cqacct,jdbcType=TINYINT}, #{id,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCustom">
+    update t_acct_custom
+    set currtype = #{currtype,jdbcType=VARCHAR},
+      acctname = #{acctname,jdbcType=VARCHAR},
+      cpflag = #{cpflag,jdbcType=TINYINT},
+      acctstatus = #{acctstatus,jdbcType=VARCHAR},
+      accttype = #{accttype,jdbcType=VARCHAR},
+      acctpwd = #{acctpwd,jdbcType=VARCHAR},
+      itemcode = #{itemcode,jdbcType=VARCHAR},
+      balby = #{balby,jdbcType=TINYINT},
+      cusid = #{cusid,jdbcType=VARCHAR},
+      acctcatype = #{acctcatype,jdbcType=VARCHAR},
+      acctcaid = #{acctcaid,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      allowpay = #{allowpay,jdbcType=TINYINT},
+      allowrecharge = #{allowrecharge,jdbcType=TINYINT},
+      allowdeposit = #{allowdeposit,jdbcType=TINYINT},
+      allowtfin = #{allowtfin,jdbcType=TINYINT},
+      allowtfout = #{allowtfout,jdbcType=TINYINT},
+      allowin = #{allowin,jdbcType=TINYINT},
+      allowout = #{allowout,jdbcType=TINYINT},
+      overdramamt = #{overdramamt,jdbcType=DECIMAL},
+      drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+      crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+      drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+      drdtamt = #{drdtamt,jdbcType=DECIMAL},
+      drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+      drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
+      drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+      drmtamt = #{drmtamt,jdbcType=DECIMAL},
+      drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+      drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
+      crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+      crdtamt = #{crdtamt,jdbcType=DECIMAL},
+      crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+      crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
+      crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+      crmtamt = #{crmtamt,jdbcType=DECIMAL},
+      crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+      crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
+      lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
+      lstcintdat = #{lstcintdat,jdbcType=VARCHAR},
+      cintcycle = #{cintcycle,jdbcType=VARCHAR},
+      cintratect = #{cintratect,jdbcType=VARCHAR},
+      cintratecode = #{cintratecode,jdbcType=VARCHAR},
+      cintcn = #{cintcn,jdbcType=DECIMAL},
+      crappid = #{crappid,jdbcType=VARCHAR},
+      cruser = #{cruser,jdbcType=VARCHAR},
+      crtime = #{crtime,jdbcType=TIMESTAMP},
+      dtappid = #{dtappid,jdbcType=VARCHAR},
+      dtuser = #{dtuser,jdbcType=VARCHAR},
+      dttime = #{dttime,jdbcType=TIMESTAMP},
+      acctreserved = #{acctreserved,jdbcType=VARCHAR},
+      mainacct = #{mainacct,jdbcType=TINYINT},
+      reglimitcusswitch = #{reglimitcusswitch,jdbcType=TINYINT},
+      cqacct = #{cqacct,jdbcType=TINYINT},
+      id = #{id,jdbcType=VARCHAR}
+    where acctno = #{acctno,jdbcType=VARCHAR}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select acctno, account_book_id, currtype, acctname, cpflag, acctstatus, accttype, 
+    acctpwd, itemcode, balby, cusid, acctcatype, acctcaid, balance, allowpay, allowrecharge, 
+    allowdeposit, allowtfin, allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, 
+    drdtmaxamt, drdtamt, drdtmaxcnt, drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, 
+    crdtmaxamt, crdtamt, crdtmaxcnt, crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, 
+    lsttrxtime, lstcintdat, cintcycle, cintratect, cintratecode, cintcn, crappid, cruser, 
+    crtime, dtappid, dtuser, dttime, acctreserved, mainacct, reglimitcusswitch, cqacct, 
+    id
+    from t_acct_custom
+    where acctno = #{acctno,jdbcType=VARCHAR}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select acctno, account_book_id, currtype, acctname, cpflag, acctstatus, accttype, 
+    acctpwd, itemcode, balby, cusid, acctcatype, acctcaid, balance, allowpay, allowrecharge, 
+    allowdeposit, allowtfin, allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, 
+    drdtmaxamt, drdtamt, drdtmaxcnt, drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, 
+    crdtmaxamt, crdtamt, crdtmaxcnt, crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, 
+    lsttrxtime, lstcintdat, cintcycle, cintratect, cintratecode, cintcn, crappid, cruser, 
+    crtime, dtappid, dtuser, dttime, acctreserved, mainacct, reglimitcusswitch, cqacct, 
+    id
+    from t_acct_custom
+  </select>
+</mapper>

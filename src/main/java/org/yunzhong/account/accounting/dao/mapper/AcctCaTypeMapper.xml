@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctCaTypeMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctCaType">
+    <id column="catypeid" jdbcType="VARCHAR" property="catypeid" />
+    <id column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
+    <result column="catypename" jdbcType="VARCHAR" property="catypename" />
+    <result column="iscus" jdbcType="TINYINT" property="iscus" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_acct_catype
+    where catypeid = #{catypeid,jdbcType=VARCHAR}
+      and account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctCaType">
+    insert into t_acct_catype (catypeid, account_book_type, catypename, 
+      iscus)
+    values (#{catypeid,jdbcType=VARCHAR}, #{accountBookType,jdbcType=VARCHAR}, #{catypename,jdbcType=VARCHAR}, 
+      #{iscus,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCaType">
+    update t_acct_catype
+    set catypename = #{catypename,jdbcType=VARCHAR},
+      iscus = #{iscus,jdbcType=TINYINT}
+    where catypeid = #{catypeid,jdbcType=VARCHAR}
+      and account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select catypeid, account_book_type, catypename, iscus
+    from t_acct_catype
+    where catypeid = #{catypeid,jdbcType=VARCHAR}
+      and account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select catypeid, account_book_type, catypename, iscus
+    from t_acct_catype
+  </select>
+</mapper>

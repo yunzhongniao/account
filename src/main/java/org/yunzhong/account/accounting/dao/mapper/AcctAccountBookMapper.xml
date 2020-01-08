@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctAccountBookMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctAccountBook">
+    <id column="account_book_id" jdbcType="VARCHAR" property="accountBookId" />
+    <result column="account_book_name" jdbcType="VARCHAR" property="accountBookName" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="rootinstcd" jdbcType="VARCHAR" property="rootinstcd" />
+    <result column="crtime" jdbcType="TIMESTAMP" property="crtime" />
+    <result column="cruser" jdbcType="VARCHAR" property="cruser" />
+    <result column="shutuptime" jdbcType="TIMESTAMP" property="shutuptime" />
+    <result column="shutupuser" jdbcType="VARCHAR" property="shutupuser" />
+    <result column="shutdowntime" jdbcType="TIMESTAMP" property="shutdowntime" />
+    <result column="shutdownuser" jdbcType="VARCHAR" property="shutdownuser" />
+    <result column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_acct_account_book
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctAccountBook">
+    insert into t_acct_account_book (account_book_id, account_book_name, state, 
+      rootinstcd, crtime, cruser, 
+      shutuptime, shutupuser, shutdowntime, 
+      shutdownuser, account_book_type)
+    values (#{accountBookId,jdbcType=VARCHAR}, #{accountBookName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{rootinstcd,jdbcType=VARCHAR}, #{crtime,jdbcType=TIMESTAMP}, #{cruser,jdbcType=VARCHAR}, 
+      #{shutuptime,jdbcType=TIMESTAMP}, #{shutupuser,jdbcType=VARCHAR}, #{shutdowntime,jdbcType=TIMESTAMP}, 
+      #{shutdownuser,jdbcType=VARCHAR}, #{accountBookType,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctAccountBook">
+    update t_acct_account_book
+    set account_book_name = #{accountBookName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      rootinstcd = #{rootinstcd,jdbcType=VARCHAR},
+      crtime = #{crtime,jdbcType=TIMESTAMP},
+      cruser = #{cruser,jdbcType=VARCHAR},
+      shutuptime = #{shutuptime,jdbcType=TIMESTAMP},
+      shutupuser = #{shutupuser,jdbcType=VARCHAR},
+      shutdowntime = #{shutdowntime,jdbcType=TIMESTAMP},
+      shutdownuser = #{shutdownuser,jdbcType=VARCHAR},
+      account_book_type = #{accountBookType,jdbcType=VARCHAR}
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select account_book_id, account_book_name, state, rootinstcd, crtime, cruser, shutuptime, 
+    shutupuser, shutdowntime, shutdownuser, account_book_type
+    from t_acct_account_book
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select account_book_id, account_book_name, state, rootinstcd, crtime, cruser, shutuptime, 
+    shutupuser, shutdowntime, shutdownuser, account_book_type
+    from t_acct_account_book
+  </select>
+</mapper>

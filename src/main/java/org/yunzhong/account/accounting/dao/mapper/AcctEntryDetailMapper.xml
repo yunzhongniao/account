@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctEntryDetailMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctEntryDetail">
+    <id column="voucherno" jdbcType="VARCHAR" property="voucherno" />
+    <id column="entryno" jdbcType="BIGINT" property="entryno" />
+    <id column="account_book_id" jdbcType="VARCHAR" property="accountBookId" />
+    <id column="entrypty" jdbcType="BIGINT" property="entrypty" />
+    <result column="vouchertype" jdbcType="VARCHAR" property="vouchertype" />
+    <result column="iscusacct" jdbcType="TINYINT" property="iscusacct" />
+    <result column="acctno" jdbcType="VARCHAR" property="acctno" />
+    <result column="currtype" jdbcType="CHAR" property="currtype" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="trxcode" jdbcType="VARCHAR" property="trxcode" />
+    <result column="trxid" jdbcType="VARCHAR" property="trxid" />
+    <result column="refvoucherno" jdbcType="VARCHAR" property="refvoucherno" />
+    <result column="parenttrxid" jdbcType="VARCHAR" property="parenttrxid" />
+    <result column="childtrxid" jdbcType="VARCHAR" property="childtrxid" />
+    <result column="entrydate" jdbcType="VARCHAR" property="entrydate" />
+    <result column="entrytime" jdbcType="TIMESTAMP" property="entrytime" />
+    <result column="crdr" jdbcType="TINYINT" property="crdr" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="curbal" jdbcType="DECIMAL" property="curbal" />
+    <result column="reciporgtype" jdbcType="VARCHAR" property="reciporgtype" />
+    <result column="reciporgcode" jdbcType="VARCHAR" property="reciporgcode" />
+    <result column="recipacctno" jdbcType="VARCHAR" property="recipacctno" />
+    <result column="postflag" jdbcType="TINYINT" property="postflag" />
+    <result column="postdate" jdbcType="VARCHAR" property="postdate" />
+    <result column="posttime" jdbcType="TIMESTAMP" property="posttime" />
+    <result column="postbatch" jdbcType="VARCHAR" property="postbatch" />
+    <result column="genledflag" jdbcType="TINYINT" property="genledflag" />
+    <result column="genleddate" jdbcType="VARCHAR" property="genleddate" />
+    <result column="genledtime" jdbcType="TIMESTAMP" property="genledtime" />
+    <result column="genledbatch" jdbcType="VARCHAR" property="genledbatch" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="isrevd" jdbcType="TINYINT" property="isrevd" />
+    <result column="entrytype" jdbcType="TINYINT" property="entrytype" />
+    <result column="revtime" jdbcType="TIMESTAMP" property="revtime" />
+    <result column="revtype" jdbcType="TINYINT" property="revtype" />
+    <result column="entrybatch" jdbcType="BIGINT" property="entrybatch" />
+    <result column="acctname" jdbcType="VARCHAR" property="acctname" />
+    <result column="reglimitcus" jdbcType="DECIMAL" property="reglimitcus" />
+    <result column="reglimitca" jdbcType="DECIMAL" property="reglimitca" />
+    <result column="reglimitacct" jdbcType="BIT" property="reglimitacct" />
+    <result column="accttype" jdbcType="VARCHAR" property="accttype" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_acct_entry_detail
+    where voucherno = #{voucherno,jdbcType=VARCHAR}
+      and entryno = #{entryno,jdbcType=BIGINT}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and entrypty = #{entrypty,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctEntryDetail">
+    insert into t_acct_entry_detail (voucherno, entryno, account_book_id, 
+      entrypty, vouchertype, iscusacct, 
+      acctno, currtype, pid, 
+      trxcode, trxid, refvoucherno, 
+      parenttrxid, childtrxid, entrydate, 
+      entrytime, crdr, amount, 
+      curbal, reciporgtype, reciporgcode, 
+      recipacctno, postflag, postdate, 
+      posttime, postbatch, genledflag, 
+      genleddate, genledtime, genledbatch, 
+      memo, isrevd, entrytype, 
+      revtime, revtype, entrybatch, 
+      acctname, reglimitcus, reglimitca, 
+      reglimitacct, accttype, id
+      )
+    values (#{voucherno,jdbcType=VARCHAR}, #{entryno,jdbcType=BIGINT}, #{accountBookId,jdbcType=VARCHAR}, 
+      #{entrypty,jdbcType=BIGINT}, #{vouchertype,jdbcType=VARCHAR}, #{iscusacct,jdbcType=TINYINT}, 
+      #{acctno,jdbcType=VARCHAR}, #{currtype,jdbcType=CHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{trxcode,jdbcType=VARCHAR}, #{trxid,jdbcType=VARCHAR}, #{refvoucherno,jdbcType=VARCHAR}, 
+      #{parenttrxid,jdbcType=VARCHAR}, #{childtrxid,jdbcType=VARCHAR}, #{entrydate,jdbcType=VARCHAR}, 
+      #{entrytime,jdbcType=TIMESTAMP}, #{crdr,jdbcType=TINYINT}, #{amount,jdbcType=DECIMAL}, 
+      #{curbal,jdbcType=DECIMAL}, #{reciporgtype,jdbcType=VARCHAR}, #{reciporgcode,jdbcType=VARCHAR}, 
+      #{recipacctno,jdbcType=VARCHAR}, #{postflag,jdbcType=TINYINT}, #{postdate,jdbcType=VARCHAR}, 
+      #{posttime,jdbcType=TIMESTAMP}, #{postbatch,jdbcType=VARCHAR}, #{genledflag,jdbcType=TINYINT}, 
+      #{genleddate,jdbcType=VARCHAR}, #{genledtime,jdbcType=TIMESTAMP}, #{genledbatch,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{isrevd,jdbcType=TINYINT}, #{entrytype,jdbcType=TINYINT}, 
+      #{revtime,jdbcType=TIMESTAMP}, #{revtype,jdbcType=TINYINT}, #{entrybatch,jdbcType=BIGINT}, 
+      #{acctname,jdbcType=VARCHAR}, #{reglimitcus,jdbcType=DECIMAL}, #{reglimitca,jdbcType=DECIMAL}, 
+      #{reglimitacct,jdbcType=BIT}, #{accttype,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctEntryDetail">
+    update t_acct_entry_detail
+    set vouchertype = #{vouchertype,jdbcType=VARCHAR},
+      iscusacct = #{iscusacct,jdbcType=TINYINT},
+      acctno = #{acctno,jdbcType=VARCHAR},
+      currtype = #{currtype,jdbcType=CHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      trxcode = #{trxcode,jdbcType=VARCHAR},
+      trxid = #{trxid,jdbcType=VARCHAR},
+      refvoucherno = #{refvoucherno,jdbcType=VARCHAR},
+      parenttrxid = #{parenttrxid,jdbcType=VARCHAR},
+      childtrxid = #{childtrxid,jdbcType=VARCHAR},
+      entrydate = #{entrydate,jdbcType=VARCHAR},
+      entrytime = #{entrytime,jdbcType=TIMESTAMP},
+      crdr = #{crdr,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      curbal = #{curbal,jdbcType=DECIMAL},
+      reciporgtype = #{reciporgtype,jdbcType=VARCHAR},
+      reciporgcode = #{reciporgcode,jdbcType=VARCHAR},
+      recipacctno = #{recipacctno,jdbcType=VARCHAR},
+      postflag = #{postflag,jdbcType=TINYINT},
+      postdate = #{postdate,jdbcType=VARCHAR},
+      posttime = #{posttime,jdbcType=TIMESTAMP},
+      postbatch = #{postbatch,jdbcType=VARCHAR},
+      genledflag = #{genledflag,jdbcType=TINYINT},
+      genleddate = #{genleddate,jdbcType=VARCHAR},
+      genledtime = #{genledtime,jdbcType=TIMESTAMP},
+      genledbatch = #{genledbatch,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      isrevd = #{isrevd,jdbcType=TINYINT},
+      entrytype = #{entrytype,jdbcType=TINYINT},
+      revtime = #{revtime,jdbcType=TIMESTAMP},
+      revtype = #{revtype,jdbcType=TINYINT},
+      entrybatch = #{entrybatch,jdbcType=BIGINT},
+      acctname = #{acctname,jdbcType=VARCHAR},
+      reglimitcus = #{reglimitcus,jdbcType=DECIMAL},
+      reglimitca = #{reglimitca,jdbcType=DECIMAL},
+      reglimitacct = #{reglimitacct,jdbcType=BIT},
+      accttype = #{accttype,jdbcType=VARCHAR},
+      id = #{id,jdbcType=VARCHAR}
+    where voucherno = #{voucherno,jdbcType=VARCHAR}
+      and entryno = #{entryno,jdbcType=BIGINT}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and entrypty = #{entrypty,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select voucherno, entryno, account_book_id, entrypty, vouchertype, iscusacct, acctno, 
+    currtype, pid, trxcode, trxid, refvoucherno, parenttrxid, childtrxid, entrydate, 
+    entrytime, crdr, amount, curbal, reciporgtype, reciporgcode, recipacctno, postflag, 
+    postdate, posttime, postbatch, genledflag, genleddate, genledtime, genledbatch, memo, 
+    isrevd, entrytype, revtime, revtype, entrybatch, acctname, reglimitcus, reglimitca, 
+    reglimitacct, accttype, id
+    from t_acct_entry_detail
+    where voucherno = #{voucherno,jdbcType=VARCHAR}
+      and entryno = #{entryno,jdbcType=BIGINT}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and entrypty = #{entrypty,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select voucherno, entryno, account_book_id, entrypty, vouchertype, iscusacct, acctno, 
+    currtype, pid, trxcode, trxid, refvoucherno, parenttrxid, childtrxid, entrydate, 
+    entrytime, crdr, amount, curbal, reciporgtype, reciporgcode, recipacctno, postflag, 
+    postdate, posttime, postbatch, genledflag, genleddate, genledtime, genledbatch, memo, 
+    isrevd, entrytype, revtime, revtype, entrybatch, acctname, reglimitcus, reglimitca, 
+    reglimitacct, accttype, id
+    from t_acct_entry_detail
+  </select>
+</mapper>

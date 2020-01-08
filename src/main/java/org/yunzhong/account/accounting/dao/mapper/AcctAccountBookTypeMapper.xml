@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctAccountBookTypeMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctAccountBookType">
+    <id column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
+    <result column="account_book_type_name" jdbcType="VARCHAR" property="accountBookTypeName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_acct_account_book_type
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctAccountBookType">
+    insert into t_acct_account_book_type (account_book_type, account_book_type_name
+      )
+    values (#{accountBookType,jdbcType=VARCHAR}, #{accountBookTypeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctAccountBookType">
+    update t_acct_account_book_type
+    set account_book_type_name = #{accountBookTypeName,jdbcType=VARCHAR}
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select account_book_type, account_book_type_name
+    from t_acct_account_book_type
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select account_book_type, account_book_type_name
+    from t_acct_account_book_type
+  </select>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctCustomLimitMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctCustomLimit">
+    <id column="limitid" jdbcType="BIGINT" property="limitid" />
+    <result column="osbid" jdbcType="VARCHAR" property="osbid" />
+    <result column="cusid" jdbcType="VARCHAR" property="cusid" />
+    <result column="drmaxamt" jdbcType="DECIMAL" property="drmaxamt" />
+    <result column="crmaxamt" jdbcType="DECIMAL" property="crmaxamt" />
+    <result column="drdtmaxamt" jdbcType="DECIMAL" property="drdtmaxamt" />
+    <result column="drdtamt" jdbcType="DECIMAL" property="drdtamt" />
+    <result column="drdtmaxcnt" jdbcType="DECIMAL" property="drdtmaxcnt" />
+    <result column="drdtcnt" jdbcType="DECIMAL" property="drdtcnt" />
+    <result column="drmtmaxamt" jdbcType="DECIMAL" property="drmtmaxamt" />
+    <result column="drmtamt" jdbcType="DECIMAL" property="drmtamt" />
+    <result column="drmtmaxcnt" jdbcType="DECIMAL" property="drmtmaxcnt" />
+    <result column="drmtcnt" jdbcType="DECIMAL" property="drmtcnt" />
+    <result column="crdtmaxamt" jdbcType="DECIMAL" property="crdtmaxamt" />
+    <result column="crdtamt" jdbcType="DECIMAL" property="crdtamt" />
+    <result column="crdtmaxcnt" jdbcType="DECIMAL" property="crdtmaxcnt" />
+    <result column="crdtcnt" jdbcType="DECIMAL" property="crdtcnt" />
+    <result column="crmtmaxamt" jdbcType="DECIMAL" property="crmtmaxamt" />
+    <result column="crmtamt" jdbcType="DECIMAL" property="crmtamt" />
+    <result column="crmtmaxcnt" jdbcType="DECIMAL" property="crmtmaxcnt" />
+    <result column="crmtcnt" jdbcType="DECIMAL" property="crmtcnt" />
+    <result column="lsttrxtime" jdbcType="TIMESTAMP" property="lsttrxtime" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="deltime" jdbcType="TIMESTAMP" property="deltime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_acct_custom_limit
+    where limitid = #{limitid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+    insert into t_acct_custom_limit (limitid, osbid, cusid, 
+      drmaxamt, crmaxamt, drdtmaxamt, 
+      drdtamt, drdtmaxcnt, drdtcnt, 
+      drmtmaxamt, drmtamt, drmtmaxcnt, 
+      drmtcnt, crdtmaxamt, crdtamt, 
+      crdtmaxcnt, crdtcnt, crmtmaxamt, 
+      crmtamt, crmtmaxcnt, crmtcnt, 
+      lsttrxtime, state, deltime
+      )
+    values (#{limitid,jdbcType=BIGINT}, #{osbid,jdbcType=VARCHAR}, #{cusid,jdbcType=VARCHAR}, 
+      #{drmaxamt,jdbcType=DECIMAL}, #{crmaxamt,jdbcType=DECIMAL}, #{drdtmaxamt,jdbcType=DECIMAL}, 
+      #{drdtamt,jdbcType=DECIMAL}, #{drdtmaxcnt,jdbcType=DECIMAL}, #{drdtcnt,jdbcType=DECIMAL}, 
+      #{drmtmaxamt,jdbcType=DECIMAL}, #{drmtamt,jdbcType=DECIMAL}, #{drmtmaxcnt,jdbcType=DECIMAL}, 
+      #{drmtcnt,jdbcType=DECIMAL}, #{crdtmaxamt,jdbcType=DECIMAL}, #{crdtamt,jdbcType=DECIMAL}, 
+      #{crdtmaxcnt,jdbcType=DECIMAL}, #{crdtcnt,jdbcType=DECIMAL}, #{crmtmaxamt,jdbcType=DECIMAL}, 
+      #{crmtamt,jdbcType=DECIMAL}, #{crmtmaxcnt,jdbcType=DECIMAL}, #{crmtcnt,jdbcType=DECIMAL}, 
+      #{lsttrxtime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}, #{deltime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+    update t_acct_custom_limit
+    set osbid = #{osbid,jdbcType=VARCHAR},
+      cusid = #{cusid,jdbcType=VARCHAR},
+      drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+      crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+      drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+      drdtamt = #{drdtamt,jdbcType=DECIMAL},
+      drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+      drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
+      drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+      drmtamt = #{drmtamt,jdbcType=DECIMAL},
+      drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+      drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
+      crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+      crdtamt = #{crdtamt,jdbcType=DECIMAL},
+      crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+      crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
+      crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+      crmtamt = #{crmtamt,jdbcType=DECIMAL},
+      crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+      crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
+      lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR},
+      deltime = #{deltime,jdbcType=TIMESTAMP}
+    where limitid = #{limitid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select limitid, osbid, cusid, drmaxamt, crmaxamt, drdtmaxamt, drdtamt, drdtmaxcnt, 
+    drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, crdtmaxamt, crdtamt, crdtmaxcnt, 
+    crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, lsttrxtime, state, deltime
+    from t_acct_custom_limit
+    where limitid = #{limitid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select limitid, osbid, cusid, drmaxamt, crmaxamt, drdtmaxamt, drdtamt, drdtmaxcnt, 
+    drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, crdtmaxamt, crdtamt, crdtmaxcnt, 
+    crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, lsttrxtime, state, deltime
+    from t_acct_custom_limit
+  </select>
+</mapper>

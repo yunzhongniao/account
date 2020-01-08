@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctTransactionCatMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctTransactionCat">
+    <id column="trxcode" jdbcType="VARCHAR" property="trxcode" />
+    <result column="trxcat" jdbcType="TINYINT" property="trxcat" />
+    <result column="trxname" jdbcType="VARCHAR" property="trxname" />
+    <result column="showinpage" jdbcType="CHAR" property="showinpage" />
+    <result column="showinmer" jdbcType="CHAR" property="showinmer" />
+    <result column="trxdir" jdbcType="VARCHAR" property="trxdir" />
+    <result column="priority" jdbcType="CHAR" property="priority" />
+    <result column="nameforacct" jdbcType="VARCHAR" property="nameforacct" />
+    <result column="merentry" jdbcType="CHAR" property="merentry" />
+    <result column="iscalucost" jdbcType="TINYINT" property="iscalucost" />
+    <result column="isreal" jdbcType="CHAR" property="isreal" />
+    <result column="issett" jdbcType="CHAR" property="issett" />
+    <result column="resend" jdbcType="CHAR" property="resend" />
+    <result column="issyscmn" jdbcType="CHAR" property="issyscmn" />
+    <result column="isrev" jdbcType="TINYINT" property="isrev" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_acct_transaction_cat
+    where trxcode = #{trxcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+    insert into t_acct_transaction_cat (trxcode, trxcat, trxname, 
+      showinpage, showinmer, trxdir, 
+      priority, nameforacct, merentry, 
+      iscalucost, isreal, issett, 
+      resend, issyscmn, isrev)
+    values (#{trxcode,jdbcType=VARCHAR}, #{trxcat,jdbcType=TINYINT}, #{trxname,jdbcType=VARCHAR}, 
+      #{showinpage,jdbcType=CHAR}, #{showinmer,jdbcType=CHAR}, #{trxdir,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=CHAR}, #{nameforacct,jdbcType=VARCHAR}, #{merentry,jdbcType=CHAR}, 
+      #{iscalucost,jdbcType=TINYINT}, #{isreal,jdbcType=CHAR}, #{issett,jdbcType=CHAR}, 
+      #{resend,jdbcType=CHAR}, #{issyscmn,jdbcType=CHAR}, #{isrev,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+    update t_acct_transaction_cat
+    set trxcat = #{trxcat,jdbcType=TINYINT},
+      trxname = #{trxname,jdbcType=VARCHAR},
+      showinpage = #{showinpage,jdbcType=CHAR},
+      showinmer = #{showinmer,jdbcType=CHAR},
+      trxdir = #{trxdir,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=CHAR},
+      nameforacct = #{nameforacct,jdbcType=VARCHAR},
+      merentry = #{merentry,jdbcType=CHAR},
+      iscalucost = #{iscalucost,jdbcType=TINYINT},
+      isreal = #{isreal,jdbcType=CHAR},
+      issett = #{issett,jdbcType=CHAR},
+      resend = #{resend,jdbcType=CHAR},
+      issyscmn = #{issyscmn,jdbcType=CHAR},
+      isrev = #{isrev,jdbcType=TINYINT}
+    where trxcode = #{trxcode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select trxcode, trxcat, trxname, showinpage, showinmer, trxdir, priority, nameforacct, 
+    merentry, iscalucost, isreal, issett, resend, issyscmn, isrev
+    from t_acct_transaction_cat
+    where trxcode = #{trxcode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select trxcode, trxcat, trxname, showinpage, showinmer, trxdir, priority, nameforacct, 
+    merentry, iscalucost, isreal, issett, resend, issyscmn, isrev
+    from t_acct_transaction_cat
+  </select>
+</mapper>

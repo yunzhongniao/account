@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctItemMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctItem">
+    <id column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
+    <id column="itemcode" jdbcType="VARCHAR" property="itemcode" />
+    <result column="itemname" jdbcType="VARCHAR" property="itemname" />
+    <result column="itembalby" jdbcType="TINYINT" property="itembalby" />
+    <result column="itemclass" jdbcType="TINYINT" property="itemclass" />
+    <result column="itemnotes" jdbcType="VARCHAR" property="itemnotes" />
+    <result column="itemlevel" jdbcType="TINYINT" property="itemlevel" />
+    <result column="itemfather" jdbcType="VARCHAR" property="itemfather" />
+    <result column="currtype" jdbcType="CHAR" property="currtype" />
+    <result column="mainacct" jdbcType="TINYINT" property="mainacct" />
+    <result column="cqacct" jdbcType="TINYINT" property="cqacct" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_acct_item
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctItem">
+    insert into t_acct_item (account_book_type, itemcode, itemname, 
+      itembalby, itemclass, itemnotes, 
+      itemlevel, itemfather, currtype, 
+      mainacct, cqacct)
+    values (#{accountBookType,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR}, 
+      #{itembalby,jdbcType=TINYINT}, #{itemclass,jdbcType=TINYINT}, #{itemnotes,jdbcType=VARCHAR}, 
+      #{itemlevel,jdbcType=TINYINT}, #{itemfather,jdbcType=VARCHAR}, #{currtype,jdbcType=CHAR}, 
+      #{mainacct,jdbcType=TINYINT}, #{cqacct,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctItem">
+    update t_acct_item
+    set itemname = #{itemname,jdbcType=VARCHAR},
+      itembalby = #{itembalby,jdbcType=TINYINT},
+      itemclass = #{itemclass,jdbcType=TINYINT},
+      itemnotes = #{itemnotes,jdbcType=VARCHAR},
+      itemlevel = #{itemlevel,jdbcType=TINYINT},
+      itemfather = #{itemfather,jdbcType=VARCHAR},
+      currtype = #{currtype,jdbcType=CHAR},
+      mainacct = #{mainacct,jdbcType=TINYINT},
+      cqacct = #{cqacct,jdbcType=TINYINT}
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select account_book_type, itemcode, itemname, itembalby, itemclass, itemnotes, itemlevel, 
+    itemfather, currtype, mainacct, cqacct
+    from t_acct_item
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select account_book_type, itemcode, itemname, itembalby, itemclass, itemnotes, itemlevel, 
+    itemfather, currtype, mainacct, cqacct
+    from t_acct_item
+  </select>
+</mapper>

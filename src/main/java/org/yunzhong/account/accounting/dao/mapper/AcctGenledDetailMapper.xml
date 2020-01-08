@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctGenledDetailMapper">
+  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctGenledDetail">
+    <id column="account_book_id" jdbcType="VARCHAR" property="accountBookId" />
+    <id column="itemcode" jdbcType="VARCHAR" property="itemcode" />
+    <id column="periodday" jdbcType="VARCHAR" property="periodday" />
+    <result column="itembalby" jdbcType="TINYINT" property="itembalby" />
+    <result column="itemclass" jdbcType="TINYINT" property="itemclass" />
+    <result column="currtype" jdbcType="CHAR" property="currtype" />
+    <result column="lddrbal" jdbcType="DECIMAL" property="lddrbal" />
+    <result column="ldcrbal" jdbcType="DECIMAL" property="ldcrbal" />
+    <result column="tddramt" jdbcType="DECIMAL" property="tddramt" />
+    <result column="tdcramt" jdbcType="DECIMAL" property="tdcramt" />
+    <result column="tddrcnt" jdbcType="DECIMAL" property="tddrcnt" />
+    <result column="tdcrcnt" jdbcType="DECIMAL" property="tdcrcnt" />
+    <result column="tddrbal" jdbcType="DECIMAL" property="tddrbal" />
+    <result column="tdcrbal" jdbcType="DECIMAL" property="tdcrbal" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_acct_genled_detail
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+      and periodday = #{periodday,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctGenledDetail">
+    insert into t_acct_genled_detail (account_book_id, itemcode, periodday, 
+      itembalby, itemclass, currtype, 
+      lddrbal, ldcrbal, tddramt, 
+      tdcramt, tddrcnt, tdcrcnt, 
+      tddrbal, tdcrbal)
+    values (#{accountBookId,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{periodday,jdbcType=VARCHAR}, 
+      #{itembalby,jdbcType=TINYINT}, #{itemclass,jdbcType=TINYINT}, #{currtype,jdbcType=CHAR}, 
+      #{lddrbal,jdbcType=DECIMAL}, #{ldcrbal,jdbcType=DECIMAL}, #{tddramt,jdbcType=DECIMAL}, 
+      #{tdcramt,jdbcType=DECIMAL}, #{tddrcnt,jdbcType=DECIMAL}, #{tdcrcnt,jdbcType=DECIMAL}, 
+      #{tddrbal,jdbcType=DECIMAL}, #{tdcrbal,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctGenledDetail">
+    update t_acct_genled_detail
+    set itembalby = #{itembalby,jdbcType=TINYINT},
+      itemclass = #{itemclass,jdbcType=TINYINT},
+      currtype = #{currtype,jdbcType=CHAR},
+      lddrbal = #{lddrbal,jdbcType=DECIMAL},
+      ldcrbal = #{ldcrbal,jdbcType=DECIMAL},
+      tddramt = #{tddramt,jdbcType=DECIMAL},
+      tdcramt = #{tdcramt,jdbcType=DECIMAL},
+      tddrcnt = #{tddrcnt,jdbcType=DECIMAL},
+      tdcrcnt = #{tdcrcnt,jdbcType=DECIMAL},
+      tddrbal = #{tddrbal,jdbcType=DECIMAL},
+      tdcrbal = #{tdcrbal,jdbcType=DECIMAL}
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+      and periodday = #{periodday,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select account_book_id, itemcode, periodday, itembalby, itemclass, currtype, lddrbal, 
+    ldcrbal, tddramt, tdcramt, tddrcnt, tdcrcnt, tddrbal, tdcrbal
+    from t_acct_genled_detail
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and itemcode = #{itemcode,jdbcType=VARCHAR}
+      and periodday = #{periodday,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select account_book_id, itemcode, periodday, itembalby, itemclass, currtype, lddrbal, 
+    ldcrbal, tddramt, tdcramt, tddrcnt, tdcrcnt, tddrbal, tdcrbal
+    from t_acct_genled_detail
+  </select>
+</mapper>
