@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.yunzhong.account.admin.dao.AuthRoleDao;
@@ -12,7 +13,7 @@ import org.yunzhong.account.admin.model.Page;
 import org.yunzhong.account.admin.service.RoleService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
+@Service
 public class RoleServiceImpl implements RoleService {
     private static final Log log = LogFactory.getLog(RoleServiceImpl.class);
 

@@ -1,9 +1,10 @@
 package org.yunzhong.account.admin.service.impl;
 
+import org.springframework.stereotype.Service;
 import org.yunzhong.account.admin.dao.ActionLogDao;
 import org.yunzhong.account.admin.model.jms.JMSLogMessage;
 import org.yunzhong.account.admin.service.ActionLogService;
-
+@Service
 public class ActionLogServiceImpl implements ActionLogService {
 
     private ActionLogDao logDao;

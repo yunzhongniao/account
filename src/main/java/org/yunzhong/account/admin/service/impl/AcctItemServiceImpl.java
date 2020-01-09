@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.yunzhong.account.admin.dao.AcctCusDao;
 import org.yunzhong.account.admin.dao.AcctEFDao;
@@ -22,7 +23,7 @@ import org.yunzhong.account.admin.model.Organization;
 import org.yunzhong.account.admin.service.AcctItemService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
+@Service
 public class AcctItemServiceImpl implements AcctItemService {
     private static final Log log = LogFactory.getLog(AcctItemServiceImpl.class);
     

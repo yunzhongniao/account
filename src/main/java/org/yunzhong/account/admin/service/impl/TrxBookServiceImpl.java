@@ -2,12 +2,13 @@ package org.yunzhong.account.admin.service.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.yunzhong.account.admin.dao.TrxBookDao;
 import org.yunzhong.account.admin.model.TrxBook;
 import org.yunzhong.account.admin.service.TrxBookService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
+@Service
 public class TrxBookServiceImpl implements TrxBookService {
     private static final Log log = LogFactory.getLog(TrxBookServiceImpl.class);
 

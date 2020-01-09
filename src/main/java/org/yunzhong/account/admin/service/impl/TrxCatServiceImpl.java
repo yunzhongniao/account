@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.yunzhong.account.admin.dao.AcctEFDao;
 import org.yunzhong.account.admin.dao.AcctENYDao;
 import org.yunzhong.account.admin.dao.TrxCatDao;
@@ -12,6 +13,7 @@ import org.yunzhong.account.admin.service.TrxCatService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
 
+@Service
 public class TrxCatServiceImpl implements TrxCatService {
     private static final Log log = LogFactory.getLog(TrxCatServiceImpl.class);
 

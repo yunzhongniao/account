@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.yunzhong.account.admin.dao.AcctEFDao;
 import org.yunzhong.account.admin.model.AcctEF;
@@ -12,7 +13,7 @@ import org.yunzhong.account.admin.model.AcctEFGroup;
 import org.yunzhong.account.admin.service.AcctEFService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
+@Service
 public class AcctEFServiceImpl implements AcctEFService {
     private static final Log log = LogFactory.getLog(AcctEFServiceImpl.class);
     private AcctEFDao efDao;

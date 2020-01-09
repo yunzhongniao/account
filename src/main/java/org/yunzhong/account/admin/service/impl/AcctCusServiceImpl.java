@@ -2,11 +2,12 @@ package org.yunzhong.account.admin.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.yunzhong.account.admin.dao.AcctCusDao;
 import org.yunzhong.account.admin.model.AcctCus;
 import org.yunzhong.account.admin.service.AcctCusService;
 import org.yunzhong.account.common.ServiceException;
-
+@Service
 public class AcctCusServiceImpl implements AcctCusService {
 
     private AcctCusDao cusDao;

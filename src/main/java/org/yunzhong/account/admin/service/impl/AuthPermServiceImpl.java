@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.yunzhong.account.admin.dao.AuthPermDao;
 import org.yunzhong.account.admin.dao.AuthRolePermDao;
 import org.yunzhong.account.admin.model.AuthPerm;
@@ -11,7 +12,7 @@ import org.yunzhong.account.admin.model.AuthRolePerm;
 import org.yunzhong.account.admin.service.AuthPermService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
-
+@Service
 public class AuthPermServiceImpl implements AuthPermService {
     private static final Log log = LogFactory.getLog(AuthPermServiceImpl.class);
     

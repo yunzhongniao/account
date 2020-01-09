@@ -2,6 +2,7 @@ package org.yunzhong.account.admin.service.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.yunzhong.account.admin.dao.UserDao;
@@ -11,6 +12,7 @@ import org.yunzhong.account.admin.service.UserService;
 import org.yunzhong.account.common.ServiceException;
 import org.yunzhong.account.common.dict.CphErrorCode;
 
+@Service
 public class UserServiceImpl implements UserService {
     private static final Log log = LogFactory.getLog(UserServiceImpl.class);
 
