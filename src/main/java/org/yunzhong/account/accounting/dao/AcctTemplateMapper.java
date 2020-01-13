@@ -1,5 +1,8 @@
 package org.yunzhong.account.accounting.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctTemplate;
 
 public interface AcctTemplateMapper {
@@ -14,4 +17,7 @@ public interface AcctTemplateMapper {
     int updateByPrimaryKeySelective(AcctTemplate record);
 
     int updateByPrimaryKey(AcctTemplate record);
+
+    List<AcctTemplate> select(@Param("osbType") String osbType, @Param("ocType") String ocType,
+            @Param("acctType") String acctType);
 }
