@@ -11,11 +11,61 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 25/12/2019 18:40:51
+ Date: 13/01/2020 08:32:02
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_acct_account_book
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acct_account_book`;
+CREATE TABLE `t_acct_account_book`  (
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套编号',
+  `account_book_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套名称',
+  `state` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '帐套状态  0:待启用 1:正常 2:停用',
+  `rootinstcd` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '对应机构编码',
+  `crtime` datetime(0) NOT NULL COMMENT '创建时间',
+  `cruser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `shutuptime` datetime(0) NULL DEFAULT NULL COMMENT '启用时间',
+  `shutupuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '启用者',
+  `shutdowntime` datetime(0) NULL DEFAULT NULL COMMENT '关闭时间',
+  `shutdownuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '关闭者',
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '帐套类型',
+  PRIMARY KEY (`account_book_id`) USING BTREE,
+  INDEX `idx_caacctosb_typeidx`(`account_book_type`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '帐套定义表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_acct_account_book
+-- ----------------------------
+INSERT INTO `t_acct_account_book` VALUES ('1', '1', '1', '1', '2019-03-05 17:17:17', '1', '2019-03-05 17:17:23', '1', '2019-03-05 17:17:26', '1', '1');
+INSERT INTO `t_acct_account_book` VALUES ('2', '2', '2', '2', '2019-03-06 11:10:16', '2', '2019-03-06 11:10:20', '2', '2019-03-06 11:10:23', '2', '2');
+INSERT INTO `t_acct_account_book` VALUES ('3', '3', '3', '3', '2019-03-07 11:12:02', '3', '2019-03-08 11:12:25', NULL, '2019-03-07 11:12:17', '3', '3');
+
+-- ----------------------------
+-- Table structure for t_acct_account_book_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acct_account_book_type`;
+CREATE TABLE `t_acct_account_book_type`  (
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型码',
+  `account_book_type_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型名称',
+  PRIMARY KEY (`account_book_type`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '帐套类型表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_acct_account_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acct_account_type`;
+CREATE TABLE `t_acct_account_type`  (
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
+  `accttype` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户类型',
+  `typename` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '类型名称',
+  `cusentry` tinyint(1) NULL DEFAULT NULL COMMENT '是否限制必须为客户账户',
+  `caentry` tinyint(1) NULL DEFAULT NULL COMMENT '是否限制必须为载体账户',
+  PRIMARY KEY (`account_book_type`, `accttype`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '账户类型定义表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_acct_catype
@@ -25,15 +75,15 @@ CREATE TABLE `t_acct_catype`  (
   `catypeid` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '载体类型编号',
   `catypename` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '载体类型名称',
   `iscus` tinyint(4) NULL DEFAULT NULL COMMENT '限制载体号与客户号一致',
-  `osbtype` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
-  PRIMARY KEY (`catypeid`, `osbtype`) USING BTREE
+  `account_book_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
+  PRIMARY KEY (`catypeid`, `account_book_type`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '载体类型定义表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_currtype
+-- Table structure for t_acct_currency_type
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_currtype`;
-CREATE TABLE `t_acct_currtype`  (
+DROP TABLE IF EXISTS `t_acct_currency_type`;
+CREATE TABLE `t_acct_currency_type`  (
   `currtype` char(3) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '币种代码',
   `currname` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '币种名称',
   `currlocal` tinyint(4) NULL DEFAULT NULL COMMENT '本币标识',
@@ -41,11 +91,11 @@ CREATE TABLE `t_acct_currtype`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '币种参数表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_cus
+-- Table structure for t_acct_custom
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_cus`;
-CREATE TABLE `t_acct_cus`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套号',
+DROP TABLE IF EXISTS `t_acct_custom`;
+CREATE TABLE `t_acct_custom`  (
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套号',
   `acctno` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账号',
   `currtype` varchar(3) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '币种',
   `acctname` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户名称',
@@ -102,16 +152,16 @@ CREATE TABLE `t_acct_cus`  (
   `reglimitcusswitch` tinyint(4) NULL DEFAULT NULL COMMENT '此账户是否关联客户额度变更',
   `cqacct` tinyint(4) NULL DEFAULT NULL COMMENT '是否为客户可查询账户',
   `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '唯一标识',
-  PRIMARY KEY (`acctno`, `osbid`) USING BTREE,
-  UNIQUE INDEX `cusacctcaidx`(`acctcaid`, `acctcatype`, `itemcode`, `osbid`) USING BTREE,
+  PRIMARY KEY (`acctno`, `account_book_id`) USING BTREE,
+  UNIQUE INDEX `cusacctcaidx`(`acctcaid`, `acctcatype`, `itemcode`, `account_book_id`) USING BTREE,
   UNIQUE INDEX `cusacctididx`(`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '客户账户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_cuslimit
+-- Table structure for t_acct_custom_limit
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_cuslimit`;
-CREATE TABLE `t_acct_cuslimit`  (
+DROP TABLE IF EXISTS `t_acct_custom_limit`;
+CREATE TABLE `t_acct_custom_limit`  (
   `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套编号',
   `cusid` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '客户号',
   `drmaxamt` decimal(20, 0) NULL DEFAULT NULL COMMENT '单笔借记最大金额',
@@ -141,20 +191,11 @@ CREATE TABLE `t_acct_cuslimit`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '客户额度表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_cuslimit_seq
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_cuslimit_seq`;
-CREATE TABLE `t_acct_cuslimit_seq`  (
-  `sequence` bigint(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`sequence`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for t_acct_diary
 -- ----------------------------
 DROP TABLE IF EXISTS `t_acct_diary`;
 CREATE TABLE `t_acct_diary`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
   `acctno` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户',
   `periodday` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '日期',
   `currtype` char(3) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '币种',
@@ -172,58 +213,16 @@ CREATE TABLE `t_acct_diary`  (
   `acctname` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户名称',
   `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户所属科目号',
   `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '唯一流水号',
-  PRIMARY KEY (`osbid`, `acctno`, `periodday`) USING BTREE,
+  PRIMARY KEY (`account_book_id`, `acctno`, `periodday`) USING BTREE,
   UNIQUE INDEX `idx_caacctdiary`(`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '账户历史余额(日记表)' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_ef
+-- Table structure for t_acct_entry_detail
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_ef`;
-CREATE TABLE `t_acct_ef`  (
-  `efid` bigint(20) NOT NULL COMMENT '规则编号',
-  `efname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '规则名称',
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
-  `trxdir` varchar(6) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '交易方向',
-  `pid` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '产品号',
-  `trxcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '交易类型码',
-  `actionx` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '动作类型',
-  `entrygrp` tinyint(4) NOT NULL DEFAULT 1 COMMENT '规则分组标识',
-  `entrysubgrp` tinyint(4) NOT NULL DEFAULT 1 COMMENT '规则子分组标识',
-  `entrypty` tinyint(4) NOT NULL COMMENT '子组内处理优先级',
-  `orgtype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构类型取值   0:内部 1: 银行 2:渠道 机构类型',
-  `orgcode` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构编号取值',
-  `acctnature` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户性质取值',
-  `acctcatype` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户载体取值',
-  `accttype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户类型取值',
-  `acctno` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户取值',
-  `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '科目号',
-  `fwsfather` tinyint(4) NULL DEFAULT NULL COMMENT '是否查询同父亲下的账户',
-  `crdr` tinyint(4) NOT NULL COMMENT '借贷方向',
-  `amount` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '金额公式',
-  `reciporgtype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方机构类型',
-  `reciporgcode` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方机构号',
-  `recipacctno` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方账户号',
-  `postatonce` tinyint(4) NULL DEFAULT 1 COMMENT '是否实时过账，统一设为1',
-  `genledatonce` tinyint(4) NULL DEFAULT 1 COMMENT '是否实时更新总账，暂时先设为1',
-  PRIMARY KEY (`efid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '分录规则表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_ef_seq
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_ef_seq`;
-CREATE TABLE `t_acct_ef_seq`  (
-  `sequence` bigint(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`sequence`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_eny
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_eny`;
-CREATE TABLE `t_acct_eny`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套编号',
+DROP TABLE IF EXISTS `t_acct_entry_detail`;
+CREATE TABLE `t_acct_entry_detail`  (
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套编号',
   `vouchertype` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '凭证类型',
   `voucherno` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '凭证号',
   `iscusacct` tinyint(4) NOT NULL COMMENT '账户是否为客户账户',
@@ -265,24 +264,57 @@ CREATE TABLE `t_acct_eny`  (
   `reglimitacct` tinyint(1) NULL DEFAULT NULL COMMENT '此分录是否涉及账户额度',
   `accttype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户类型',
   `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '唯一标识',
-  PRIMARY KEY (`voucherno`, `entryno`, `osbid`, `entrypty`) USING BTREE,
+  PRIMARY KEY (`voucherno`, `entryno`, `account_book_id`, `entrypty`) USING BTREE,
   UNIQUE INDEX `acctenyididx`(`id`) USING BTREE,
   INDEX `acctenyacctnoidx`(`acctno`) USING BTREE,
   INDEX `acctenybatchidx`(`entrybatch`) USING BTREE,
   INDEX `acctenyentrydateidx`(`entrytime`, `entrydate`) USING BTREE,
   INDEX `acctenygenledflagidx`(`genledflag`) USING BTREE,
   INDEX `acctenypididx`(`pid`) USING BTREE,
-  INDEX `acctenysetbookidx`(`osbid`) USING BTREE,
+  INDEX `acctenysetbookidx`(`account_book_id`) USING BTREE,
   INDEX `acctenytrxcodeidx`(`trxcode`) USING BTREE,
   INDEX `acctenytrxididx`(`trxid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '分录明细表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_acct_entry_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acct_entry_rule`;
+CREATE TABLE `t_acct_entry_rule`  (
+  `efid` bigint(20) NOT NULL COMMENT '规则编号',
+  `efname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '规则名称',
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
+  `trxdir` varchar(6) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '交易方向',
+  `pid` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '产品号',
+  `trxcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '交易类型码',
+  `actionx` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '动作类型',
+  `entrygrp` tinyint(4) NOT NULL DEFAULT 1 COMMENT '规则分组标识',
+  `entrysubgrp` tinyint(4) NOT NULL DEFAULT 1 COMMENT '规则子分组标识',
+  `entrypty` tinyint(4) NOT NULL COMMENT '子组内处理优先级',
+  `orgtype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构类型取值   0:内部 1: 银行 2:渠道 机构类型',
+  `orgcode` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构编号取值',
+  `acctnature` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户性质取值',
+  `acctcatype` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户载体取值',
+  `accttype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户类型取值',
+  `acctno` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户取值',
+  `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '科目号',
+  `fwsfather` tinyint(4) NULL DEFAULT NULL COMMENT '是否查询同父亲下的账户',
+  `crdr` tinyint(4) NOT NULL COMMENT '借贷方向',
+  `amount` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '金额公式',
+  `reciporgtype` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方机构类型',
+  `reciporgcode` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方机构号',
+  `recipacctno` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '对方账户号',
+  `postatonce` tinyint(4) NULL DEFAULT 1 COMMENT '是否实时过账，统一设为1',
+  `genledatonce` tinyint(4) NULL DEFAULT 1 COMMENT '是否实时更新总账，暂时先设为1',
+  PRIMARY KEY (`efid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '分录规则表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_acct_genled
 -- ----------------------------
 DROP TABLE IF EXISTS `t_acct_genled`;
 CREATE TABLE `t_acct_genled`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
   `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '科目号',
   `itembalby` tinyint(4) NOT NULL COMMENT '科目余额方向 1:  借方反映余额 2:  贷方反映余额 3:  双方反映余额 4:  轧差反映余额',
   `itemclass` tinyint(4) NOT NULL COMMENT '科目类别 1:  资产类 2:  负债类 3: 资产负债共同类  4:  所有者权益类 5:成本类 6:  损益类\n',
@@ -307,18 +339,18 @@ CREATE TABLE `t_acct_genled`  (
   `tdcrcnt` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日累计贷方笔数',
   `tddrbal` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日借方余额',
   `tdcrbal` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日贷方余额',
-  PRIMARY KEY (`osbid`, `itemcode`) USING BTREE,
+  PRIMARY KEY (`account_book_id`, `itemcode`) USING BTREE,
   INDEX `genleditemclassidx`(`itemclass`) USING BTREE,
   INDEX `genleditemcodeidx`(`itemcode`) USING BTREE,
   INDEX `genleditemnatueidx`(`itembalby`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '总分类账表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_genleddetail
+-- Table structure for t_acct_genled_detail
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_genleddetail`;
-CREATE TABLE `t_acct_genleddetail`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
+DROP TABLE IF EXISTS `t_acct_genled_detail`;
+CREATE TABLE `t_acct_genled_detail`  (
+  `account_book_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
   `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '科目号',
   `itembalby` tinyint(4) NOT NULL COMMENT '科目余额方向',
   `itemclass` tinyint(4) NOT NULL COMMENT '科目类别',
@@ -332,7 +364,7 @@ CREATE TABLE `t_acct_genleddetail`  (
   `tdcrcnt` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日累计贷方笔数',
   `tddrbal` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日借方余额',
   `tdcrbal` decimal(20, 0) NULL DEFAULT 0 COMMENT '本日贷方余额',
-  PRIMARY KEY (`osbid`, `itemcode`, `periodday`) USING BTREE,
+  PRIMARY KEY (`account_book_id`, `itemcode`, `periodday`) USING BTREE,
   INDEX `genleddetailitemclassidx`(`itemclass`) USING BTREE,
   INDEX `genleddetailitemcodeidx`(`itemcode`) USING BTREE,
   INDEX `genleddetailitemnatueidx`(`itembalby`) USING BTREE
@@ -343,7 +375,7 @@ CREATE TABLE `t_acct_genleddetail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_acct_item`;
 CREATE TABLE `t_acct_item`  (
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
   `itemcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '科目号',
   `itemname` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '科目名称',
   `itembalby` tinyint(4) NOT NULL COMMENT '1:  借方反映余额 2:  贷方反映余额 3:  双方反映余额 4:  轧差反映余额',
@@ -354,54 +386,17 @@ CREATE TABLE `t_acct_item`  (
   `currtype` char(3) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '币种',
   `mainacct` tinyint(4) NULL DEFAULT NULL COMMENT '是否为客户类主账户',
   `cqacct` tinyint(4) NULL DEFAULT NULL COMMENT '是否客户可查询',
-  PRIMARY KEY (`osbtype`, `itemcode`) USING BTREE
+  PRIMARY KEY (`account_book_type`, `itemcode`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '会计科目表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_osb
+-- Table structure for t_acct_template
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_osb`;
-CREATE TABLE `t_acct_osb`  (
-  `osbid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套编号',
-  `sbname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套名称',
-  `state` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '帐套状态  0:待启用 1:正常 2:停用',
-  `rootinstcd` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '对应机构编码',
-  `crtime` datetime(0) NOT NULL COMMENT '创建时间',
-  `cruser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `shutuptime` datetime(0) NULL DEFAULT NULL COMMENT '启用时间',
-  `shutupuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '启用者',
-  `shutdowntime` datetime(0) NULL DEFAULT NULL COMMENT '关闭时间',
-  `shutdownuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '关闭者',
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '帐套类型',
-  PRIMARY KEY (`osbid`) USING BTREE,
-  INDEX `idx_caacctosb_typeidx`(`osbtype`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '帐套定义表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_acct_osb
--- ----------------------------
-INSERT INTO `t_acct_osb` VALUES ('1', '1', '1', '1', '2019-03-05 17:17:17', '1', '2019-03-05 17:17:23', '1', '2019-03-05 17:17:26', '1', '1');
-INSERT INTO `t_acct_osb` VALUES ('2', '2', '2', '2', '2019-03-06 11:10:16', '2', '2019-03-06 11:10:20', '2', '2019-03-06 11:10:23', '2', '2');
-INSERT INTO `t_acct_osb` VALUES ('3', '3', '3', '3', '2019-03-07 11:12:02', '3', '2019-03-08 11:12:25', NULL, '2019-03-07 11:12:17', '3', '3');
-
--- ----------------------------
--- Table structure for t_acct_osbtype
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_osbtype`;
-CREATE TABLE `t_acct_osbtype`  (
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型码',
-  `osbname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型名称',
-  PRIMARY KEY (`osbtype`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '帐套类型表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_tpl
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_tpl`;
-CREATE TABLE `t_acct_tpl`  (
+DROP TABLE IF EXISTS `t_acct_template`;
+CREATE TABLE `t_acct_template`  (
   `tplid` bigint(20) NOT NULL COMMENT '模板编号',
   `tplname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '模板名称',
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
+  `account_book_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所属帐套',
   `accttype` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户类型',
   `acctnamepfx` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户名称前缀',
   `acctnameafx` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '账户名称后缀',
@@ -431,23 +426,14 @@ CREATE TABLE `t_acct_tpl`  (
   `reglimitcaswitch` tinyint(1) NULL DEFAULT NULL COMMENT '是否登记载体额度',
   `octype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '关联机构类型',
   PRIMARY KEY (`tplid`) USING BTREE,
-  INDEX `idx_caaccttpl_osbtype`(`osbtype`) USING BTREE
+  INDEX `idx_caaccttpl_osbtype`(`account_book_type`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '账户创建模板表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_acct_tpl_seq
+-- Table structure for t_acct_transaction_cat
 -- ----------------------------
-DROP TABLE IF EXISTS `t_acct_tpl_seq`;
-CREATE TABLE `t_acct_tpl_seq`  (
-  `sequence` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`sequence`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_trxcat
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_trxcat`;
-CREATE TABLE `t_acct_trxcat`  (
+DROP TABLE IF EXISTS `t_acct_transaction_cat`;
+CREATE TABLE `t_acct_transaction_cat`  (
   `trxcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '交易类型码',
   `trxcat` tinyint(4) NULL DEFAULT NULL COMMENT '类别，-1未定义 9：网银入账类型',
   `trxname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '交易类型名称',
@@ -465,37 +451,6 @@ CREATE TABLE `t_acct_trxcat`  (
   `isrev` tinyint(4) NULL DEFAULT NULL COMMENT '是否为冲正类交易',
   PRIMARY KEY (`trxcode`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '交易类型定义表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_type
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_type`;
-CREATE TABLE `t_acct_type`  (
-  `osbtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '帐套类型',
-  `accttype` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账户类型',
-  `typename` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '类型名称',
-  `cusentry` tinyint(1) NULL DEFAULT NULL COMMENT '是否限制必须为客户账户',
-  `caentry` tinyint(1) NULL DEFAULT NULL COMMENT '是否限制必须为载体账户',
-  PRIMARY KEY (`osbtype`, `accttype`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '账户类型定义表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_acct_voucher_seq
--- ----------------------------
-DROP TABLE IF EXISTS `t_acct_voucher_seq`;
-CREATE TABLE `t_acct_voucher_seq`  (
-  `sequence` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`sequence`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_server_id
--- ----------------------------
-DROP TABLE IF EXISTS `t_server_id`;
-CREATE TABLE `t_server_id`  (
-  `server_id` tinyint(4) NOT NULL,
-  PRIMARY KEY (`server_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '存放此数据库的编号。各个独立的数据库之间应该保证唯一。（主备的数据库应该一致）' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Function structure for caaccttplSeqFunc
