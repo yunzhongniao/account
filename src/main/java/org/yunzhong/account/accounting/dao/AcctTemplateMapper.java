@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.yunzhong.account.accounting.model.AcctTemplate;
 
 public interface AcctTemplateMapper {
@@ -8,9 +7,11 @@ public interface AcctTemplateMapper {
 
     int insert(AcctTemplate record);
 
+    int insertSelective(AcctTemplate record);
+
     AcctTemplate selectByPrimaryKey(Long tplid);
 
-    List<AcctTemplate> selectAll();
+    int updateByPrimaryKeySelective(AcctTemplate record);
 
     int updateByPrimaryKey(AcctTemplate record);
 }

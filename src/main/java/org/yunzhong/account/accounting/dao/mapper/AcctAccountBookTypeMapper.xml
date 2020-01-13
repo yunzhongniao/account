@@ -5,6 +5,15 @@
     <id column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
     <result column="account_book_type_name" jdbcType="VARCHAR" property="accountBookTypeName" />
   </resultMap>
+  <sql id="Base_Column_List">
+    account_book_type, account_book_type_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_account_book_type
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_acct_account_book_type
     where account_book_type = #{accountBookType,jdbcType=VARCHAR}
@@ -15,18 +24,37 @@
     values (#{accountBookType,jdbcType=VARCHAR}, #{accountBookTypeName,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctAccountBookType">
+    insert into t_acct_account_book_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountBookType != null">
+        account_book_type,
+      </if>
+      <if test="accountBookTypeName != null">
+        account_book_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountBookType != null">
+        #{accountBookType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBookTypeName != null">
+        #{accountBookTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctAccountBookType">
+    update t_acct_account_book_type
+    <set>
+      <if test="accountBookTypeName != null">
+        account_book_type_name = #{accountBookTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctAccountBookType">
     update t_acct_account_book_type
     set account_book_type_name = #{accountBookTypeName,jdbcType=VARCHAR}
     where account_book_type = #{accountBookType,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select account_book_type, account_book_type_name
-    from t_acct_account_book_type
-    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select account_book_type, account_book_type_name
-    from t_acct_account_book_type
-  </select>
 </mapper>

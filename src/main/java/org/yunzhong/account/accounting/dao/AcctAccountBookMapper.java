@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.yunzhong.account.accounting.model.AcctAccountBook;
 
 public interface AcctAccountBookMapper {
@@ -8,9 +7,11 @@ public interface AcctAccountBookMapper {
 
     int insert(AcctAccountBook record);
 
+    int insertSelective(AcctAccountBook record);
+
     AcctAccountBook selectByPrimaryKey(String accountBookId);
 
-    List<AcctAccountBook> selectAll();
+    int updateByPrimaryKeySelective(AcctAccountBook record);
 
     int updateByPrimaryKey(AcctAccountBook record);
 }

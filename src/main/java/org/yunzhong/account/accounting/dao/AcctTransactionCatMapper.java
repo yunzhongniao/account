@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.yunzhong.account.accounting.model.AcctTransactionCat;
 
 public interface AcctTransactionCatMapper {
@@ -8,9 +7,11 @@ public interface AcctTransactionCatMapper {
 
     int insert(AcctTransactionCat record);
 
+    int insertSelective(AcctTransactionCat record);
+
     AcctTransactionCat selectByPrimaryKey(String trxcode);
 
-    List<AcctTransactionCat> selectAll();
+    int updateByPrimaryKeySelective(AcctTransactionCat record);
 
     int updateByPrimaryKey(AcctTransactionCat record);
 }

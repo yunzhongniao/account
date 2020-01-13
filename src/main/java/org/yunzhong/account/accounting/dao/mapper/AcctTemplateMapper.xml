@@ -34,6 +34,19 @@
     <result column="reglimitcaswitch" jdbcType="BIT" property="reglimitcaswitch" />
     <result column="octype" jdbcType="VARCHAR" property="octype" />
   </resultMap>
+  <sql id="Base_Column_List">
+    tplid, tplname, account_book_type, accttype, acctnamepfx, acctnameafx, acctnameformula, 
+    forcefx, acctstatus, itemcode, allowpay, allowrecharge, allowdeposit, allowtfin, 
+    allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, drdtmaxamt, drdtmaxcnt, 
+    drmtmaxamt, drmtmaxcnt, crdtmaxamt, crdtmaxcnt, crmtmaxamt, crmtmaxcnt, reglimitcusswitch, 
+    reglimitcaswitch, octype
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_template
+    where tplid = #{tplid,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_acct_template
     where tplid = #{tplid,jdbcType=BIGINT}
@@ -62,6 +75,295 @@
       #{crmtmaxcnt,jdbcType=DECIMAL}, #{reglimitcusswitch,jdbcType=BIT}, #{reglimitcaswitch,jdbcType=BIT}, 
       #{octype,jdbcType=VARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctTemplate">
+    insert into t_acct_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tplid != null">
+        tplid,
+      </if>
+      <if test="tplname != null">
+        tplname,
+      </if>
+      <if test="accountBookType != null">
+        account_book_type,
+      </if>
+      <if test="accttype != null">
+        accttype,
+      </if>
+      <if test="acctnamepfx != null">
+        acctnamepfx,
+      </if>
+      <if test="acctnameafx != null">
+        acctnameafx,
+      </if>
+      <if test="acctnameformula != null">
+        acctnameformula,
+      </if>
+      <if test="forcefx != null">
+        forcefx,
+      </if>
+      <if test="acctstatus != null">
+        acctstatus,
+      </if>
+      <if test="itemcode != null">
+        itemcode,
+      </if>
+      <if test="allowpay != null">
+        allowpay,
+      </if>
+      <if test="allowrecharge != null">
+        allowrecharge,
+      </if>
+      <if test="allowdeposit != null">
+        allowdeposit,
+      </if>
+      <if test="allowtfin != null">
+        allowtfin,
+      </if>
+      <if test="allowtfout != null">
+        allowtfout,
+      </if>
+      <if test="allowin != null">
+        allowin,
+      </if>
+      <if test="allowout != null">
+        allowout,
+      </if>
+      <if test="overdramamt != null">
+        overdramamt,
+      </if>
+      <if test="drmaxamt != null">
+        drmaxamt,
+      </if>
+      <if test="crmaxamt != null">
+        crmaxamt,
+      </if>
+      <if test="drdtmaxamt != null">
+        drdtmaxamt,
+      </if>
+      <if test="drdtmaxcnt != null">
+        drdtmaxcnt,
+      </if>
+      <if test="drmtmaxamt != null">
+        drmtmaxamt,
+      </if>
+      <if test="drmtmaxcnt != null">
+        drmtmaxcnt,
+      </if>
+      <if test="crdtmaxamt != null">
+        crdtmaxamt,
+      </if>
+      <if test="crdtmaxcnt != null">
+        crdtmaxcnt,
+      </if>
+      <if test="crmtmaxamt != null">
+        crmtmaxamt,
+      </if>
+      <if test="crmtmaxcnt != null">
+        crmtmaxcnt,
+      </if>
+      <if test="reglimitcusswitch != null">
+        reglimitcusswitch,
+      </if>
+      <if test="reglimitcaswitch != null">
+        reglimitcaswitch,
+      </if>
+      <if test="octype != null">
+        octype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tplid != null">
+        #{tplid,jdbcType=BIGINT},
+      </if>
+      <if test="tplname != null">
+        #{tplname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBookType != null">
+        #{accountBookType,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnamepfx != null">
+        #{acctnamepfx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnameafx != null">
+        #{acctnameafx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnameformula != null">
+        #{acctnameformula,jdbcType=VARCHAR},
+      </if>
+      <if test="forcefx != null">
+        #{forcefx,jdbcType=TINYINT},
+      </if>
+      <if test="acctstatus != null">
+        #{acctstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="allowpay != null">
+        #{allowpay,jdbcType=TINYINT},
+      </if>
+      <if test="allowrecharge != null">
+        #{allowrecharge,jdbcType=TINYINT},
+      </if>
+      <if test="allowdeposit != null">
+        #{allowdeposit,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfin != null">
+        #{allowtfin,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfout != null">
+        #{allowtfout,jdbcType=TINYINT},
+      </if>
+      <if test="allowin != null">
+        #{allowin,jdbcType=TINYINT},
+      </if>
+      <if test="allowout != null">
+        #{allowout,jdbcType=TINYINT},
+      </if>
+      <if test="overdramamt != null">
+        #{overdramamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmaxamt != null">
+        #{drmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmaxamt != null">
+        #{crmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxamt != null">
+        #{drdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxcnt != null">
+        #{drdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxamt != null">
+        #{drmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxcnt != null">
+        #{drmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxamt != null">
+        #{crdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxcnt != null">
+        #{crdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxamt != null">
+        #{crmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxcnt != null">
+        #{crmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitcusswitch != null">
+        #{reglimitcusswitch,jdbcType=BIT},
+      </if>
+      <if test="reglimitcaswitch != null">
+        #{reglimitcaswitch,jdbcType=BIT},
+      </if>
+      <if test="octype != null">
+        #{octype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctTemplate">
+    update t_acct_template
+    <set>
+      <if test="tplname != null">
+        tplname = #{tplname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBookType != null">
+        account_book_type = #{accountBookType,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        accttype = #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnamepfx != null">
+        acctnamepfx = #{acctnamepfx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnameafx != null">
+        acctnameafx = #{acctnameafx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctnameformula != null">
+        acctnameformula = #{acctnameformula,jdbcType=VARCHAR},
+      </if>
+      <if test="forcefx != null">
+        forcefx = #{forcefx,jdbcType=TINYINT},
+      </if>
+      <if test="acctstatus != null">
+        acctstatus = #{acctstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        itemcode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="allowpay != null">
+        allowpay = #{allowpay,jdbcType=TINYINT},
+      </if>
+      <if test="allowrecharge != null">
+        allowrecharge = #{allowrecharge,jdbcType=TINYINT},
+      </if>
+      <if test="allowdeposit != null">
+        allowdeposit = #{allowdeposit,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfin != null">
+        allowtfin = #{allowtfin,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfout != null">
+        allowtfout = #{allowtfout,jdbcType=TINYINT},
+      </if>
+      <if test="allowin != null">
+        allowin = #{allowin,jdbcType=TINYINT},
+      </if>
+      <if test="allowout != null">
+        allowout = #{allowout,jdbcType=TINYINT},
+      </if>
+      <if test="overdramamt != null">
+        overdramamt = #{overdramamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmaxamt != null">
+        drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmaxamt != null">
+        crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxamt != null">
+        drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxcnt != null">
+        drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxamt != null">
+        drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxcnt != null">
+        drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxamt != null">
+        crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxcnt != null">
+        crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxamt != null">
+        crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxcnt != null">
+        crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitcusswitch != null">
+        reglimitcusswitch = #{reglimitcusswitch,jdbcType=BIT},
+      </if>
+      <if test="reglimitcaswitch != null">
+        reglimitcaswitch = #{reglimitcaswitch,jdbcType=BIT},
+      </if>
+      <if test="octype != null">
+        octype = #{octype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tplid = #{tplid,jdbcType=BIGINT}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctTemplate">
     update t_acct_template
     set tplname = #{tplname,jdbcType=VARCHAR},
@@ -96,21 +398,4 @@
       octype = #{octype,jdbcType=VARCHAR}
     where tplid = #{tplid,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select tplid, tplname, account_book_type, accttype, acctnamepfx, acctnameafx, acctnameformula, 
-    forcefx, acctstatus, itemcode, allowpay, allowrecharge, allowdeposit, allowtfin, 
-    allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, drdtmaxamt, drdtmaxcnt, 
-    drmtmaxamt, drmtmaxcnt, crdtmaxamt, crdtmaxcnt, crmtmaxamt, crmtmaxcnt, reglimitcusswitch, 
-    reglimitcaswitch, octype
-    from t_acct_template
-    where tplid = #{tplid,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select tplid, tplname, account_book_type, accttype, acctnamepfx, acctnameafx, acctnameformula, 
-    forcefx, acctstatus, itemcode, allowpay, allowrecharge, allowdeposit, allowtfin, 
-    allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, drdtmaxamt, drdtmaxcnt, 
-    drmtmaxamt, drmtmaxcnt, crdtmaxamt, crdtmaxcnt, crmtmaxamt, crmtmaxcnt, reglimitcusswitch, 
-    reglimitcaswitch, octype
-    from t_acct_template
-  </select>
 </mapper>

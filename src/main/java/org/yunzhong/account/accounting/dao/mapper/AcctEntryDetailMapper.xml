@@ -45,6 +45,23 @@
     <result column="accttype" jdbcType="VARCHAR" property="accttype" />
     <result column="id" jdbcType="VARCHAR" property="id" />
   </resultMap>
+  <sql id="Base_Column_List">
+    voucherno, entryno, account_book_id, entrypty, vouchertype, iscusacct, acctno, currtype, 
+    pid, trxcode, trxid, refvoucherno, parenttrxid, childtrxid, entrydate, entrytime, 
+    crdr, amount, curbal, reciporgtype, reciporgcode, recipacctno, postflag, postdate, 
+    posttime, postbatch, genledflag, genleddate, genledtime, genledbatch, memo, isrevd, 
+    entrytype, revtime, revtype, entrybatch, acctname, reglimitcus, reglimitca, reglimitacct, 
+    accttype, id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_entry_detail
+    where voucherno = #{voucherno,jdbcType=VARCHAR}
+      and entryno = #{entryno,jdbcType=BIGINT}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and entrypty = #{entrypty,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from t_acct_entry_detail
     where voucherno = #{voucherno,jdbcType=VARCHAR}
@@ -84,6 +101,388 @@
       #{reglimitacct,jdbcType=BIT}, #{accttype,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryDetail">
+    insert into t_acct_entry_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="voucherno != null">
+        voucherno,
+      </if>
+      <if test="entryno != null">
+        entryno,
+      </if>
+      <if test="accountBookId != null">
+        account_book_id,
+      </if>
+      <if test="entrypty != null">
+        entrypty,
+      </if>
+      <if test="vouchertype != null">
+        vouchertype,
+      </if>
+      <if test="iscusacct != null">
+        iscusacct,
+      </if>
+      <if test="acctno != null">
+        acctno,
+      </if>
+      <if test="currtype != null">
+        currtype,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="trxcode != null">
+        trxcode,
+      </if>
+      <if test="trxid != null">
+        trxid,
+      </if>
+      <if test="refvoucherno != null">
+        refvoucherno,
+      </if>
+      <if test="parenttrxid != null">
+        parenttrxid,
+      </if>
+      <if test="childtrxid != null">
+        childtrxid,
+      </if>
+      <if test="entrydate != null">
+        entrydate,
+      </if>
+      <if test="entrytime != null">
+        entrytime,
+      </if>
+      <if test="crdr != null">
+        crdr,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="curbal != null">
+        curbal,
+      </if>
+      <if test="reciporgtype != null">
+        reciporgtype,
+      </if>
+      <if test="reciporgcode != null">
+        reciporgcode,
+      </if>
+      <if test="recipacctno != null">
+        recipacctno,
+      </if>
+      <if test="postflag != null">
+        postflag,
+      </if>
+      <if test="postdate != null">
+        postdate,
+      </if>
+      <if test="posttime != null">
+        posttime,
+      </if>
+      <if test="postbatch != null">
+        postbatch,
+      </if>
+      <if test="genledflag != null">
+        genledflag,
+      </if>
+      <if test="genleddate != null">
+        genleddate,
+      </if>
+      <if test="genledtime != null">
+        genledtime,
+      </if>
+      <if test="genledbatch != null">
+        genledbatch,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="isrevd != null">
+        isrevd,
+      </if>
+      <if test="entrytype != null">
+        entrytype,
+      </if>
+      <if test="revtime != null">
+        revtime,
+      </if>
+      <if test="revtype != null">
+        revtype,
+      </if>
+      <if test="entrybatch != null">
+        entrybatch,
+      </if>
+      <if test="acctname != null">
+        acctname,
+      </if>
+      <if test="reglimitcus != null">
+        reglimitcus,
+      </if>
+      <if test="reglimitca != null">
+        reglimitca,
+      </if>
+      <if test="reglimitacct != null">
+        reglimitacct,
+      </if>
+      <if test="accttype != null">
+        accttype,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="voucherno != null">
+        #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryno != null">
+        #{entryno,jdbcType=BIGINT},
+      </if>
+      <if test="accountBookId != null">
+        #{accountBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrypty != null">
+        #{entrypty,jdbcType=BIGINT},
+      </if>
+      <if test="vouchertype != null">
+        #{vouchertype,jdbcType=VARCHAR},
+      </if>
+      <if test="iscusacct != null">
+        #{iscusacct,jdbcType=TINYINT},
+      </if>
+      <if test="acctno != null">
+        #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="currtype != null">
+        #{currtype,jdbcType=CHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="trxcode != null">
+        #{trxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="trxid != null">
+        #{trxid,jdbcType=VARCHAR},
+      </if>
+      <if test="refvoucherno != null">
+        #{refvoucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="parenttrxid != null">
+        #{parenttrxid,jdbcType=VARCHAR},
+      </if>
+      <if test="childtrxid != null">
+        #{childtrxid,jdbcType=VARCHAR},
+      </if>
+      <if test="entrydate != null">
+        #{entrydate,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null">
+        #{entrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crdr != null">
+        #{crdr,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="curbal != null">
+        #{curbal,jdbcType=DECIMAL},
+      </if>
+      <if test="reciporgtype != null">
+        #{reciporgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="reciporgcode != null">
+        #{reciporgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="recipacctno != null">
+        #{recipacctno,jdbcType=VARCHAR},
+      </if>
+      <if test="postflag != null">
+        #{postflag,jdbcType=TINYINT},
+      </if>
+      <if test="postdate != null">
+        #{postdate,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null">
+        #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postbatch != null">
+        #{postbatch,jdbcType=VARCHAR},
+      </if>
+      <if test="genledflag != null">
+        #{genledflag,jdbcType=TINYINT},
+      </if>
+      <if test="genleddate != null">
+        #{genleddate,jdbcType=VARCHAR},
+      </if>
+      <if test="genledtime != null">
+        #{genledtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="genledbatch != null">
+        #{genledbatch,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isrevd != null">
+        #{isrevd,jdbcType=TINYINT},
+      </if>
+      <if test="entrytype != null">
+        #{entrytype,jdbcType=TINYINT},
+      </if>
+      <if test="revtime != null">
+        #{revtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revtype != null">
+        #{revtype,jdbcType=TINYINT},
+      </if>
+      <if test="entrybatch != null">
+        #{entrybatch,jdbcType=BIGINT},
+      </if>
+      <if test="acctname != null">
+        #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="reglimitcus != null">
+        #{reglimitcus,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitca != null">
+        #{reglimitca,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitacct != null">
+        #{reglimitacct,jdbcType=BIT},
+      </if>
+      <if test="accttype != null">
+        #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryDetail">
+    update t_acct_entry_detail
+    <set>
+      <if test="vouchertype != null">
+        vouchertype = #{vouchertype,jdbcType=VARCHAR},
+      </if>
+      <if test="iscusacct != null">
+        iscusacct = #{iscusacct,jdbcType=TINYINT},
+      </if>
+      <if test="acctno != null">
+        acctno = #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="currtype != null">
+        currtype = #{currtype,jdbcType=CHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="trxcode != null">
+        trxcode = #{trxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="trxid != null">
+        trxid = #{trxid,jdbcType=VARCHAR},
+      </if>
+      <if test="refvoucherno != null">
+        refvoucherno = #{refvoucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="parenttrxid != null">
+        parenttrxid = #{parenttrxid,jdbcType=VARCHAR},
+      </if>
+      <if test="childtrxid != null">
+        childtrxid = #{childtrxid,jdbcType=VARCHAR},
+      </if>
+      <if test="entrydate != null">
+        entrydate = #{entrydate,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null">
+        entrytime = #{entrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crdr != null">
+        crdr = #{crdr,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="curbal != null">
+        curbal = #{curbal,jdbcType=DECIMAL},
+      </if>
+      <if test="reciporgtype != null">
+        reciporgtype = #{reciporgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="reciporgcode != null">
+        reciporgcode = #{reciporgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="recipacctno != null">
+        recipacctno = #{recipacctno,jdbcType=VARCHAR},
+      </if>
+      <if test="postflag != null">
+        postflag = #{postflag,jdbcType=TINYINT},
+      </if>
+      <if test="postdate != null">
+        postdate = #{postdate,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null">
+        posttime = #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postbatch != null">
+        postbatch = #{postbatch,jdbcType=VARCHAR},
+      </if>
+      <if test="genledflag != null">
+        genledflag = #{genledflag,jdbcType=TINYINT},
+      </if>
+      <if test="genleddate != null">
+        genleddate = #{genleddate,jdbcType=VARCHAR},
+      </if>
+      <if test="genledtime != null">
+        genledtime = #{genledtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="genledbatch != null">
+        genledbatch = #{genledbatch,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isrevd != null">
+        isrevd = #{isrevd,jdbcType=TINYINT},
+      </if>
+      <if test="entrytype != null">
+        entrytype = #{entrytype,jdbcType=TINYINT},
+      </if>
+      <if test="revtime != null">
+        revtime = #{revtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revtype != null">
+        revtype = #{revtype,jdbcType=TINYINT},
+      </if>
+      <if test="entrybatch != null">
+        entrybatch = #{entrybatch,jdbcType=BIGINT},
+      </if>
+      <if test="acctname != null">
+        acctname = #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="reglimitcus != null">
+        reglimitcus = #{reglimitcus,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitca != null">
+        reglimitca = #{reglimitca,jdbcType=DECIMAL},
+      </if>
+      <if test="reglimitacct != null">
+        reglimitacct = #{reglimitacct,jdbcType=BIT},
+      </if>
+      <if test="accttype != null">
+        accttype = #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where voucherno = #{voucherno,jdbcType=VARCHAR}
+      and entryno = #{entryno,jdbcType=BIGINT}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and entrypty = #{entrypty,jdbcType=BIGINT}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctEntryDetail">
     update t_acct_entry_detail
     set vouchertype = #{vouchertype,jdbcType=VARCHAR},
@@ -129,26 +528,4 @@
       and account_book_id = #{accountBookId,jdbcType=VARCHAR}
       and entrypty = #{entrypty,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select voucherno, entryno, account_book_id, entrypty, vouchertype, iscusacct, acctno, 
-    currtype, pid, trxcode, trxid, refvoucherno, parenttrxid, childtrxid, entrydate, 
-    entrytime, crdr, amount, curbal, reciporgtype, reciporgcode, recipacctno, postflag, 
-    postdate, posttime, postbatch, genledflag, genleddate, genledtime, genledbatch, memo, 
-    isrevd, entrytype, revtime, revtype, entrybatch, acctname, reglimitcus, reglimitca, 
-    reglimitacct, accttype, id
-    from t_acct_entry_detail
-    where voucherno = #{voucherno,jdbcType=VARCHAR}
-      and entryno = #{entryno,jdbcType=BIGINT}
-      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
-      and entrypty = #{entrypty,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select voucherno, entryno, account_book_id, entrypty, vouchertype, iscusacct, acctno, 
-    currtype, pid, trxcode, trxid, refvoucherno, parenttrxid, childtrxid, entrydate, 
-    entrytime, crdr, amount, curbal, reciporgtype, reciporgcode, recipacctno, postflag, 
-    postdate, posttime, postbatch, genledflag, genleddate, genledtime, genledbatch, memo, 
-    isrevd, entrytype, revtime, revtype, entrybatch, acctname, reglimitcus, reglimitca, 
-    reglimitacct, accttype, id
-    from t_acct_entry_detail
-  </select>
 </mapper>

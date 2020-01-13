@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctEntryDetail;
 
@@ -9,9 +8,11 @@ public interface AcctEntryDetailMapper {
 
     int insert(AcctEntryDetail record);
 
+    int insertSelective(AcctEntryDetail record);
+
     AcctEntryDetail selectByPrimaryKey(@Param("voucherno") String voucherno, @Param("entryno") Long entryno, @Param("accountBookId") String accountBookId, @Param("entrypty") Long entrypty);
 
-    List<AcctEntryDetail> selectAll();
+    int updateByPrimaryKeySelective(AcctEntryDetail record);
 
     int updateByPrimaryKey(AcctEntryDetail record);
 }

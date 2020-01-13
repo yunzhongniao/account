@@ -21,6 +21,19 @@
     <result column="itemcode" jdbcType="VARCHAR" property="itemcode" />
     <result column="id" jdbcType="VARCHAR" property="id" />
   </resultMap>
+  <sql id="Base_Column_List">
+    account_book_id, acctno, periodday, currtype, openbal, opendrbal, closedramt, closedrcnt, 
+    closedrbal, opencrbal, closecramt, closecrcnt, closecrbal, closebal, iscus, acctname, 
+    itemcode, id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_diary
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and acctno = #{acctno,jdbcType=VARCHAR}
+      and periodday = #{periodday,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from t_acct_diary
     where account_book_id = #{accountBookId,jdbcType=VARCHAR}
@@ -43,6 +56,174 @@
       #{acctname,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctDiary">
+    insert into t_acct_diary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountBookId != null">
+        account_book_id,
+      </if>
+      <if test="acctno != null">
+        acctno,
+      </if>
+      <if test="periodday != null">
+        periodday,
+      </if>
+      <if test="currtype != null">
+        currtype,
+      </if>
+      <if test="openbal != null">
+        openbal,
+      </if>
+      <if test="opendrbal != null">
+        opendrbal,
+      </if>
+      <if test="closedramt != null">
+        closedramt,
+      </if>
+      <if test="closedrcnt != null">
+        closedrcnt,
+      </if>
+      <if test="closedrbal != null">
+        closedrbal,
+      </if>
+      <if test="opencrbal != null">
+        opencrbal,
+      </if>
+      <if test="closecramt != null">
+        closecramt,
+      </if>
+      <if test="closecrcnt != null">
+        closecrcnt,
+      </if>
+      <if test="closecrbal != null">
+        closecrbal,
+      </if>
+      <if test="closebal != null">
+        closebal,
+      </if>
+      <if test="iscus != null">
+        iscus,
+      </if>
+      <if test="acctname != null">
+        acctname,
+      </if>
+      <if test="itemcode != null">
+        itemcode,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountBookId != null">
+        #{accountBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctno != null">
+        #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="periodday != null">
+        #{periodday,jdbcType=VARCHAR},
+      </if>
+      <if test="currtype != null">
+        #{currtype,jdbcType=CHAR},
+      </if>
+      <if test="openbal != null">
+        #{openbal,jdbcType=DECIMAL},
+      </if>
+      <if test="opendrbal != null">
+        #{opendrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closedramt != null">
+        #{closedramt,jdbcType=DECIMAL},
+      </if>
+      <if test="closedrcnt != null">
+        #{closedrcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="closedrbal != null">
+        #{closedrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="opencrbal != null">
+        #{opencrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closecramt != null">
+        #{closecramt,jdbcType=DECIMAL},
+      </if>
+      <if test="closecrcnt != null">
+        #{closecrcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="closecrbal != null">
+        #{closecrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closebal != null">
+        #{closebal,jdbcType=DECIMAL},
+      </if>
+      <if test="iscus != null">
+        #{iscus,jdbcType=TINYINT},
+      </if>
+      <if test="acctname != null">
+        #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctDiary">
+    update t_acct_diary
+    <set>
+      <if test="currtype != null">
+        currtype = #{currtype,jdbcType=CHAR},
+      </if>
+      <if test="openbal != null">
+        openbal = #{openbal,jdbcType=DECIMAL},
+      </if>
+      <if test="opendrbal != null">
+        opendrbal = #{opendrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closedramt != null">
+        closedramt = #{closedramt,jdbcType=DECIMAL},
+      </if>
+      <if test="closedrcnt != null">
+        closedrcnt = #{closedrcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="closedrbal != null">
+        closedrbal = #{closedrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="opencrbal != null">
+        opencrbal = #{opencrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closecramt != null">
+        closecramt = #{closecramt,jdbcType=DECIMAL},
+      </if>
+      <if test="closecrcnt != null">
+        closecrcnt = #{closecrcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="closecrbal != null">
+        closecrbal = #{closecrbal,jdbcType=DECIMAL},
+      </if>
+      <if test="closebal != null">
+        closebal = #{closebal,jdbcType=DECIMAL},
+      </if>
+      <if test="iscus != null">
+        iscus = #{iscus,jdbcType=TINYINT},
+      </if>
+      <if test="acctname != null">
+        acctname = #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        itemcode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+      and acctno = #{acctno,jdbcType=VARCHAR}
+      and periodday = #{periodday,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctDiary">
     update t_acct_diary
     set currtype = #{currtype,jdbcType=CHAR},
@@ -64,19 +245,4 @@
       and acctno = #{acctno,jdbcType=VARCHAR}
       and periodday = #{periodday,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select account_book_id, acctno, periodday, currtype, openbal, opendrbal, closedramt, 
-    closedrcnt, closedrbal, opencrbal, closecramt, closecrcnt, closecrbal, closebal, 
-    iscus, acctname, itemcode, id
-    from t_acct_diary
-    where account_book_id = #{accountBookId,jdbcType=VARCHAR}
-      and acctno = #{acctno,jdbcType=VARCHAR}
-      and periodday = #{periodday,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select account_book_id, acctno, periodday, currtype, openbal, opendrbal, closedramt, 
-    closedrcnt, closedrbal, opencrbal, closecramt, closecrcnt, closecrbal, closebal, 
-    iscus, acctname, itemcode, id
-    from t_acct_diary
-  </select>
 </mapper>

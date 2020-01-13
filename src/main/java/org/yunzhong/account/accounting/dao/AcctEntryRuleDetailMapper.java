@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.yunzhong.account.accounting.model.AcctEntryRuleDetail;
 
 public interface AcctEntryRuleDetailMapper {
@@ -8,9 +7,11 @@ public interface AcctEntryRuleDetailMapper {
 
     int insert(AcctEntryRuleDetail record);
 
+    int insertSelective(AcctEntryRuleDetail record);
+
     AcctEntryRuleDetail selectByPrimaryKey(Long efid);
 
-    List<AcctEntryRuleDetail> selectAll();
+    int updateByPrimaryKeySelective(AcctEntryRuleDetail record);
 
     int updateByPrimaryKey(AcctEntryRuleDetail record);
 }

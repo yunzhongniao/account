@@ -9,7 +9,7 @@
     <!-- targetRuntime: 1 MyBatis3DynamicSql（默认值）。忽略defaultModelType的设置，采用FLAT，主键不会抽取成独立的一个类。 忽略javaClientGenerator的type配置，生成注解方式的sql，不会生成xml。 2 MyBatis3。会有by 
         example的方法生成 3 MyBatis3Simple。没有by example的方法生成 -->
     <!-- defaultModelType: 1 conditional（默认值），如果主键是多个字段，将会抽取成单独的一个类。2 flat，一个表对应一个类，包含所有属性。 3 hierarchical，主键会抽取成一个单独的类。 -->
-    <context id="context1" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <context id="context1" targetRuntime="MyBatis3" defaultModelType="flat">
         <!-- property support:suppressAllComments,suppressDate,addRemarkComments,dateFormat -->
         <!-- suppressAllComments: false(默认),生成注释；true，没有注释。 -->
         <!-- suppressDate: false(默认),生成的注释都有时间戳；true，没有时间戳。 -->
@@ -43,21 +43,36 @@
         <!-- 可选项：domainObjectName. model，mapper.java,mapper.xml将会在此名字上生成，而不是通过tableName生成 -->
         <!-- 可选项：mapperName. mapper.xml将会在此名字上生成，而不是通过tableName生成。忽略domainObjectName的配置 -->
         <!-- 可选项：modelType. 作用同上。如果targetRuntime为MyBatis3DynamicSql或MyBatis3Kotlin，则此配置不生效 -->
-        <table schema="" tableName="t_acct_currency_type" domainObjectName="AcctCurrencyType" />
-        <table schema="" tableName="t_acct_account_book" domainObjectName="AcctAccountBook" />
-        <table schema="" tableName="t_acct_account_book_type" domainObjectName="AcctAccountBookType" />
-        <table schema="" tableName="t_acct_account_type" domainObjectName="AcctAccountType" />
-        <table schema="" tableName="t_acct_catype" domainObjectName="AcctCaType" />
-        <table schema="" tableName="t_acct_custom" domainObjectName="AcctCustom" />
-        <table schema="" tableName="t_acct_custom_limit" domainObjectName="AcctCustomLimit" />
-        <table schema="" tableName="t_acct_diary" domainObjectName="AcctDiary" />
-        <table schema="" tableName="t_acct_entry_detail" domainObjectName="AcctEntryDetail" />
-        <table schema="" tableName="t_acct_entry_rule" domainObjectName="AcctEntryRuleDetail" />
-        <table schema="" tableName="t_acct_genled" domainObjectName="AcctGenled" />
-        <table schema="" tableName="t_acct_genled_detail" domainObjectName="AcctGenledDetail" />
-        <table schema="" tableName="t_acct_item" domainObjectName="AcctItem" />
-        <table schema="" tableName="t_acct_template" domainObjectName="AcctTemplate" />
-        <table schema="" tableName="t_acct_transaction_cat" domainObjectName="AcctTransactionCat" />
+        <table schema="" tableName="t_acct_currency_type" domainObjectName="AcctCurrencyType" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_account_book" domainObjectName="AcctAccountBook" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_account_book_type" domainObjectName="AcctAccountBookType" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_account_type" domainObjectName="AcctAccountType" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_catype" domainObjectName="AcctCaType" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_custom" domainObjectName="AcctCustom" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_custom_limit" domainObjectName="AcctCustomLimit" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_diary" domainObjectName="AcctDiary" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_entry_detail" domainObjectName="AcctEntryDetail" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_entry_rule" domainObjectName="AcctEntryRuleDetail" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_genled" domainObjectName="AcctGenled" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_genled_detail" domainObjectName="AcctGenledDetail" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_item" domainObjectName="AcctItem" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_template" domainObjectName="AcctTemplate" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_acct_transaction_cat" domainObjectName="AcctTransactionCat" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 
     </context>
 </generatorConfiguration>

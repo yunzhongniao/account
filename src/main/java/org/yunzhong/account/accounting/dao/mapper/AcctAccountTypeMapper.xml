@@ -8,6 +8,16 @@
     <result column="cusentry" jdbcType="BIT" property="cusentry" />
     <result column="caentry" jdbcType="BIT" property="caentry" />
   </resultMap>
+  <sql id="Base_Column_List">
+    account_book_type, accttype, typename, cusentry, caentry
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_account_type
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+      and accttype = #{accttype,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from t_acct_account_type
     where account_book_type = #{accountBookType,jdbcType=VARCHAR}
@@ -19,6 +29,59 @@
     values (#{accountBookType,jdbcType=VARCHAR}, #{accttype,jdbcType=VARCHAR}, #{typename,jdbcType=VARCHAR}, 
       #{cusentry,jdbcType=BIT}, #{caentry,jdbcType=BIT})
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctAccountType">
+    insert into t_acct_account_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountBookType != null">
+        account_book_type,
+      </if>
+      <if test="accttype != null">
+        accttype,
+      </if>
+      <if test="typename != null">
+        typename,
+      </if>
+      <if test="cusentry != null">
+        cusentry,
+      </if>
+      <if test="caentry != null">
+        caentry,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountBookType != null">
+        #{accountBookType,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null">
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="cusentry != null">
+        #{cusentry,jdbcType=BIT},
+      </if>
+      <if test="caentry != null">
+        #{caentry,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctAccountType">
+    update t_acct_account_type
+    <set>
+      <if test="typename != null">
+        typename = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="cusentry != null">
+        cusentry = #{cusentry,jdbcType=BIT},
+      </if>
+      <if test="caentry != null">
+        caentry = #{caentry,jdbcType=BIT},
+      </if>
+    </set>
+    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+      and accttype = #{accttype,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctAccountType">
     update t_acct_account_type
     set typename = #{typename,jdbcType=VARCHAR},
@@ -27,14 +90,4 @@
     where account_book_type = #{accountBookType,jdbcType=VARCHAR}
       and accttype = #{accttype,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select account_book_type, accttype, typename, cusentry, caentry
-    from t_acct_account_type
-    where account_book_type = #{accountBookType,jdbcType=VARCHAR}
-      and accttype = #{accttype,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select account_book_type, accttype, typename, cusentry, caentry
-    from t_acct_account_type
-  </select>
 </mapper>

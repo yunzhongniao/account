@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctItem;
 
@@ -9,9 +8,11 @@ public interface AcctItemMapper {
 
     int insert(AcctItem record);
 
+    int insertSelective(AcctItem record);
+
     AcctItem selectByPrimaryKey(@Param("accountBookType") String accountBookType, @Param("itemcode") String itemcode);
 
-    List<AcctItem> selectAll();
+    int updateByPrimaryKeySelective(AcctItem record);
 
     int updateByPrimaryKey(AcctItem record);
 }

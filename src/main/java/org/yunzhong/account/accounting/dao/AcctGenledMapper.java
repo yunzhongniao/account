@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctGenled;
 
@@ -9,9 +8,11 @@ public interface AcctGenledMapper {
 
     int insert(AcctGenled record);
 
+    int insertSelective(AcctGenled record);
+
     AcctGenled selectByPrimaryKey(@Param("accountBookId") String accountBookId, @Param("itemcode") String itemcode);
 
-    List<AcctGenled> selectAll();
+    int updateByPrimaryKeySelective(AcctGenled record);
 
     int updateByPrimaryKey(AcctGenled record);
 }

@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.yunzhong.account.accounting.model.AcctCustomLimit;
 
 public interface AcctCustomLimitMapper {
@@ -8,9 +7,11 @@ public interface AcctCustomLimitMapper {
 
     int insert(AcctCustomLimit record);
 
+    int insertSelective(AcctCustomLimit record);
+
     AcctCustomLimit selectByPrimaryKey(Long limitid);
 
-    List<AcctCustomLimit> selectAll();
+    int updateByPrimaryKeySelective(AcctCustomLimit record);
 
     int updateByPrimaryKey(AcctCustomLimit record);
 }

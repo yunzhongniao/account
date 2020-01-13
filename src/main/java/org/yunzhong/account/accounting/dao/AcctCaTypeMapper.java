@@ -1,6 +1,5 @@
 package org.yunzhong.account.accounting.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctCaType;
 
@@ -9,9 +8,11 @@ public interface AcctCaTypeMapper {
 
     int insert(AcctCaType record);
 
+    int insertSelective(AcctCaType record);
+
     AcctCaType selectByPrimaryKey(@Param("catypeid") String catypeid, @Param("accountBookType") String accountBookType);
 
-    List<AcctCaType> selectAll();
+    int updateByPrimaryKeySelective(AcctCaType record);
 
     int updateByPrimaryKey(AcctCaType record);
 }

@@ -60,6 +60,22 @@
     <result column="cqacct" jdbcType="TINYINT" property="cqacct" />
     <result column="id" jdbcType="VARCHAR" property="id" />
   </resultMap>
+  <sql id="Base_Column_List">
+    acctno, account_book_id, currtype, acctname, cpflag, acctstatus, accttype, acctpwd, 
+    itemcode, balby, cusid, acctcatype, acctcaid, balance, allowpay, allowrecharge, allowdeposit, 
+    allowtfin, allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, drdtmaxamt, 
+    drdtamt, drdtmaxcnt, drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, crdtmaxamt, 
+    crdtamt, crdtmaxcnt, crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, lsttrxtime, 
+    lstcintdat, cintcycle, cintratect, cintratecode, cintcn, crappid, cruser, crtime, 
+    dtappid, dtuser, dttime, acctreserved, mainacct, reglimitcusswitch, cqacct, id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_acct_custom
+    where acctno = #{acctno,jdbcType=VARCHAR}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from t_acct_custom
     where acctno = #{acctno,jdbcType=VARCHAR}
@@ -107,6 +123,527 @@
       #{reglimitcusswitch,jdbcType=TINYINT}, #{cqacct,jdbcType=TINYINT}, #{id,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctCustom">
+    insert into t_acct_custom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctno != null">
+        acctno,
+      </if>
+      <if test="accountBookId != null">
+        account_book_id,
+      </if>
+      <if test="currtype != null">
+        currtype,
+      </if>
+      <if test="acctname != null">
+        acctname,
+      </if>
+      <if test="cpflag != null">
+        cpflag,
+      </if>
+      <if test="acctstatus != null">
+        acctstatus,
+      </if>
+      <if test="accttype != null">
+        accttype,
+      </if>
+      <if test="acctpwd != null">
+        acctpwd,
+      </if>
+      <if test="itemcode != null">
+        itemcode,
+      </if>
+      <if test="balby != null">
+        balby,
+      </if>
+      <if test="cusid != null">
+        cusid,
+      </if>
+      <if test="acctcatype != null">
+        acctcatype,
+      </if>
+      <if test="acctcaid != null">
+        acctcaid,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="allowpay != null">
+        allowpay,
+      </if>
+      <if test="allowrecharge != null">
+        allowrecharge,
+      </if>
+      <if test="allowdeposit != null">
+        allowdeposit,
+      </if>
+      <if test="allowtfin != null">
+        allowtfin,
+      </if>
+      <if test="allowtfout != null">
+        allowtfout,
+      </if>
+      <if test="allowin != null">
+        allowin,
+      </if>
+      <if test="allowout != null">
+        allowout,
+      </if>
+      <if test="overdramamt != null">
+        overdramamt,
+      </if>
+      <if test="drmaxamt != null">
+        drmaxamt,
+      </if>
+      <if test="crmaxamt != null">
+        crmaxamt,
+      </if>
+      <if test="drdtmaxamt != null">
+        drdtmaxamt,
+      </if>
+      <if test="drdtamt != null">
+        drdtamt,
+      </if>
+      <if test="drdtmaxcnt != null">
+        drdtmaxcnt,
+      </if>
+      <if test="drdtcnt != null">
+        drdtcnt,
+      </if>
+      <if test="drmtmaxamt != null">
+        drmtmaxamt,
+      </if>
+      <if test="drmtamt != null">
+        drmtamt,
+      </if>
+      <if test="drmtmaxcnt != null">
+        drmtmaxcnt,
+      </if>
+      <if test="drmtcnt != null">
+        drmtcnt,
+      </if>
+      <if test="crdtmaxamt != null">
+        crdtmaxamt,
+      </if>
+      <if test="crdtamt != null">
+        crdtamt,
+      </if>
+      <if test="crdtmaxcnt != null">
+        crdtmaxcnt,
+      </if>
+      <if test="crdtcnt != null">
+        crdtcnt,
+      </if>
+      <if test="crmtmaxamt != null">
+        crmtmaxamt,
+      </if>
+      <if test="crmtamt != null">
+        crmtamt,
+      </if>
+      <if test="crmtmaxcnt != null">
+        crmtmaxcnt,
+      </if>
+      <if test="crmtcnt != null">
+        crmtcnt,
+      </if>
+      <if test="lsttrxtime != null">
+        lsttrxtime,
+      </if>
+      <if test="lstcintdat != null">
+        lstcintdat,
+      </if>
+      <if test="cintcycle != null">
+        cintcycle,
+      </if>
+      <if test="cintratect != null">
+        cintratect,
+      </if>
+      <if test="cintratecode != null">
+        cintratecode,
+      </if>
+      <if test="cintcn != null">
+        cintcn,
+      </if>
+      <if test="crappid != null">
+        crappid,
+      </if>
+      <if test="cruser != null">
+        cruser,
+      </if>
+      <if test="crtime != null">
+        crtime,
+      </if>
+      <if test="dtappid != null">
+        dtappid,
+      </if>
+      <if test="dtuser != null">
+        dtuser,
+      </if>
+      <if test="dttime != null">
+        dttime,
+      </if>
+      <if test="acctreserved != null">
+        acctreserved,
+      </if>
+      <if test="mainacct != null">
+        mainacct,
+      </if>
+      <if test="reglimitcusswitch != null">
+        reglimitcusswitch,
+      </if>
+      <if test="cqacct != null">
+        cqacct,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctno != null">
+        #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBookId != null">
+        #{accountBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="currtype != null">
+        #{currtype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctname != null">
+        #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="cpflag != null">
+        #{cpflag,jdbcType=TINYINT},
+      </if>
+      <if test="acctstatus != null">
+        #{acctstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctpwd != null">
+        #{acctpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="balby != null">
+        #{balby,jdbcType=TINYINT},
+      </if>
+      <if test="cusid != null">
+        #{cusid,jdbcType=VARCHAR},
+      </if>
+      <if test="acctcatype != null">
+        #{acctcatype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctcaid != null">
+        #{acctcaid,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="allowpay != null">
+        #{allowpay,jdbcType=TINYINT},
+      </if>
+      <if test="allowrecharge != null">
+        #{allowrecharge,jdbcType=TINYINT},
+      </if>
+      <if test="allowdeposit != null">
+        #{allowdeposit,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfin != null">
+        #{allowtfin,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfout != null">
+        #{allowtfout,jdbcType=TINYINT},
+      </if>
+      <if test="allowin != null">
+        #{allowin,jdbcType=TINYINT},
+      </if>
+      <if test="allowout != null">
+        #{allowout,jdbcType=TINYINT},
+      </if>
+      <if test="overdramamt != null">
+        #{overdramamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmaxamt != null">
+        #{drmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmaxamt != null">
+        #{crmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxamt != null">
+        #{drdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtamt != null">
+        #{drdtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxcnt != null">
+        #{drdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtcnt != null">
+        #{drdtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxamt != null">
+        #{drmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtamt != null">
+        #{drmtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxcnt != null">
+        #{drmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtcnt != null">
+        #{drmtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxamt != null">
+        #{crdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtamt != null">
+        #{crdtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxcnt != null">
+        #{crdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtcnt != null">
+        #{crdtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxamt != null">
+        #{crmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtamt != null">
+        #{crmtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxcnt != null">
+        #{crmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtcnt != null">
+        #{crmtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="lsttrxtime != null">
+        #{lsttrxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstcintdat != null">
+        #{lstcintdat,jdbcType=VARCHAR},
+      </if>
+      <if test="cintcycle != null">
+        #{cintcycle,jdbcType=VARCHAR},
+      </if>
+      <if test="cintratect != null">
+        #{cintratect,jdbcType=VARCHAR},
+      </if>
+      <if test="cintratecode != null">
+        #{cintratecode,jdbcType=VARCHAR},
+      </if>
+      <if test="cintcn != null">
+        #{cintcn,jdbcType=DECIMAL},
+      </if>
+      <if test="crappid != null">
+        #{crappid,jdbcType=VARCHAR},
+      </if>
+      <if test="cruser != null">
+        #{cruser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null">
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtappid != null">
+        #{dtappid,jdbcType=VARCHAR},
+      </if>
+      <if test="dtuser != null">
+        #{dtuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dttime != null">
+        #{dttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctreserved != null">
+        #{acctreserved,jdbcType=VARCHAR},
+      </if>
+      <if test="mainacct != null">
+        #{mainacct,jdbcType=TINYINT},
+      </if>
+      <if test="reglimitcusswitch != null">
+        #{reglimitcusswitch,jdbcType=TINYINT},
+      </if>
+      <if test="cqacct != null">
+        #{cqacct,jdbcType=TINYINT},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctCustom">
+    update t_acct_custom
+    <set>
+      <if test="currtype != null">
+        currtype = #{currtype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctname != null">
+        acctname = #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="cpflag != null">
+        cpflag = #{cpflag,jdbcType=TINYINT},
+      </if>
+      <if test="acctstatus != null">
+        acctstatus = #{acctstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        accttype = #{accttype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctpwd != null">
+        acctpwd = #{acctpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        itemcode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="balby != null">
+        balby = #{balby,jdbcType=TINYINT},
+      </if>
+      <if test="cusid != null">
+        cusid = #{cusid,jdbcType=VARCHAR},
+      </if>
+      <if test="acctcatype != null">
+        acctcatype = #{acctcatype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctcaid != null">
+        acctcaid = #{acctcaid,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="allowpay != null">
+        allowpay = #{allowpay,jdbcType=TINYINT},
+      </if>
+      <if test="allowrecharge != null">
+        allowrecharge = #{allowrecharge,jdbcType=TINYINT},
+      </if>
+      <if test="allowdeposit != null">
+        allowdeposit = #{allowdeposit,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfin != null">
+        allowtfin = #{allowtfin,jdbcType=TINYINT},
+      </if>
+      <if test="allowtfout != null">
+        allowtfout = #{allowtfout,jdbcType=TINYINT},
+      </if>
+      <if test="allowin != null">
+        allowin = #{allowin,jdbcType=TINYINT},
+      </if>
+      <if test="allowout != null">
+        allowout = #{allowout,jdbcType=TINYINT},
+      </if>
+      <if test="overdramamt != null">
+        overdramamt = #{overdramamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmaxamt != null">
+        drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmaxamt != null">
+        crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxamt != null">
+        drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtamt != null">
+        drdtamt = #{drdtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtmaxcnt != null">
+        drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drdtcnt != null">
+        drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxamt != null">
+        drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtamt != null">
+        drmtamt = #{drmtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtmaxcnt != null">
+        drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="drmtcnt != null">
+        drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxamt != null">
+        crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtamt != null">
+        crdtamt = #{crdtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtmaxcnt != null">
+        crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdtcnt != null">
+        crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxamt != null">
+        crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtamt != null">
+        crmtamt = #{crmtamt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtmaxcnt != null">
+        crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="crmtcnt != null">
+        crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="lsttrxtime != null">
+        lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstcintdat != null">
+        lstcintdat = #{lstcintdat,jdbcType=VARCHAR},
+      </if>
+      <if test="cintcycle != null">
+        cintcycle = #{cintcycle,jdbcType=VARCHAR},
+      </if>
+      <if test="cintratect != null">
+        cintratect = #{cintratect,jdbcType=VARCHAR},
+      </if>
+      <if test="cintratecode != null">
+        cintratecode = #{cintratecode,jdbcType=VARCHAR},
+      </if>
+      <if test="cintcn != null">
+        cintcn = #{cintcn,jdbcType=DECIMAL},
+      </if>
+      <if test="crappid != null">
+        crappid = #{crappid,jdbcType=VARCHAR},
+      </if>
+      <if test="cruser != null">
+        cruser = #{cruser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null">
+        crtime = #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtappid != null">
+        dtappid = #{dtappid,jdbcType=VARCHAR},
+      </if>
+      <if test="dtuser != null">
+        dtuser = #{dtuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dttime != null">
+        dttime = #{dttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctreserved != null">
+        acctreserved = #{acctreserved,jdbcType=VARCHAR},
+      </if>
+      <if test="mainacct != null">
+        mainacct = #{mainacct,jdbcType=TINYINT},
+      </if>
+      <if test="reglimitcusswitch != null">
+        reglimitcusswitch = #{reglimitcusswitch,jdbcType=TINYINT},
+      </if>
+      <if test="cqacct != null">
+        cqacct = #{cqacct,jdbcType=TINYINT},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where acctno = #{acctno,jdbcType=VARCHAR}
+      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCustom">
     update t_acct_custom
     set currtype = #{currtype,jdbcType=VARCHAR},
@@ -167,28 +704,4 @@
     where acctno = #{acctno,jdbcType=VARCHAR}
       and account_book_id = #{accountBookId,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select acctno, account_book_id, currtype, acctname, cpflag, acctstatus, accttype, 
-    acctpwd, itemcode, balby, cusid, acctcatype, acctcaid, balance, allowpay, allowrecharge, 
-    allowdeposit, allowtfin, allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, 
-    drdtmaxamt, drdtamt, drdtmaxcnt, drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, 
-    crdtmaxamt, crdtamt, crdtmaxcnt, crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, 
-    lsttrxtime, lstcintdat, cintcycle, cintratect, cintratecode, cintcn, crappid, cruser, 
-    crtime, dtappid, dtuser, dttime, acctreserved, mainacct, reglimitcusswitch, cqacct, 
-    id
-    from t_acct_custom
-    where acctno = #{acctno,jdbcType=VARCHAR}
-      and account_book_id = #{accountBookId,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select acctno, account_book_id, currtype, acctname, cpflag, acctstatus, accttype, 
-    acctpwd, itemcode, balby, cusid, acctcatype, acctcaid, balance, allowpay, allowrecharge, 
-    allowdeposit, allowtfin, allowtfout, allowin, allowout, overdramamt, drmaxamt, crmaxamt, 
-    drdtmaxamt, drdtamt, drdtmaxcnt, drdtcnt, drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, 
-    crdtmaxamt, crdtamt, crdtmaxcnt, crdtcnt, crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, 
-    lsttrxtime, lstcintdat, cintcycle, cintratect, cintratecode, cintcn, crappid, cruser, 
-    crtime, dtappid, dtuser, dttime, acctreserved, mainacct, reglimitcusswitch, cqacct, 
-    id
-    from t_acct_custom
-  </select>
 </mapper>
