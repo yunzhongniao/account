@@ -16,52 +16,56 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法级别的权限认证
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AccountUserDetailsService userDetailsService;
+	@Autowired
+	private AccountUserDetailsService userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // 允许所有用户访问"/"和"/index.html"
-        http.authorizeRequests().antMatchers("/", "/index.html").permitAll() // 定义不需要认证就可以访问
-                .antMatchers("/level1/**").hasRole("VIP1") // 需要拥有VIP1权限
-                .anyRequest().authenticated() // 其他地址的访问均需验证权限
-                .and()
-                // 开启cookie保存用户数据
-                .rememberMe()
-                // 设置cookie有效期
-                .tokenValiditySeconds(60 * 60 * 24 * 7).and().formLogin() // 定义当需要用户登录时候，转到的登录页面
-                .loginPage("/login.html") // 登录页
-                .failureUrl("/login-error.html").permitAll().and().logout().logoutSuccessUrl("/index.html");
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// 允许所有用户访问"/"和"/index.html"
+		http.authorizeRequests().antMatchers("/swagger-ui.html").permitAll().antMatchers("/swagger-resources/**")
+				.permitAll().antMatchers("/images/**").permitAll().antMatchers("/webjars/**").permitAll()
+				.antMatchers("/v2/api-docs").permitAll().antMatchers("/configuration/ui").permitAll()
+				.antMatchers("/configuration/security").permitAll().antMatchers("/", "/index.html").permitAll() // 定义不需要认证就可以访问
+				.antMatchers("/level1/**").hasRole("VIP1") // 需要拥有VIP1权限
+				.anyRequest().authenticated() // 其他地址的访问均需验证权限
+				.and()
+				// 开启cookie保存用户数据
+				.rememberMe()
+				// 设置cookie有效期
+				.tokenValiditySeconds(60 * 60 * 24 * 7).and().formLogin() // 定义当需要用户登录时候，转到的登录页面
+				.loginPage("/login.html") // 登录页
+				.failureUrl("/login-error.html").permitAll().and().logout().logoutSuccessUrl("/index.html");
+	}
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        /*
-         * auth.inMemoryAuthentication()
-         * .withUser("admin").password("123456").roles("USER");
-         */
-    }
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		/*
+		 * auth.inMemoryAuthentication()
+		 * .withUser("admin").password("123456").roles("USER");
+		 */
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        // 静态资源忽略认证
-        web.ignoring().antMatchers("/css/**");
-    }
+	}
 
-    /**
-     * 配置登录验证
-     *
-     * @param auth
-     * @throws Exception
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		// 静态资源忽略认证
+		web.ignoring().antMatchers("/css/**");
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new AccountPasswordEncoder();
-    }
+	/**
+	 * 配置登录验证
+	 *
+	 * @param auth
+	 * @throws Exception
+	 */
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new AccountPasswordEncoder();
+	}
 
 }

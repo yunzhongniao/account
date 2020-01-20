@@ -4,15 +4,15 @@ import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctCustom;
 
 public interface AcctCustomMapper {
-    int deleteByPrimaryKey(@Param("acctno") String acctno, @Param("accountBookId") String accountBookId);
+	int deleteByPrimaryKey(@Param("acctno") String acctno, @Param("accountBookId") String accountBookId);
 
-    int insert(AcctCustom record);
+	int insert(AcctCustom record);
 
-    int insertSelective(AcctCustom record);
+	int insertSelective(AcctCustom record);
 
-    AcctCustom selectByPrimaryKey(@Param("acctno") String acctno, @Param("accountBookId") String accountBookId);
+	AcctCustom selectByPrimaryKey(@Param("acctno") String acctno, @Param("accountBookId") String accountBookId);
 
-    int updateByPrimaryKeySelective(AcctCustom record);
+	int updateByPrimaryKeySelective(AcctCustom record);
 
-    int updateByPrimaryKey(AcctCustom record);
+	int updateByPrimaryKey(AcctCustom record);
 }

@@ -5,17 +5,17 @@ import java.util.List;
 import org.yunzhong.account.accounting.model.AcctCurrencyType;
 
 public interface AcctCurrencyTypeMapper {
-    int deleteByPrimaryKey(String currtype);
+	int deleteByPrimaryKey(String currtype);
 
-    int insert(AcctCurrencyType record);
+	int insert(AcctCurrencyType record);
 
-    int insertSelective(AcctCurrencyType record);
+	int insertSelective(AcctCurrencyType record);
 
-    AcctCurrencyType selectByPrimaryKey(String currtype);
+	AcctCurrencyType selectByPrimaryKey(String currtype);
 
-    int updateByPrimaryKeySelective(AcctCurrencyType record);
+	int updateByPrimaryKeySelective(AcctCurrencyType record);
 
-    int updateByPrimaryKey(AcctCurrencyType record);
+	int updateByPrimaryKey(AcctCurrencyType record);
 
-    List<AcctCurrencyType> selectAll();
+	List<AcctCurrencyType> selectAll();
 }

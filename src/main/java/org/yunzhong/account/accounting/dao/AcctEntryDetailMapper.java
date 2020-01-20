@@ -4,15 +4,17 @@ import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctEntryDetail;
 
 public interface AcctEntryDetailMapper {
-    int deleteByPrimaryKey(@Param("voucherno") String voucherno, @Param("entryno") Long entryno, @Param("accountBookId") String accountBookId, @Param("entrypty") Long entrypty);
+	int deleteByPrimaryKey(@Param("voucherno") String voucherno, @Param("entryno") Long entryno,
+			@Param("accountBookId") String accountBookId, @Param("entrypty") Long entrypty);
 
-    int insert(AcctEntryDetail record);
+	int insert(AcctEntryDetail record);
 
-    int insertSelective(AcctEntryDetail record);
+	int insertSelective(AcctEntryDetail record);
 
-    AcctEntryDetail selectByPrimaryKey(@Param("voucherno") String voucherno, @Param("entryno") Long entryno, @Param("accountBookId") String accountBookId, @Param("entrypty") Long entrypty);
+	AcctEntryDetail selectByPrimaryKey(@Param("voucherno") String voucherno, @Param("entryno") Long entryno,
+			@Param("accountBookId") String accountBookId, @Param("entrypty") Long entrypty);
 
-    int updateByPrimaryKeySelective(AcctEntryDetail record);
+	int updateByPrimaryKeySelective(AcctEntryDetail record);
 
-    int updateByPrimaryKey(AcctEntryDetail record);
+	int updateByPrimaryKey(AcctEntryDetail record);
 }

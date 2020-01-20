@@ -4,17 +4,17 @@ import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.SysUser;
 
 public interface SysUserMapper {
-    int deleteByPrimaryKey(Long id);
+	int deleteByPrimaryKey(Long id);
 
-    int insert(SysUser record);
+	int insert(SysUser record);
 
-    int insertSelective(SysUser record);
+	int insertSelective(SysUser record);
 
-    SysUser selectByPrimaryKey(Long id);
+	SysUser selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysUser record);
+	int updateByPrimaryKeySelective(SysUser record);
 
-    int updateByPrimaryKey(SysUser record);
+	int updateByPrimaryKey(SysUser record);
 
-    SysUser selectByUsername(@Param("username") String username);
+	SysUser selectByUsername(@Param("username") String username);
 }

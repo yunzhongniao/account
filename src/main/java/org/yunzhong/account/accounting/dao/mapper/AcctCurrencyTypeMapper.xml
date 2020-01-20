@@ -1,76 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yunzhong.account.accounting.dao.AcctCurrencyTypeMapper">
-    <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctCurrencyType">
-        <id column="currtype" jdbcType="CHAR" property="currtype" />
-        <result column="currname" jdbcType="VARCHAR" property="currname" />
-        <result column="currlocal" jdbcType="TINYINT" property="currlocal" />
-    </resultMap>
-    <sql id="Base_Column_List">
-        currtype, currname, currlocal
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from t_acct_currency_type
-        where currtype = #{currtype,jdbcType=CHAR}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from t_acct_currency_type
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from t_acct_currency_type
-        where currtype = #{currtype,jdbcType=CHAR}
-    </delete>
-    <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
-        insert into t_acct_currency_type (currtype, currname, currlocal
-        )
-        values (#{currtype,jdbcType=CHAR}, #{currname,jdbcType=VARCHAR}, #{currlocal,jdbcType=TINYINT}
-        )
-    </insert>
-    <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
-        insert into t_acct_currency_type
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="currtype != null">
-                currtype,
-            </if>
-            <if test="currname != null">
-                currname,
-            </if>
-            <if test="currlocal != null">
-                currlocal,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="currtype != null">
-                #{currtype,jdbcType=CHAR},
-            </if>
-            <if test="currname != null">
-                #{currname,jdbcType=VARCHAR},
-            </if>
-            <if test="currlocal != null">
-                #{currlocal,jdbcType=TINYINT},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
-        update t_acct_currency_type
-        <set>
-            <if test="currname != null">
-                currname = #{currname,jdbcType=VARCHAR},
-            </if>
-            <if test="currlocal != null">
-                currlocal = #{currlocal,jdbcType=TINYINT},
-            </if>
-        </set>
-        where currtype = #{currtype,jdbcType=CHAR}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
-        update t_acct_currency_type
-        set currname = #{currname,jdbcType=VARCHAR},
-        currlocal = #{currlocal,jdbcType=TINYINT}
-        where currtype = #{currtype,jdbcType=CHAR}
-    </update>
+<mapper
+	namespace="org.yunzhong.account.accounting.dao.AcctCurrencyTypeMapper">
+	<resultMap id="BaseResultMap"
+		type="org.yunzhong.account.accounting.model.AcctCurrencyType">
+		<id column="currtype" jdbcType="CHAR" property="currtype" />
+		<result column="currname" jdbcType="VARCHAR"
+			property="currname" />
+		<result column="currlocal" jdbcType="TINYINT"
+			property="currlocal" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		currtype, currname, currlocal
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_acct_currency_type
+		where currtype = #{currtype,jdbcType=CHAR}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_acct_currency_type
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_acct_currency_type
+		where currtype = #{currtype,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
+		insert into t_acct_currency_type (currtype, currname, currlocal
+		)
+		values (#{currtype,jdbcType=CHAR}, #{currname,jdbcType=VARCHAR},
+		#{currlocal,jdbcType=TINYINT}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
+		insert into t_acct_currency_type
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="currtype != null">
+				currtype,
+			</if>
+			<if test="currname != null">
+				currname,
+			</if>
+			<if test="currlocal != null">
+				currlocal,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="currtype != null">
+				#{currtype,jdbcType=CHAR},
+			</if>
+			<if test="currname != null">
+				#{currname,jdbcType=VARCHAR},
+			</if>
+			<if test="currlocal != null">
+				#{currlocal,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
+		update t_acct_currency_type
+		<set>
+			<if test="currname != null">
+				currname = #{currname,jdbcType=VARCHAR},
+			</if>
+			<if test="currlocal != null">
+				currlocal = #{currlocal,jdbcType=TINYINT},
+			</if>
+		</set>
+		where currtype = #{currtype,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="org.yunzhong.account.accounting.model.AcctCurrencyType">
+		update t_acct_currency_type
+		set currname = #{currname,jdbcType=VARCHAR},
+		currlocal = #{currlocal,jdbcType=TINYINT}
+		where currtype = #{currtype,jdbcType=CHAR}
+	</update>
 </mapper>
