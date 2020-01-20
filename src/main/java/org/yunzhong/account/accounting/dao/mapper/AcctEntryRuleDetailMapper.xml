@@ -1,329 +1,329 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.yunzhong.account.accounting.dao.AcctEntryRuleDetailMapper">
-  <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
-    <id column="efid" jdbcType="BIGINT" property="efid" />
-    <result column="efname" jdbcType="VARCHAR" property="efname" />
-    <result column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
-    <result column="trxdir" jdbcType="VARCHAR" property="trxdir" />
-    <result column="pid" jdbcType="VARCHAR" property="pid" />
-    <result column="trxcode" jdbcType="VARCHAR" property="trxcode" />
-    <result column="actionx" jdbcType="VARCHAR" property="actionx" />
-    <result column="entrygrp" jdbcType="TINYINT" property="entrygrp" />
-    <result column="entrysubgrp" jdbcType="TINYINT" property="entrysubgrp" />
-    <result column="entrypty" jdbcType="TINYINT" property="entrypty" />
-    <result column="orgtype" jdbcType="VARCHAR" property="orgtype" />
-    <result column="orgcode" jdbcType="VARCHAR" property="orgcode" />
-    <result column="acctnature" jdbcType="VARCHAR" property="acctnature" />
-    <result column="acctcatype" jdbcType="VARCHAR" property="acctcatype" />
-    <result column="accttype" jdbcType="VARCHAR" property="accttype" />
-    <result column="acctno" jdbcType="VARCHAR" property="acctno" />
-    <result column="itemcode" jdbcType="VARCHAR" property="itemcode" />
-    <result column="fwsfather" jdbcType="TINYINT" property="fwsfather" />
-    <result column="crdr" jdbcType="TINYINT" property="crdr" />
-    <result column="amount" jdbcType="VARCHAR" property="amount" />
-    <result column="reciporgtype" jdbcType="VARCHAR" property="reciporgtype" />
-    <result column="reciporgcode" jdbcType="VARCHAR" property="reciporgcode" />
-    <result column="recipacctno" jdbcType="VARCHAR" property="recipacctno" />
-    <result column="postatonce" jdbcType="TINYINT" property="postatonce" />
-    <result column="genledatonce" jdbcType="TINYINT" property="genledatonce" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    efid, efname, account_book_type, trxdir, pid, trxcode, actionx, entrygrp, entrysubgrp, 
-    entrypty, orgtype, orgcode, acctnature, acctcatype, accttype, acctno, itemcode, fwsfather, 
-    crdr, amount, reciporgtype, reciporgcode, recipacctno, postatonce, genledatonce
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_acct_entry_rule
-    where efid = #{efid,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_acct_entry_rule
-    where efid = #{efid,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
-    insert into t_acct_entry_rule (efid, efname, account_book_type, 
-      trxdir, pid, trxcode, 
-      actionx, entrygrp, entrysubgrp, 
-      entrypty, orgtype, orgcode, 
-      acctnature, acctcatype, accttype, 
-      acctno, itemcode, fwsfather, 
-      crdr, amount, reciporgtype, 
-      reciporgcode, recipacctno, postatonce, 
-      genledatonce)
-    values (#{efid,jdbcType=BIGINT}, #{efname,jdbcType=VARCHAR}, #{accountBookType,jdbcType=VARCHAR}, 
-      #{trxdir,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{trxcode,jdbcType=VARCHAR}, 
-      #{actionx,jdbcType=VARCHAR}, #{entrygrp,jdbcType=TINYINT}, #{entrysubgrp,jdbcType=TINYINT}, 
-      #{entrypty,jdbcType=TINYINT}, #{orgtype,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, 
-      #{acctnature,jdbcType=VARCHAR}, #{acctcatype,jdbcType=VARCHAR}, #{accttype,jdbcType=VARCHAR}, 
-      #{acctno,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{fwsfather,jdbcType=TINYINT}, 
-      #{crdr,jdbcType=TINYINT}, #{amount,jdbcType=VARCHAR}, #{reciporgtype,jdbcType=VARCHAR}, 
-      #{reciporgcode,jdbcType=VARCHAR}, #{recipacctno,jdbcType=VARCHAR}, #{postatonce,jdbcType=TINYINT}, 
-      #{genledatonce,jdbcType=TINYINT})
-  </insert>
-  <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
-    insert into t_acct_entry_rule
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="efid != null">
-        efid,
-      </if>
-      <if test="efname != null">
-        efname,
-      </if>
-      <if test="accountBookType != null">
-        account_book_type,
-      </if>
-      <if test="trxdir != null">
-        trxdir,
-      </if>
-      <if test="pid != null">
-        pid,
-      </if>
-      <if test="trxcode != null">
-        trxcode,
-      </if>
-      <if test="actionx != null">
-        actionx,
-      </if>
-      <if test="entrygrp != null">
-        entrygrp,
-      </if>
-      <if test="entrysubgrp != null">
-        entrysubgrp,
-      </if>
-      <if test="entrypty != null">
-        entrypty,
-      </if>
-      <if test="orgtype != null">
-        orgtype,
-      </if>
-      <if test="orgcode != null">
-        orgcode,
-      </if>
-      <if test="acctnature != null">
-        acctnature,
-      </if>
-      <if test="acctcatype != null">
-        acctcatype,
-      </if>
-      <if test="accttype != null">
-        accttype,
-      </if>
-      <if test="acctno != null">
-        acctno,
-      </if>
-      <if test="itemcode != null">
-        itemcode,
-      </if>
-      <if test="fwsfather != null">
-        fwsfather,
-      </if>
-      <if test="crdr != null">
-        crdr,
-      </if>
-      <if test="amount != null">
-        amount,
-      </if>
-      <if test="reciporgtype != null">
-        reciporgtype,
-      </if>
-      <if test="reciporgcode != null">
-        reciporgcode,
-      </if>
-      <if test="recipacctno != null">
-        recipacctno,
-      </if>
-      <if test="postatonce != null">
-        postatonce,
-      </if>
-      <if test="genledatonce != null">
-        genledatonce,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="efid != null">
-        #{efid,jdbcType=BIGINT},
-      </if>
-      <if test="efname != null">
-        #{efname,jdbcType=VARCHAR},
-      </if>
-      <if test="accountBookType != null">
-        #{accountBookType,jdbcType=VARCHAR},
-      </if>
-      <if test="trxdir != null">
-        #{trxdir,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
-        #{pid,jdbcType=VARCHAR},
-      </if>
-      <if test="trxcode != null">
-        #{trxcode,jdbcType=VARCHAR},
-      </if>
-      <if test="actionx != null">
-        #{actionx,jdbcType=VARCHAR},
-      </if>
-      <if test="entrygrp != null">
-        #{entrygrp,jdbcType=TINYINT},
-      </if>
-      <if test="entrysubgrp != null">
-        #{entrysubgrp,jdbcType=TINYINT},
-      </if>
-      <if test="entrypty != null">
-        #{entrypty,jdbcType=TINYINT},
-      </if>
-      <if test="orgtype != null">
-        #{orgtype,jdbcType=VARCHAR},
-      </if>
-      <if test="orgcode != null">
-        #{orgcode,jdbcType=VARCHAR},
-      </if>
-      <if test="acctnature != null">
-        #{acctnature,jdbcType=VARCHAR},
-      </if>
-      <if test="acctcatype != null">
-        #{acctcatype,jdbcType=VARCHAR},
-      </if>
-      <if test="accttype != null">
-        #{accttype,jdbcType=VARCHAR},
-      </if>
-      <if test="acctno != null">
-        #{acctno,jdbcType=VARCHAR},
-      </if>
-      <if test="itemcode != null">
-        #{itemcode,jdbcType=VARCHAR},
-      </if>
-      <if test="fwsfather != null">
-        #{fwsfather,jdbcType=TINYINT},
-      </if>
-      <if test="crdr != null">
-        #{crdr,jdbcType=TINYINT},
-      </if>
-      <if test="amount != null">
-        #{amount,jdbcType=VARCHAR},
-      </if>
-      <if test="reciporgtype != null">
-        #{reciporgtype,jdbcType=VARCHAR},
-      </if>
-      <if test="reciporgcode != null">
-        #{reciporgcode,jdbcType=VARCHAR},
-      </if>
-      <if test="recipacctno != null">
-        #{recipacctno,jdbcType=VARCHAR},
-      </if>
-      <if test="postatonce != null">
-        #{postatonce,jdbcType=TINYINT},
-      </if>
-      <if test="genledatonce != null">
-        #{genledatonce,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
-    update t_acct_entry_rule
-    <set>
-      <if test="efname != null">
-        efname = #{efname,jdbcType=VARCHAR},
-      </if>
-      <if test="accountBookType != null">
+    <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
+        <id column="efid" jdbcType="BIGINT" property="efid" />
+        <result column="efname" jdbcType="VARCHAR" property="efname" />
+        <result column="account_book_type" jdbcType="VARCHAR" property="accountBookType" />
+        <result column="trxdir" jdbcType="VARCHAR" property="trxdir" />
+        <result column="pid" jdbcType="VARCHAR" property="pid" />
+        <result column="trxcode" jdbcType="VARCHAR" property="trxcode" />
+        <result column="actionx" jdbcType="VARCHAR" property="actionx" />
+        <result column="entrygrp" jdbcType="TINYINT" property="entrygrp" />
+        <result column="entrysubgrp" jdbcType="TINYINT" property="entrysubgrp" />
+        <result column="entrypty" jdbcType="TINYINT" property="entrypty" />
+        <result column="orgtype" jdbcType="VARCHAR" property="orgtype" />
+        <result column="orgcode" jdbcType="VARCHAR" property="orgcode" />
+        <result column="acctnature" jdbcType="VARCHAR" property="acctnature" />
+        <result column="acctcatype" jdbcType="VARCHAR" property="acctcatype" />
+        <result column="accttype" jdbcType="VARCHAR" property="accttype" />
+        <result column="acctno" jdbcType="VARCHAR" property="acctno" />
+        <result column="itemcode" jdbcType="VARCHAR" property="itemcode" />
+        <result column="fwsfather" jdbcType="TINYINT" property="fwsfather" />
+        <result column="crdr" jdbcType="TINYINT" property="crdr" />
+        <result column="amount" jdbcType="VARCHAR" property="amount" />
+        <result column="reciporgtype" jdbcType="VARCHAR" property="reciporgtype" />
+        <result column="reciporgcode" jdbcType="VARCHAR" property="reciporgcode" />
+        <result column="recipacctno" jdbcType="VARCHAR" property="recipacctno" />
+        <result column="postatonce" jdbcType="TINYINT" property="postatonce" />
+        <result column="genledatonce" jdbcType="TINYINT" property="genledatonce" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        efid, efname, account_book_type, trxdir, pid, trxcode, actionx, entrygrp, entrysubgrp,
+        entrypty, orgtype, orgcode, acctnature, acctcatype, accttype, acctno, itemcode, fwsfather,
+        crdr, amount, reciporgtype, reciporgcode, recipacctno, postatonce, genledatonce
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_entry_rule
+        where efid = #{efid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_acct_entry_rule
+        where efid = #{efid,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
+        insert into t_acct_entry_rule (efid, efname, account_book_type,
+        trxdir, pid, trxcode,
+        actionx, entrygrp, entrysubgrp,
+        entrypty, orgtype, orgcode,
+        acctnature, acctcatype, accttype,
+        acctno, itemcode, fwsfather,
+        crdr, amount, reciporgtype,
+        reciporgcode, recipacctno, postatonce,
+        genledatonce)
+        values (#{efid,jdbcType=BIGINT}, #{efname,jdbcType=VARCHAR}, #{accountBookType,jdbcType=VARCHAR},
+        #{trxdir,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{trxcode,jdbcType=VARCHAR},
+        #{actionx,jdbcType=VARCHAR}, #{entrygrp,jdbcType=TINYINT}, #{entrysubgrp,jdbcType=TINYINT},
+        #{entrypty,jdbcType=TINYINT}, #{orgtype,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR},
+        #{acctnature,jdbcType=VARCHAR}, #{acctcatype,jdbcType=VARCHAR}, #{accttype,jdbcType=VARCHAR},
+        #{acctno,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{fwsfather,jdbcType=TINYINT},
+        #{crdr,jdbcType=TINYINT}, #{amount,jdbcType=VARCHAR}, #{reciporgtype,jdbcType=VARCHAR},
+        #{reciporgcode,jdbcType=VARCHAR}, #{recipacctno,jdbcType=VARCHAR}, #{postatonce,jdbcType=TINYINT},
+        #{genledatonce,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
+        insert into t_acct_entry_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="efid != null">
+                efid,
+            </if>
+            <if test="efname != null">
+                efname,
+            </if>
+            <if test="accountBookType != null">
+                account_book_type,
+            </if>
+            <if test="trxdir != null">
+                trxdir,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="trxcode != null">
+                trxcode,
+            </if>
+            <if test="actionx != null">
+                actionx,
+            </if>
+            <if test="entrygrp != null">
+                entrygrp,
+            </if>
+            <if test="entrysubgrp != null">
+                entrysubgrp,
+            </if>
+            <if test="entrypty != null">
+                entrypty,
+            </if>
+            <if test="orgtype != null">
+                orgtype,
+            </if>
+            <if test="orgcode != null">
+                orgcode,
+            </if>
+            <if test="acctnature != null">
+                acctnature,
+            </if>
+            <if test="acctcatype != null">
+                acctcatype,
+            </if>
+            <if test="accttype != null">
+                accttype,
+            </if>
+            <if test="acctno != null">
+                acctno,
+            </if>
+            <if test="itemcode != null">
+                itemcode,
+            </if>
+            <if test="fwsfather != null">
+                fwsfather,
+            </if>
+            <if test="crdr != null">
+                crdr,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="reciporgtype != null">
+                reciporgtype,
+            </if>
+            <if test="reciporgcode != null">
+                reciporgcode,
+            </if>
+            <if test="recipacctno != null">
+                recipacctno,
+            </if>
+            <if test="postatonce != null">
+                postatonce,
+            </if>
+            <if test="genledatonce != null">
+                genledatonce,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="efid != null">
+                #{efid,jdbcType=BIGINT},
+            </if>
+            <if test="efname != null">
+                #{efname,jdbcType=VARCHAR},
+            </if>
+            <if test="accountBookType != null">
+                #{accountBookType,jdbcType=VARCHAR},
+            </if>
+            <if test="trxdir != null">
+                #{trxdir,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="trxcode != null">
+                #{trxcode,jdbcType=VARCHAR},
+            </if>
+            <if test="actionx != null">
+                #{actionx,jdbcType=VARCHAR},
+            </if>
+            <if test="entrygrp != null">
+                #{entrygrp,jdbcType=TINYINT},
+            </if>
+            <if test="entrysubgrp != null">
+                #{entrysubgrp,jdbcType=TINYINT},
+            </if>
+            <if test="entrypty != null">
+                #{entrypty,jdbcType=TINYINT},
+            </if>
+            <if test="orgtype != null">
+                #{orgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="orgcode != null">
+                #{orgcode,jdbcType=VARCHAR},
+            </if>
+            <if test="acctnature != null">
+                #{acctnature,jdbcType=VARCHAR},
+            </if>
+            <if test="acctcatype != null">
+                #{acctcatype,jdbcType=VARCHAR},
+            </if>
+            <if test="accttype != null">
+                #{accttype,jdbcType=VARCHAR},
+            </if>
+            <if test="acctno != null">
+                #{acctno,jdbcType=VARCHAR},
+            </if>
+            <if test="itemcode != null">
+                #{itemcode,jdbcType=VARCHAR},
+            </if>
+            <if test="fwsfather != null">
+                #{fwsfather,jdbcType=TINYINT},
+            </if>
+            <if test="crdr != null">
+                #{crdr,jdbcType=TINYINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="reciporgtype != null">
+                #{reciporgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="reciporgcode != null">
+                #{reciporgcode,jdbcType=VARCHAR},
+            </if>
+            <if test="recipacctno != null">
+                #{recipacctno,jdbcType=VARCHAR},
+            </if>
+            <if test="postatonce != null">
+                #{postatonce,jdbcType=TINYINT},
+            </if>
+            <if test="genledatonce != null">
+                #{genledatonce,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
+        update t_acct_entry_rule
+        <set>
+            <if test="efname != null">
+                efname = #{efname,jdbcType=VARCHAR},
+            </if>
+            <if test="accountBookType != null">
+                account_book_type = #{accountBookType,jdbcType=VARCHAR},
+            </if>
+            <if test="trxdir != null">
+                trxdir = #{trxdir,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="trxcode != null">
+                trxcode = #{trxcode,jdbcType=VARCHAR},
+            </if>
+            <if test="actionx != null">
+                actionx = #{actionx,jdbcType=VARCHAR},
+            </if>
+            <if test="entrygrp != null">
+                entrygrp = #{entrygrp,jdbcType=TINYINT},
+            </if>
+            <if test="entrysubgrp != null">
+                entrysubgrp = #{entrysubgrp,jdbcType=TINYINT},
+            </if>
+            <if test="entrypty != null">
+                entrypty = #{entrypty,jdbcType=TINYINT},
+            </if>
+            <if test="orgtype != null">
+                orgtype = #{orgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="orgcode != null">
+                orgcode = #{orgcode,jdbcType=VARCHAR},
+            </if>
+            <if test="acctnature != null">
+                acctnature = #{acctnature,jdbcType=VARCHAR},
+            </if>
+            <if test="acctcatype != null">
+                acctcatype = #{acctcatype,jdbcType=VARCHAR},
+            </if>
+            <if test="accttype != null">
+                accttype = #{accttype,jdbcType=VARCHAR},
+            </if>
+            <if test="acctno != null">
+                acctno = #{acctno,jdbcType=VARCHAR},
+            </if>
+            <if test="itemcode != null">
+                itemcode = #{itemcode,jdbcType=VARCHAR},
+            </if>
+            <if test="fwsfather != null">
+                fwsfather = #{fwsfather,jdbcType=TINYINT},
+            </if>
+            <if test="crdr != null">
+                crdr = #{crdr,jdbcType=TINYINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="reciporgtype != null">
+                reciporgtype = #{reciporgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="reciporgcode != null">
+                reciporgcode = #{reciporgcode,jdbcType=VARCHAR},
+            </if>
+            <if test="recipacctno != null">
+                recipacctno = #{recipacctno,jdbcType=VARCHAR},
+            </if>
+            <if test="postatonce != null">
+                postatonce = #{postatonce,jdbcType=TINYINT},
+            </if>
+            <if test="genledatonce != null">
+                genledatonce = #{genledatonce,jdbcType=TINYINT},
+            </if>
+        </set>
+        where efid = #{efid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
+        update t_acct_entry_rule
+        set efname = #{efname,jdbcType=VARCHAR},
         account_book_type = #{accountBookType,jdbcType=VARCHAR},
-      </if>
-      <if test="trxdir != null">
         trxdir = #{trxdir,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
         pid = #{pid,jdbcType=VARCHAR},
-      </if>
-      <if test="trxcode != null">
         trxcode = #{trxcode,jdbcType=VARCHAR},
-      </if>
-      <if test="actionx != null">
         actionx = #{actionx,jdbcType=VARCHAR},
-      </if>
-      <if test="entrygrp != null">
         entrygrp = #{entrygrp,jdbcType=TINYINT},
-      </if>
-      <if test="entrysubgrp != null">
         entrysubgrp = #{entrysubgrp,jdbcType=TINYINT},
-      </if>
-      <if test="entrypty != null">
         entrypty = #{entrypty,jdbcType=TINYINT},
-      </if>
-      <if test="orgtype != null">
         orgtype = #{orgtype,jdbcType=VARCHAR},
-      </if>
-      <if test="orgcode != null">
         orgcode = #{orgcode,jdbcType=VARCHAR},
-      </if>
-      <if test="acctnature != null">
         acctnature = #{acctnature,jdbcType=VARCHAR},
-      </if>
-      <if test="acctcatype != null">
         acctcatype = #{acctcatype,jdbcType=VARCHAR},
-      </if>
-      <if test="accttype != null">
         accttype = #{accttype,jdbcType=VARCHAR},
-      </if>
-      <if test="acctno != null">
         acctno = #{acctno,jdbcType=VARCHAR},
-      </if>
-      <if test="itemcode != null">
         itemcode = #{itemcode,jdbcType=VARCHAR},
-      </if>
-      <if test="fwsfather != null">
         fwsfather = #{fwsfather,jdbcType=TINYINT},
-      </if>
-      <if test="crdr != null">
         crdr = #{crdr,jdbcType=TINYINT},
-      </if>
-      <if test="amount != null">
         amount = #{amount,jdbcType=VARCHAR},
-      </if>
-      <if test="reciporgtype != null">
         reciporgtype = #{reciporgtype,jdbcType=VARCHAR},
-      </if>
-      <if test="reciporgcode != null">
         reciporgcode = #{reciporgcode,jdbcType=VARCHAR},
-      </if>
-      <if test="recipacctno != null">
         recipacctno = #{recipacctno,jdbcType=VARCHAR},
-      </if>
-      <if test="postatonce != null">
         postatonce = #{postatonce,jdbcType=TINYINT},
-      </if>
-      <if test="genledatonce != null">
-        genledatonce = #{genledatonce,jdbcType=TINYINT},
-      </if>
-    </set>
-    where efid = #{efid,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctEntryRuleDetail">
-    update t_acct_entry_rule
-    set efname = #{efname,jdbcType=VARCHAR},
-      account_book_type = #{accountBookType,jdbcType=VARCHAR},
-      trxdir = #{trxdir,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=VARCHAR},
-      trxcode = #{trxcode,jdbcType=VARCHAR},
-      actionx = #{actionx,jdbcType=VARCHAR},
-      entrygrp = #{entrygrp,jdbcType=TINYINT},
-      entrysubgrp = #{entrysubgrp,jdbcType=TINYINT},
-      entrypty = #{entrypty,jdbcType=TINYINT},
-      orgtype = #{orgtype,jdbcType=VARCHAR},
-      orgcode = #{orgcode,jdbcType=VARCHAR},
-      acctnature = #{acctnature,jdbcType=VARCHAR},
-      acctcatype = #{acctcatype,jdbcType=VARCHAR},
-      accttype = #{accttype,jdbcType=VARCHAR},
-      acctno = #{acctno,jdbcType=VARCHAR},
-      itemcode = #{itemcode,jdbcType=VARCHAR},
-      fwsfather = #{fwsfather,jdbcType=TINYINT},
-      crdr = #{crdr,jdbcType=TINYINT},
-      amount = #{amount,jdbcType=VARCHAR},
-      reciporgtype = #{reciporgtype,jdbcType=VARCHAR},
-      reciporgcode = #{reciporgcode,jdbcType=VARCHAR},
-      recipacctno = #{recipacctno,jdbcType=VARCHAR},
-      postatonce = #{postatonce,jdbcType=TINYINT},
-      genledatonce = #{genledatonce,jdbcType=TINYINT}
-    where efid = #{efid,jdbcType=BIGINT}
-  </update>
+        genledatonce = #{genledatonce,jdbcType=TINYINT}
+        where efid = #{efid,jdbcType=BIGINT}
+    </update>
 </mapper>

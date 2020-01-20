@@ -1,6 +1,7 @@
 package org.yunzhong.account.accounting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ public class AcctCurrencyTypeController {
 	private AcctCurrencyTypeService acctCurrencyTypeService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('/list','currency:read')")
 	public AcctResponse selectAll(@RequestBody AcctRequest<AcctBasicRequestBody> request) {
 		return AcctResponseBuilder.create(acctCurrencyTypeService.selectAll());
 	}

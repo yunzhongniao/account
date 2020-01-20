@@ -1,5 +1,7 @@
 package org.yunzhong.account.accounting.dao;
 
+import java.util.List;
+
 import org.yunzhong.account.accounting.model.SysPermission;
 
 public interface SysPermissionMapper {
@@ -14,4 +16,6 @@ public interface SysPermissionMapper {
     int updateByPrimaryKeySelective(SysPermission record);
 
     int updateByPrimaryKey(SysPermission record);
+
+    List<SysPermission> selectByUser(Long userId);
 }

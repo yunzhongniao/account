@@ -1,5 +1,6 @@
 package org.yunzhong.account.accounting.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.SysUser;
 
 public interface SysUserMapper {
@@ -14,4 +15,6 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+    SysUser selectByUsername(@Param("username") String username);
 }
