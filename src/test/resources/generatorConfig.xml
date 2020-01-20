@@ -73,6 +73,10 @@
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
         <table schema="" tableName="t_acct_transaction_cat" domainObjectName="AcctTransactionCat" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
-
+        <table schema="" tableName="t_sys_user" domainObjectName="SysUser" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table schema="" tableName="t_sys_permission" domainObjectName="SysPermission" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+    
     </context>
 </generatorConfiguration>
