@@ -33,8 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.rememberMe()
 				// 设置cookie有效期
 				.tokenValiditySeconds(60 * 60 * 24 * 7).and().formLogin() // 定义当需要用户登录时候，转到的登录页面
-				.loginPage("/login.html") // 登录页
-				.failureUrl("/login-error.html").permitAll().and().logout().logoutSuccessUrl("/index.html");
+				.permitAll();
 	}
 
 	@Autowired
