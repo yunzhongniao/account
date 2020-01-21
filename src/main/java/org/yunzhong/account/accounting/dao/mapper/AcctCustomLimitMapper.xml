@@ -1,343 +1,324 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="org.yunzhong.account.accounting.dao.AcctCustomLimitMapper">
-	<resultMap id="BaseResultMap"
-		type="org.yunzhong.account.accounting.model.AcctCustomLimit">
-		<id column="limitid" jdbcType="BIGINT" property="limitid" />
-		<result column="osbid" jdbcType="VARCHAR" property="osbid" />
-		<result column="cusid" jdbcType="VARCHAR" property="cusid" />
-		<result column="drmaxamt" jdbcType="DECIMAL"
-			property="drmaxamt" />
-		<result column="crmaxamt" jdbcType="DECIMAL"
-			property="crmaxamt" />
-		<result column="drdtmaxamt" jdbcType="DECIMAL"
-			property="drdtmaxamt" />
-		<result column="drdtamt" jdbcType="DECIMAL" property="drdtamt" />
-		<result column="drdtmaxcnt" jdbcType="DECIMAL"
-			property="drdtmaxcnt" />
-		<result column="drdtcnt" jdbcType="DECIMAL" property="drdtcnt" />
-		<result column="drmtmaxamt" jdbcType="DECIMAL"
-			property="drmtmaxamt" />
-		<result column="drmtamt" jdbcType="DECIMAL" property="drmtamt" />
-		<result column="drmtmaxcnt" jdbcType="DECIMAL"
-			property="drmtmaxcnt" />
-		<result column="drmtcnt" jdbcType="DECIMAL" property="drmtcnt" />
-		<result column="crdtmaxamt" jdbcType="DECIMAL"
-			property="crdtmaxamt" />
-		<result column="crdtamt" jdbcType="DECIMAL" property="crdtamt" />
-		<result column="crdtmaxcnt" jdbcType="DECIMAL"
-			property="crdtmaxcnt" />
-		<result column="crdtcnt" jdbcType="DECIMAL" property="crdtcnt" />
-		<result column="crmtmaxamt" jdbcType="DECIMAL"
-			property="crmtmaxamt" />
-		<result column="crmtamt" jdbcType="DECIMAL" property="crmtamt" />
-		<result column="crmtmaxcnt" jdbcType="DECIMAL"
-			property="crmtmaxcnt" />
-		<result column="crmtcnt" jdbcType="DECIMAL" property="crmtcnt" />
-		<result column="lsttrxtime" jdbcType="TIMESTAMP"
-			property="lsttrxtime" />
-		<result column="state" jdbcType="CHAR" property="state" />
-		<result column="deltime" jdbcType="TIMESTAMP"
-			property="deltime" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		limitid, osbid, cusid, drmaxamt, crmaxamt, drdtmaxamt, drdtamt, drdtmaxcnt,
-		drdtcnt,
-		drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, crdtmaxamt, crdtamt, crdtmaxcnt,
-		crdtcnt,
-		crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, lsttrxtime, state, deltime
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from t_acct_custom_limit
-		where limitid = #{limitid,jdbcType=BIGINT}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from t_acct_custom_limit
-		where limitid = #{limitid,jdbcType=BIGINT}
-	</delete>
-	<insert id="insert"
-		parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
-		insert into t_acct_custom_limit (limitid, osbid, cusid,
-		drmaxamt, crmaxamt, drdtmaxamt,
-		drdtamt, drdtmaxcnt, drdtcnt,
-		drmtmaxamt, drmtamt, drmtmaxcnt,
-		drmtcnt, crdtmaxamt, crdtamt,
-		crdtmaxcnt, crdtcnt, crmtmaxamt,
-		crmtamt, crmtmaxcnt, crmtcnt,
-		lsttrxtime, state, deltime
-		)
-		values (#{limitid,jdbcType=BIGINT}, #{osbid,jdbcType=VARCHAR},
-		#{cusid,jdbcType=VARCHAR},
-		#{drmaxamt,jdbcType=DECIMAL}, #{crmaxamt,jdbcType=DECIMAL}, #{drdtmaxamt,jdbcType=DECIMAL},
-		#{drdtamt,jdbcType=DECIMAL}, #{drdtmaxcnt,jdbcType=DECIMAL},
-		#{drdtcnt,jdbcType=DECIMAL},
-		#{drmtmaxamt,jdbcType=DECIMAL}, #{drmtamt,jdbcType=DECIMAL}, #{drmtmaxcnt,jdbcType=DECIMAL},
-		#{drmtcnt,jdbcType=DECIMAL}, #{crdtmaxamt,jdbcType=DECIMAL},
-		#{crdtamt,jdbcType=DECIMAL},
-		#{crdtmaxcnt,jdbcType=DECIMAL}, #{crdtcnt,jdbcType=DECIMAL}, #{crmtmaxamt,jdbcType=DECIMAL},
-		#{crmtamt,jdbcType=DECIMAL}, #{crmtmaxcnt,jdbcType=DECIMAL},
-		#{crmtcnt,jdbcType=DECIMAL},
-		#{lsttrxtime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}, #{deltime,jdbcType=TIMESTAMP}
-		)
-	</insert>
-	<insert id="insertSelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
-		insert into t_acct_custom_limit
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="limitid != null">
-				limitid,
-			</if>
-			<if test="osbid != null">
-				osbid,
-			</if>
-			<if test="cusid != null">
-				cusid,
-			</if>
-			<if test="drmaxamt != null">
-				drmaxamt,
-			</if>
-			<if test="crmaxamt != null">
-				crmaxamt,
-			</if>
-			<if test="drdtmaxamt != null">
-				drdtmaxamt,
-			</if>
-			<if test="drdtamt != null">
-				drdtamt,
-			</if>
-			<if test="drdtmaxcnt != null">
-				drdtmaxcnt,
-			</if>
-			<if test="drdtcnt != null">
-				drdtcnt,
-			</if>
-			<if test="drmtmaxamt != null">
-				drmtmaxamt,
-			</if>
-			<if test="drmtamt != null">
-				drmtamt,
-			</if>
-			<if test="drmtmaxcnt != null">
-				drmtmaxcnt,
-			</if>
-			<if test="drmtcnt != null">
-				drmtcnt,
-			</if>
-			<if test="crdtmaxamt != null">
-				crdtmaxamt,
-			</if>
-			<if test="crdtamt != null">
-				crdtamt,
-			</if>
-			<if test="crdtmaxcnt != null">
-				crdtmaxcnt,
-			</if>
-			<if test="crdtcnt != null">
-				crdtcnt,
-			</if>
-			<if test="crmtmaxamt != null">
-				crmtmaxamt,
-			</if>
-			<if test="crmtamt != null">
-				crmtamt,
-			</if>
-			<if test="crmtmaxcnt != null">
-				crmtmaxcnt,
-			</if>
-			<if test="crmtcnt != null">
-				crmtcnt,
-			</if>
-			<if test="lsttrxtime != null">
-				lsttrxtime,
-			</if>
-			<if test="state != null">
-				state,
-			</if>
-			<if test="deltime != null">
-				deltime,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="limitid != null">
-				#{limitid,jdbcType=BIGINT},
-			</if>
-			<if test="osbid != null">
-				#{osbid,jdbcType=VARCHAR},
-			</if>
-			<if test="cusid != null">
-				#{cusid,jdbcType=VARCHAR},
-			</if>
-			<if test="drmaxamt != null">
-				#{drmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmaxamt != null">
-				#{crmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtmaxamt != null">
-				#{drdtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtamt != null">
-				#{drdtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtmaxcnt != null">
-				#{drdtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtcnt != null">
-				#{drdtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtmaxamt != null">
-				#{drmtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtamt != null">
-				#{drmtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtmaxcnt != null">
-				#{drmtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtcnt != null">
-				#{drmtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtmaxamt != null">
-				#{crdtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtamt != null">
-				#{crdtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtmaxcnt != null">
-				#{crdtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtcnt != null">
-				#{crdtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtmaxamt != null">
-				#{crmtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtamt != null">
-				#{crmtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtmaxcnt != null">
-				#{crmtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtcnt != null">
-				#{crmtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lsttrxtime != null">
-				#{lsttrxtime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="state != null">
-				#{state,jdbcType=CHAR},
-			</if>
-			<if test="deltime != null">
-				#{deltime,jdbcType=TIMESTAMP},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
-		update t_acct_custom_limit
-		<set>
-			<if test="osbid != null">
-				osbid = #{osbid,jdbcType=VARCHAR},
-			</if>
-			<if test="cusid != null">
-				cusid = #{cusid,jdbcType=VARCHAR},
-			</if>
-			<if test="drmaxamt != null">
-				drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmaxamt != null">
-				crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtmaxamt != null">
-				drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtamt != null">
-				drdtamt = #{drdtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtmaxcnt != null">
-				drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drdtcnt != null">
-				drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtmaxamt != null">
-				drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtamt != null">
-				drmtamt = #{drmtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtmaxcnt != null">
-				drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="drmtcnt != null">
-				drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtmaxamt != null">
-				crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtamt != null">
-				crdtamt = #{crdtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtmaxcnt != null">
-				crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crdtcnt != null">
-				crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtmaxamt != null">
-				crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtamt != null">
-				crmtamt = #{crmtamt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtmaxcnt != null">
-				crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="crmtcnt != null">
-				crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lsttrxtime != null">
-				lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="state != null">
-				state = #{state,jdbcType=CHAR},
-			</if>
-			<if test="deltime != null">
-				deltime = #{deltime,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		where limitid = #{limitid,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
-		update t_acct_custom_limit
-		set osbid = #{osbid,jdbcType=VARCHAR},
-		cusid = #{cusid,jdbcType=VARCHAR},
-		drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
-		crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
-		drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
-		drdtamt = #{drdtamt,jdbcType=DECIMAL},
-		drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
-		drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
-		drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
-		drmtamt = #{drmtamt,jdbcType=DECIMAL},
-		drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
-		drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
-		crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
-		crdtamt = #{crdtamt,jdbcType=DECIMAL},
-		crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
-		crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
-		crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
-		crmtamt = #{crmtamt,jdbcType=DECIMAL},
-		crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
-		crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
-		lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
-		state = #{state,jdbcType=CHAR},
-		deltime = #{deltime,jdbcType=TIMESTAMP}
-		where limitid = #{limitid,jdbcType=BIGINT}
-	</update>
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctCustomLimitMapper">
+    <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctCustomLimit">
+        <id column="limitid" jdbcType="BIGINT" property="limitid" />
+        <result column="osbid" jdbcType="VARCHAR" property="osbid" />
+        <result column="cusid" jdbcType="VARCHAR" property="cusid" />
+        <result column="drmaxamt" jdbcType="DECIMAL" property="drmaxamt" />
+        <result column="crmaxamt" jdbcType="DECIMAL" property="crmaxamt" />
+        <result column="drdtmaxamt" jdbcType="DECIMAL" property="drdtmaxamt" />
+        <result column="drdtamt" jdbcType="DECIMAL" property="drdtamt" />
+        <result column="drdtmaxcnt" jdbcType="DECIMAL" property="drdtmaxcnt" />
+        <result column="drdtcnt" jdbcType="DECIMAL" property="drdtcnt" />
+        <result column="drmtmaxamt" jdbcType="DECIMAL" property="drmtmaxamt" />
+        <result column="drmtamt" jdbcType="DECIMAL" property="drmtamt" />
+        <result column="drmtmaxcnt" jdbcType="DECIMAL" property="drmtmaxcnt" />
+        <result column="drmtcnt" jdbcType="DECIMAL" property="drmtcnt" />
+        <result column="crdtmaxamt" jdbcType="DECIMAL" property="crdtmaxamt" />
+        <result column="crdtamt" jdbcType="DECIMAL" property="crdtamt" />
+        <result column="crdtmaxcnt" jdbcType="DECIMAL" property="crdtmaxcnt" />
+        <result column="crdtcnt" jdbcType="DECIMAL" property="crdtcnt" />
+        <result column="crmtmaxamt" jdbcType="DECIMAL" property="crmtmaxamt" />
+        <result column="crmtamt" jdbcType="DECIMAL" property="crmtamt" />
+        <result column="crmtmaxcnt" jdbcType="DECIMAL" property="crmtmaxcnt" />
+        <result column="crmtcnt" jdbcType="DECIMAL" property="crmtcnt" />
+        <result column="lsttrxtime" jdbcType="TIMESTAMP" property="lsttrxtime" />
+        <result column="state" jdbcType="CHAR" property="state" />
+        <result column="deltime" jdbcType="TIMESTAMP" property="deltime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        limitid, osbid, cusid, drmaxamt, crmaxamt, drdtmaxamt, drdtamt, drdtmaxcnt,
+        drdtcnt,
+        drmtmaxamt, drmtamt, drmtmaxcnt, drmtcnt, crdtmaxamt, crdtamt, crdtmaxcnt,
+        crdtcnt,
+        crmtmaxamt, crmtamt, crmtmaxcnt, crmtcnt, lsttrxtime, state, deltime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_custom_limit
+        where limitid = #{limitid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_acct_custom_limit
+        where limitid = #{limitid,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+        insert into t_acct_custom_limit (limitid, osbid, cusid,
+        drmaxamt, crmaxamt, drdtmaxamt,
+        drdtamt, drdtmaxcnt, drdtcnt,
+        drmtmaxamt, drmtamt, drmtmaxcnt,
+        drmtcnt, crdtmaxamt, crdtamt,
+        crdtmaxcnt, crdtcnt, crmtmaxamt,
+        crmtamt, crmtmaxcnt, crmtcnt,
+        lsttrxtime, state, deltime
+        )
+        values (#{limitid,jdbcType=BIGINT}, #{osbid,jdbcType=VARCHAR},
+        #{cusid,jdbcType=VARCHAR},
+        #{drmaxamt,jdbcType=DECIMAL}, #{crmaxamt,jdbcType=DECIMAL}, #{drdtmaxamt,jdbcType=DECIMAL},
+        #{drdtamt,jdbcType=DECIMAL}, #{drdtmaxcnt,jdbcType=DECIMAL},
+        #{drdtcnt,jdbcType=DECIMAL},
+        #{drmtmaxamt,jdbcType=DECIMAL}, #{drmtamt,jdbcType=DECIMAL}, #{drmtmaxcnt,jdbcType=DECIMAL},
+        #{drmtcnt,jdbcType=DECIMAL}, #{crdtmaxamt,jdbcType=DECIMAL},
+        #{crdtamt,jdbcType=DECIMAL},
+        #{crdtmaxcnt,jdbcType=DECIMAL}, #{crdtcnt,jdbcType=DECIMAL}, #{crmtmaxamt,jdbcType=DECIMAL},
+        #{crmtamt,jdbcType=DECIMAL}, #{crmtmaxcnt,jdbcType=DECIMAL},
+        #{crmtcnt,jdbcType=DECIMAL},
+        #{lsttrxtime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}, #{deltime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+        insert into t_acct_custom_limit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="limitid != null">
+                limitid,
+            </if>
+            <if test="osbid != null">
+                osbid,
+            </if>
+            <if test="cusid != null">
+                cusid,
+            </if>
+            <if test="drmaxamt != null">
+                drmaxamt,
+            </if>
+            <if test="crmaxamt != null">
+                crmaxamt,
+            </if>
+            <if test="drdtmaxamt != null">
+                drdtmaxamt,
+            </if>
+            <if test="drdtamt != null">
+                drdtamt,
+            </if>
+            <if test="drdtmaxcnt != null">
+                drdtmaxcnt,
+            </if>
+            <if test="drdtcnt != null">
+                drdtcnt,
+            </if>
+            <if test="drmtmaxamt != null">
+                drmtmaxamt,
+            </if>
+            <if test="drmtamt != null">
+                drmtamt,
+            </if>
+            <if test="drmtmaxcnt != null">
+                drmtmaxcnt,
+            </if>
+            <if test="drmtcnt != null">
+                drmtcnt,
+            </if>
+            <if test="crdtmaxamt != null">
+                crdtmaxamt,
+            </if>
+            <if test="crdtamt != null">
+                crdtamt,
+            </if>
+            <if test="crdtmaxcnt != null">
+                crdtmaxcnt,
+            </if>
+            <if test="crdtcnt != null">
+                crdtcnt,
+            </if>
+            <if test="crmtmaxamt != null">
+                crmtmaxamt,
+            </if>
+            <if test="crmtamt != null">
+                crmtamt,
+            </if>
+            <if test="crmtmaxcnt != null">
+                crmtmaxcnt,
+            </if>
+            <if test="crmtcnt != null">
+                crmtcnt,
+            </if>
+            <if test="lsttrxtime != null">
+                lsttrxtime,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="deltime != null">
+                deltime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="limitid != null">
+                #{limitid,jdbcType=BIGINT},
+            </if>
+            <if test="osbid != null">
+                #{osbid,jdbcType=VARCHAR},
+            </if>
+            <if test="cusid != null">
+                #{cusid,jdbcType=VARCHAR},
+            </if>
+            <if test="drmaxamt != null">
+                #{drmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmaxamt != null">
+                #{crmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtmaxamt != null">
+                #{drdtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtamt != null">
+                #{drdtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtmaxcnt != null">
+                #{drdtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtcnt != null">
+                #{drdtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtmaxamt != null">
+                #{drmtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtamt != null">
+                #{drmtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtmaxcnt != null">
+                #{drmtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtcnt != null">
+                #{drmtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtmaxamt != null">
+                #{crdtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtamt != null">
+                #{crdtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtmaxcnt != null">
+                #{crdtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtcnt != null">
+                #{crdtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtmaxamt != null">
+                #{crmtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtamt != null">
+                #{crmtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtmaxcnt != null">
+                #{crmtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtcnt != null">
+                #{crmtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lsttrxtime != null">
+                #{lsttrxtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="deltime != null">
+                #{deltime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+        update t_acct_custom_limit
+        <set>
+            <if test="osbid != null">
+                osbid = #{osbid,jdbcType=VARCHAR},
+            </if>
+            <if test="cusid != null">
+                cusid = #{cusid,jdbcType=VARCHAR},
+            </if>
+            <if test="drmaxamt != null">
+                drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmaxamt != null">
+                crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtmaxamt != null">
+                drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtamt != null">
+                drdtamt = #{drdtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtmaxcnt != null">
+                drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drdtcnt != null">
+                drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtmaxamt != null">
+                drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtamt != null">
+                drmtamt = #{drmtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtmaxcnt != null">
+                drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="drmtcnt != null">
+                drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtmaxamt != null">
+                crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtamt != null">
+                crdtamt = #{crdtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtmaxcnt != null">
+                crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crdtcnt != null">
+                crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtmaxamt != null">
+                crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtamt != null">
+                crmtamt = #{crmtamt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtmaxcnt != null">
+                crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="crmtcnt != null">
+                crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lsttrxtime != null">
+                lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="deltime != null">
+                deltime = #{deltime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where limitid = #{limitid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctCustomLimit">
+        update t_acct_custom_limit
+        set osbid = #{osbid,jdbcType=VARCHAR},
+        cusid = #{cusid,jdbcType=VARCHAR},
+        drmaxamt = #{drmaxamt,jdbcType=DECIMAL},
+        crmaxamt = #{crmaxamt,jdbcType=DECIMAL},
+        drdtmaxamt = #{drdtmaxamt,jdbcType=DECIMAL},
+        drdtamt = #{drdtamt,jdbcType=DECIMAL},
+        drdtmaxcnt = #{drdtmaxcnt,jdbcType=DECIMAL},
+        drdtcnt = #{drdtcnt,jdbcType=DECIMAL},
+        drmtmaxamt = #{drmtmaxamt,jdbcType=DECIMAL},
+        drmtamt = #{drmtamt,jdbcType=DECIMAL},
+        drmtmaxcnt = #{drmtmaxcnt,jdbcType=DECIMAL},
+        drmtcnt = #{drmtcnt,jdbcType=DECIMAL},
+        crdtmaxamt = #{crdtmaxamt,jdbcType=DECIMAL},
+        crdtamt = #{crdtamt,jdbcType=DECIMAL},
+        crdtmaxcnt = #{crdtmaxcnt,jdbcType=DECIMAL},
+        crdtcnt = #{crdtcnt,jdbcType=DECIMAL},
+        crmtmaxamt = #{crmtmaxamt,jdbcType=DECIMAL},
+        crmtamt = #{crmtamt,jdbcType=DECIMAL},
+        crmtmaxcnt = #{crmtmaxcnt,jdbcType=DECIMAL},
+        crmtcnt = #{crmtcnt,jdbcType=DECIMAL},
+        lsttrxtime = #{lsttrxtime,jdbcType=TIMESTAMP},
+        state = #{state,jdbcType=CHAR},
+        deltime = #{deltime,jdbcType=TIMESTAMP}
+        where limitid = #{limitid,jdbcType=BIGINT}
+    </update>
 </mapper>

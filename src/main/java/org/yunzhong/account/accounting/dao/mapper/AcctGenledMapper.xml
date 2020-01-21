@@ -1,372 +1,362 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="org.yunzhong.account.accounting.dao.AcctGenledMapper">
-	<resultMap id="BaseResultMap"
-		type="org.yunzhong.account.accounting.model.AcctGenled">
-		<id column="account_book_id" jdbcType="VARCHAR"
-			property="accountBookId" />
-		<id column="itemcode" jdbcType="VARCHAR" property="itemcode" />
-		<result column="itembalby" jdbcType="TINYINT"
-			property="itembalby" />
-		<result column="itemclass" jdbcType="TINYINT"
-			property="itemclass" />
-		<result column="currtype" jdbcType="CHAR" property="currtype" />
-		<result column="lydrbal" jdbcType="DECIMAL" property="lydrbal" />
-		<result column="lycrbal" jdbcType="DECIMAL" property="lycrbal" />
-		<result column="tydramt" jdbcType="DECIMAL" property="tydramt" />
-		<result column="tycramt" jdbcType="DECIMAL" property="tycramt" />
-		<result column="tydrcnt" jdbcType="DECIMAL" property="tydrcnt" />
-		<result column="tycrcnt" jdbcType="DECIMAL" property="tycrcnt" />
-		<result column="lmdrbal" jdbcType="DECIMAL" property="lmdrbal" />
-		<result column="lmcrbal" jdbcType="DECIMAL" property="lmcrbal" />
-		<result column="tmdramt" jdbcType="DECIMAL" property="tmdramt" />
-		<result column="tmcramt" jdbcType="DECIMAL" property="tmcramt" />
-		<result column="tmdrcnt" jdbcType="DECIMAL" property="tmdrcnt" />
-		<result column="tmcrcnt" jdbcType="DECIMAL" property="tmcrcnt" />
-		<result column="lddrbal" jdbcType="DECIMAL" property="lddrbal" />
-		<result column="ldcrbal" jdbcType="DECIMAL" property="ldcrbal" />
-		<result column="tddramt" jdbcType="DECIMAL" property="tddramt" />
-		<result column="tdcramt" jdbcType="DECIMAL" property="tdcramt" />
-		<result column="tddrcnt" jdbcType="DECIMAL" property="tddrcnt" />
-		<result column="tdcrcnt" jdbcType="DECIMAL" property="tdcrcnt" />
-		<result column="tddrbal" jdbcType="DECIMAL" property="tddrbal" />
-		<result column="tdcrbal" jdbcType="DECIMAL" property="tdcrbal" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		account_book_id, itemcode, itembalby, itemclass, currtype,
-		lydrbal, lycrbal, tydramt,
-		tycramt, tydrcnt, tycrcnt, lmdrbal, lmcrbal,
-		tmdramt, tmcramt,
-		tmdrcnt, tmcrcnt,
-		lddrbal, ldcrbal, tddramt, tdcramt,
-		tddrcnt, tdcrcnt, tddrbal, tdcrbal
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="map"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from t_acct_genled
-		where account_book_id =
-		#{accountBookId,jdbcType=VARCHAR}
-		and itemcode =
-		#{itemcode,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="map">
-		delete from
-		t_acct_genled
-		where account_book_id = #{accountBookId,jdbcType=VARCHAR}
-		and itemcode = #{itemcode,jdbcType=VARCHAR}
-	</delete>
-	<insert id="insert"
-		parameterType="org.yunzhong.account.accounting.model.AcctGenled">
-		insert into t_acct_genled (account_book_id, itemcode,
-		itembalby,
-		itemclass, currtype, lydrbal,
-		lycrbal, tydramt, tycramt,
-		tydrcnt, tycrcnt, lmdrbal,
-		lmcrbal, tmdramt, tmcramt,
-		tmdrcnt, tmcrcnt,
-		lddrbal,
-		ldcrbal, tddramt, tdcramt,
-		tddrcnt, tdcrcnt, tddrbal,
-		tdcrbal)
-		values (#{accountBookId,jdbcType=VARCHAR},
-		#{itemcode,jdbcType=VARCHAR},
-		#{itembalby,jdbcType=TINYINT},
-		#{itemclass,jdbcType=TINYINT}, #{currtype,jdbcType=CHAR},
-		#{lydrbal,jdbcType=DECIMAL},
-		#{lycrbal,jdbcType=DECIMAL},
-		#{tydramt,jdbcType=DECIMAL},
-		#{tycramt,jdbcType=DECIMAL},
-		#{tydrcnt,jdbcType=DECIMAL}, #{tycrcnt,jdbcType=DECIMAL},
-		#{lmdrbal,jdbcType=DECIMAL},
-		#{lmcrbal,jdbcType=DECIMAL},
-		#{tmdramt,jdbcType=DECIMAL},
-		#{tmcramt,jdbcType=DECIMAL},
-		#{tmdrcnt,jdbcType=DECIMAL}, #{tmcrcnt,jdbcType=DECIMAL},
-		#{lddrbal,jdbcType=DECIMAL},
-		#{ldcrbal,jdbcType=DECIMAL},
-		#{tddramt,jdbcType=DECIMAL},
-		#{tdcramt,jdbcType=DECIMAL},
-		#{tddrcnt,jdbcType=DECIMAL}, #{tdcrcnt,jdbcType=DECIMAL},
-		#{tddrbal,jdbcType=DECIMAL},
-		#{tdcrbal,jdbcType=DECIMAL})
-	</insert>
-	<insert id="insertSelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctGenled">
-		insert into t_acct_genled
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="accountBookId != null">
-				account_book_id,
-			</if>
-			<if test="itemcode != null">
-				itemcode,
-			</if>
-			<if test="itembalby != null">
-				itembalby,
-			</if>
-			<if test="itemclass != null">
-				itemclass,
-			</if>
-			<if test="currtype != null">
-				currtype,
-			</if>
-			<if test="lydrbal != null">
-				lydrbal,
-			</if>
-			<if test="lycrbal != null">
-				lycrbal,
-			</if>
-			<if test="tydramt != null">
-				tydramt,
-			</if>
-			<if test="tycramt != null">
-				tycramt,
-			</if>
-			<if test="tydrcnt != null">
-				tydrcnt,
-			</if>
-			<if test="tycrcnt != null">
-				tycrcnt,
-			</if>
-			<if test="lmdrbal != null">
-				lmdrbal,
-			</if>
-			<if test="lmcrbal != null">
-				lmcrbal,
-			</if>
-			<if test="tmdramt != null">
-				tmdramt,
-			</if>
-			<if test="tmcramt != null">
-				tmcramt,
-			</if>
-			<if test="tmdrcnt != null">
-				tmdrcnt,
-			</if>
-			<if test="tmcrcnt != null">
-				tmcrcnt,
-			</if>
-			<if test="lddrbal != null">
-				lddrbal,
-			</if>
-			<if test="ldcrbal != null">
-				ldcrbal,
-			</if>
-			<if test="tddramt != null">
-				tddramt,
-			</if>
-			<if test="tdcramt != null">
-				tdcramt,
-			</if>
-			<if test="tddrcnt != null">
-				tddrcnt,
-			</if>
-			<if test="tdcrcnt != null">
-				tdcrcnt,
-			</if>
-			<if test="tddrbal != null">
-				tddrbal,
-			</if>
-			<if test="tdcrbal != null">
-				tdcrbal,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="accountBookId != null">
-				#{accountBookId,jdbcType=VARCHAR},
-			</if>
-			<if test="itemcode != null">
-				#{itemcode,jdbcType=VARCHAR},
-			</if>
-			<if test="itembalby != null">
-				#{itembalby,jdbcType=TINYINT},
-			</if>
-			<if test="itemclass != null">
-				#{itemclass,jdbcType=TINYINT},
-			</if>
-			<if test="currtype != null">
-				#{currtype,jdbcType=CHAR},
-			</if>
-			<if test="lydrbal != null">
-				#{lydrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="lycrbal != null">
-				#{lycrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tydramt != null">
-				#{tydramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tycramt != null">
-				#{tycramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tydrcnt != null">
-				#{tydrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tycrcnt != null">
-				#{tycrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lmdrbal != null">
-				#{lmdrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="lmcrbal != null">
-				#{lmcrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tmdramt != null">
-				#{tmdramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmcramt != null">
-				#{tmcramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmdrcnt != null">
-				#{tmdrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmcrcnt != null">
-				#{tmcrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lddrbal != null">
-				#{lddrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="ldcrbal != null">
-				#{ldcrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tddramt != null">
-				#{tddramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcramt != null">
-				#{tdcramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tddrcnt != null">
-				#{tddrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcrcnt != null">
-				#{tdcrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tddrbal != null">
-				#{tddrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcrbal != null">
-				#{tdcrbal,jdbcType=DECIMAL},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctGenled">
-		update t_acct_genled
-		<set>
-			<if test="itembalby != null">
-				itembalby = #{itembalby,jdbcType=TINYINT},
-			</if>
-			<if test="itemclass != null">
-				itemclass = #{itemclass,jdbcType=TINYINT},
-			</if>
-			<if test="currtype != null">
-				currtype = #{currtype,jdbcType=CHAR},
-			</if>
-			<if test="lydrbal != null">
-				lydrbal = #{lydrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="lycrbal != null">
-				lycrbal = #{lycrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tydramt != null">
-				tydramt = #{tydramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tycramt != null">
-				tycramt = #{tycramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tydrcnt != null">
-				tydrcnt = #{tydrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tycrcnt != null">
-				tycrcnt = #{tycrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lmdrbal != null">
-				lmdrbal = #{lmdrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="lmcrbal != null">
-				lmcrbal = #{lmcrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tmdramt != null">
-				tmdramt = #{tmdramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmcramt != null">
-				tmcramt = #{tmcramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmdrcnt != null">
-				tmdrcnt = #{tmdrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tmcrcnt != null">
-				tmcrcnt = #{tmcrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="lddrbal != null">
-				lddrbal = #{lddrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="ldcrbal != null">
-				ldcrbal = #{ldcrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tddramt != null">
-				tddramt = #{tddramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcramt != null">
-				tdcramt = #{tdcramt,jdbcType=DECIMAL},
-			</if>
-			<if test="tddrcnt != null">
-				tddrcnt = #{tddrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcrcnt != null">
-				tdcrcnt = #{tdcrcnt,jdbcType=DECIMAL},
-			</if>
-			<if test="tddrbal != null">
-				tddrbal = #{tddrbal,jdbcType=DECIMAL},
-			</if>
-			<if test="tdcrbal != null">
-				tdcrbal = #{tdcrbal,jdbcType=DECIMAL},
-			</if>
-		</set>
-		where account_book_id = #{accountBookId,jdbcType=VARCHAR}
-		and itemcode
-		= #{itemcode,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="org.yunzhong.account.accounting.model.AcctGenled">
-		update t_acct_genled
-		set itembalby =
-		#{itembalby,jdbcType=TINYINT},
-		itemclass =
-		#{itemclass,jdbcType=TINYINT},
-		currtype = #{currtype,jdbcType=CHAR},
-		lydrbal = #{lydrbal,jdbcType=DECIMAL},
-		lycrbal =
-		#{lycrbal,jdbcType=DECIMAL},
-		tydramt = #{tydramt,jdbcType=DECIMAL},
-		tycramt = #{tycramt,jdbcType=DECIMAL},
-		tydrcnt =
-		#{tydrcnt,jdbcType=DECIMAL},
-		tycrcnt = #{tycrcnt,jdbcType=DECIMAL},
-		lmdrbal = #{lmdrbal,jdbcType=DECIMAL},
-		lmcrbal =
-		#{lmcrbal,jdbcType=DECIMAL},
-		tmdramt = #{tmdramt,jdbcType=DECIMAL},
-		tmcramt = #{tmcramt,jdbcType=DECIMAL},
-		tmdrcnt =
-		#{tmdrcnt,jdbcType=DECIMAL},
-		tmcrcnt = #{tmcrcnt,jdbcType=DECIMAL},
-		lddrbal = #{lddrbal,jdbcType=DECIMAL},
-		ldcrbal =
-		#{ldcrbal,jdbcType=DECIMAL},
-		tddramt = #{tddramt,jdbcType=DECIMAL},
-		tdcramt = #{tdcramt,jdbcType=DECIMAL},
-		tddrcnt =
-		#{tddrcnt,jdbcType=DECIMAL},
-		tdcrcnt = #{tdcrcnt,jdbcType=DECIMAL},
-		tddrbal = #{tddrbal,jdbcType=DECIMAL},
-		tdcrbal =
-		#{tdcrbal,jdbcType=DECIMAL}
-		where account_book_id =
-		#{accountBookId,jdbcType=VARCHAR}
-		and itemcode =
-		#{itemcode,jdbcType=VARCHAR}
-	</update>
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctGenledMapper">
+    <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctGenled">
+        <id column="account_book_id" jdbcType="VARCHAR" property="accountBookId" />
+        <id column="itemcode" jdbcType="VARCHAR" property="itemcode" />
+        <result column="itembalby" jdbcType="TINYINT" property="itembalby" />
+        <result column="itemclass" jdbcType="TINYINT" property="itemclass" />
+        <result column="currtype" jdbcType="CHAR" property="currtype" />
+        <result column="lydrbal" jdbcType="DECIMAL" property="lydrbal" />
+        <result column="lycrbal" jdbcType="DECIMAL" property="lycrbal" />
+        <result column="tydramt" jdbcType="DECIMAL" property="tydramt" />
+        <result column="tycramt" jdbcType="DECIMAL" property="tycramt" />
+        <result column="tydrcnt" jdbcType="DECIMAL" property="tydrcnt" />
+        <result column="tycrcnt" jdbcType="DECIMAL" property="tycrcnt" />
+        <result column="lmdrbal" jdbcType="DECIMAL" property="lmdrbal" />
+        <result column="lmcrbal" jdbcType="DECIMAL" property="lmcrbal" />
+        <result column="tmdramt" jdbcType="DECIMAL" property="tmdramt" />
+        <result column="tmcramt" jdbcType="DECIMAL" property="tmcramt" />
+        <result column="tmdrcnt" jdbcType="DECIMAL" property="tmdrcnt" />
+        <result column="tmcrcnt" jdbcType="DECIMAL" property="tmcrcnt" />
+        <result column="lddrbal" jdbcType="DECIMAL" property="lddrbal" />
+        <result column="ldcrbal" jdbcType="DECIMAL" property="ldcrbal" />
+        <result column="tddramt" jdbcType="DECIMAL" property="tddramt" />
+        <result column="tdcramt" jdbcType="DECIMAL" property="tdcramt" />
+        <result column="tddrcnt" jdbcType="DECIMAL" property="tddrcnt" />
+        <result column="tdcrcnt" jdbcType="DECIMAL" property="tdcrcnt" />
+        <result column="tddrbal" jdbcType="DECIMAL" property="tddrbal" />
+        <result column="tdcrbal" jdbcType="DECIMAL" property="tdcrbal" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        account_book_id, itemcode, itembalby, itemclass, currtype,
+        lydrbal, lycrbal, tydramt,
+        tycramt, tydrcnt, tycrcnt, lmdrbal, lmcrbal,
+        tmdramt, tmcramt,
+        tmdrcnt, tmcrcnt,
+        lddrbal, ldcrbal, tddramt, tdcramt,
+        tddrcnt, tdcrcnt, tddrbal, tdcrbal
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_genled
+        where account_book_id =
+        #{accountBookId,jdbcType=VARCHAR}
+        and itemcode =
+        #{itemcode,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from
+        t_acct_genled
+        where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+        and itemcode = #{itemcode,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctGenled">
+        insert into t_acct_genled (account_book_id, itemcode,
+        itembalby,
+        itemclass, currtype, lydrbal,
+        lycrbal, tydramt, tycramt,
+        tydrcnt, tycrcnt, lmdrbal,
+        lmcrbal, tmdramt, tmcramt,
+        tmdrcnt, tmcrcnt,
+        lddrbal,
+        ldcrbal, tddramt, tdcramt,
+        tddrcnt, tdcrcnt, tddrbal,
+        tdcrbal)
+        values (#{accountBookId,jdbcType=VARCHAR},
+        #{itemcode,jdbcType=VARCHAR},
+        #{itembalby,jdbcType=TINYINT},
+        #{itemclass,jdbcType=TINYINT}, #{currtype,jdbcType=CHAR},
+        #{lydrbal,jdbcType=DECIMAL},
+        #{lycrbal,jdbcType=DECIMAL},
+        #{tydramt,jdbcType=DECIMAL},
+        #{tycramt,jdbcType=DECIMAL},
+        #{tydrcnt,jdbcType=DECIMAL}, #{tycrcnt,jdbcType=DECIMAL},
+        #{lmdrbal,jdbcType=DECIMAL},
+        #{lmcrbal,jdbcType=DECIMAL},
+        #{tmdramt,jdbcType=DECIMAL},
+        #{tmcramt,jdbcType=DECIMAL},
+        #{tmdrcnt,jdbcType=DECIMAL}, #{tmcrcnt,jdbcType=DECIMAL},
+        #{lddrbal,jdbcType=DECIMAL},
+        #{ldcrbal,jdbcType=DECIMAL},
+        #{tddramt,jdbcType=DECIMAL},
+        #{tdcramt,jdbcType=DECIMAL},
+        #{tddrcnt,jdbcType=DECIMAL}, #{tdcrcnt,jdbcType=DECIMAL},
+        #{tddrbal,jdbcType=DECIMAL},
+        #{tdcrbal,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctGenled">
+        insert into t_acct_genled
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accountBookId != null">
+                account_book_id,
+            </if>
+            <if test="itemcode != null">
+                itemcode,
+            </if>
+            <if test="itembalby != null">
+                itembalby,
+            </if>
+            <if test="itemclass != null">
+                itemclass,
+            </if>
+            <if test="currtype != null">
+                currtype,
+            </if>
+            <if test="lydrbal != null">
+                lydrbal,
+            </if>
+            <if test="lycrbal != null">
+                lycrbal,
+            </if>
+            <if test="tydramt != null">
+                tydramt,
+            </if>
+            <if test="tycramt != null">
+                tycramt,
+            </if>
+            <if test="tydrcnt != null">
+                tydrcnt,
+            </if>
+            <if test="tycrcnt != null">
+                tycrcnt,
+            </if>
+            <if test="lmdrbal != null">
+                lmdrbal,
+            </if>
+            <if test="lmcrbal != null">
+                lmcrbal,
+            </if>
+            <if test="tmdramt != null">
+                tmdramt,
+            </if>
+            <if test="tmcramt != null">
+                tmcramt,
+            </if>
+            <if test="tmdrcnt != null">
+                tmdrcnt,
+            </if>
+            <if test="tmcrcnt != null">
+                tmcrcnt,
+            </if>
+            <if test="lddrbal != null">
+                lddrbal,
+            </if>
+            <if test="ldcrbal != null">
+                ldcrbal,
+            </if>
+            <if test="tddramt != null">
+                tddramt,
+            </if>
+            <if test="tdcramt != null">
+                tdcramt,
+            </if>
+            <if test="tddrcnt != null">
+                tddrcnt,
+            </if>
+            <if test="tdcrcnt != null">
+                tdcrcnt,
+            </if>
+            <if test="tddrbal != null">
+                tddrbal,
+            </if>
+            <if test="tdcrbal != null">
+                tdcrbal,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accountBookId != null">
+                #{accountBookId,jdbcType=VARCHAR},
+            </if>
+            <if test="itemcode != null">
+                #{itemcode,jdbcType=VARCHAR},
+            </if>
+            <if test="itembalby != null">
+                #{itembalby,jdbcType=TINYINT},
+            </if>
+            <if test="itemclass != null">
+                #{itemclass,jdbcType=TINYINT},
+            </if>
+            <if test="currtype != null">
+                #{currtype,jdbcType=CHAR},
+            </if>
+            <if test="lydrbal != null">
+                #{lydrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="lycrbal != null">
+                #{lycrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tydramt != null">
+                #{tydramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tycramt != null">
+                #{tycramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tydrcnt != null">
+                #{tydrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tycrcnt != null">
+                #{tycrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lmdrbal != null">
+                #{lmdrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="lmcrbal != null">
+                #{lmcrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tmdramt != null">
+                #{tmdramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmcramt != null">
+                #{tmcramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmdrcnt != null">
+                #{tmdrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmcrcnt != null">
+                #{tmcrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lddrbal != null">
+                #{lddrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="ldcrbal != null">
+                #{ldcrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tddramt != null">
+                #{tddramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcramt != null">
+                #{tdcramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tddrcnt != null">
+                #{tddrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcrcnt != null">
+                #{tdcrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tddrbal != null">
+                #{tddrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcrbal != null">
+                #{tdcrbal,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctGenled">
+        update t_acct_genled
+        <set>
+            <if test="itembalby != null">
+                itembalby = #{itembalby,jdbcType=TINYINT},
+            </if>
+            <if test="itemclass != null">
+                itemclass = #{itemclass,jdbcType=TINYINT},
+            </if>
+            <if test="currtype != null">
+                currtype = #{currtype,jdbcType=CHAR},
+            </if>
+            <if test="lydrbal != null">
+                lydrbal = #{lydrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="lycrbal != null">
+                lycrbal = #{lycrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tydramt != null">
+                tydramt = #{tydramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tycramt != null">
+                tycramt = #{tycramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tydrcnt != null">
+                tydrcnt = #{tydrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tycrcnt != null">
+                tycrcnt = #{tycrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lmdrbal != null">
+                lmdrbal = #{lmdrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="lmcrbal != null">
+                lmcrbal = #{lmcrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tmdramt != null">
+                tmdramt = #{tmdramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmcramt != null">
+                tmcramt = #{tmcramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmdrcnt != null">
+                tmdrcnt = #{tmdrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tmcrcnt != null">
+                tmcrcnt = #{tmcrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="lddrbal != null">
+                lddrbal = #{lddrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="ldcrbal != null">
+                ldcrbal = #{ldcrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tddramt != null">
+                tddramt = #{tddramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcramt != null">
+                tdcramt = #{tdcramt,jdbcType=DECIMAL},
+            </if>
+            <if test="tddrcnt != null">
+                tddrcnt = #{tddrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcrcnt != null">
+                tdcrcnt = #{tdcrcnt,jdbcType=DECIMAL},
+            </if>
+            <if test="tddrbal != null">
+                tddrbal = #{tddrbal,jdbcType=DECIMAL},
+            </if>
+            <if test="tdcrbal != null">
+                tdcrbal = #{tdcrbal,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where account_book_id = #{accountBookId,jdbcType=VARCHAR}
+        and itemcode
+        = #{itemcode,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctGenled">
+        update t_acct_genled
+        set itembalby =
+        #{itembalby,jdbcType=TINYINT},
+        itemclass =
+        #{itemclass,jdbcType=TINYINT},
+        currtype = #{currtype,jdbcType=CHAR},
+        lydrbal = #{lydrbal,jdbcType=DECIMAL},
+        lycrbal =
+        #{lycrbal,jdbcType=DECIMAL},
+        tydramt = #{tydramt,jdbcType=DECIMAL},
+        tycramt = #{tycramt,jdbcType=DECIMAL},
+        tydrcnt =
+        #{tydrcnt,jdbcType=DECIMAL},
+        tycrcnt = #{tycrcnt,jdbcType=DECIMAL},
+        lmdrbal = #{lmdrbal,jdbcType=DECIMAL},
+        lmcrbal =
+        #{lmcrbal,jdbcType=DECIMAL},
+        tmdramt = #{tmdramt,jdbcType=DECIMAL},
+        tmcramt = #{tmcramt,jdbcType=DECIMAL},
+        tmdrcnt =
+        #{tmdrcnt,jdbcType=DECIMAL},
+        tmcrcnt = #{tmcrcnt,jdbcType=DECIMAL},
+        lddrbal = #{lddrbal,jdbcType=DECIMAL},
+        ldcrbal =
+        #{ldcrbal,jdbcType=DECIMAL},
+        tddramt = #{tddramt,jdbcType=DECIMAL},
+        tdcramt = #{tdcramt,jdbcType=DECIMAL},
+        tddrcnt =
+        #{tddrcnt,jdbcType=DECIMAL},
+        tdcrcnt = #{tdcrcnt,jdbcType=DECIMAL},
+        tddrbal = #{tddrbal,jdbcType=DECIMAL},
+        tdcrbal =
+        #{tdcrbal,jdbcType=DECIMAL}
+        where account_book_id =
+        #{accountBookId,jdbcType=VARCHAR}
+        and itemcode =
+        #{itemcode,jdbcType=VARCHAR}
+    </update>
 </mapper>

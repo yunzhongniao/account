@@ -1,224 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="org.yunzhong.account.accounting.dao.AcctTransactionCatMapper">
-	<resultMap id="BaseResultMap"
-		type="org.yunzhong.account.accounting.model.AcctTransactionCat">
-		<id column="trxcode" jdbcType="VARCHAR" property="trxcode" />
-		<result column="trxcat" jdbcType="TINYINT" property="trxcat" />
-		<result column="trxname" jdbcType="VARCHAR" property="trxname" />
-		<result column="showinpage" jdbcType="CHAR"
-			property="showinpage" />
-		<result column="showinmer" jdbcType="CHAR" property="showinmer" />
-		<result column="trxdir" jdbcType="VARCHAR" property="trxdir" />
-		<result column="priority" jdbcType="CHAR" property="priority" />
-		<result column="nameforacct" jdbcType="VARCHAR"
-			property="nameforacct" />
-		<result column="merentry" jdbcType="CHAR" property="merentry" />
-		<result column="iscalucost" jdbcType="TINYINT"
-			property="iscalucost" />
-		<result column="isreal" jdbcType="CHAR" property="isreal" />
-		<result column="issett" jdbcType="CHAR" property="issett" />
-		<result column="resend" jdbcType="CHAR" property="resend" />
-		<result column="issyscmn" jdbcType="CHAR" property="issyscmn" />
-		<result column="isrev" jdbcType="TINYINT" property="isrev" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		trxcode, trxcat, trxname, showinpage, showinmer, trxdir, priority,
-		nameforacct, merentry,
-		iscalucost, isreal, issett, resend, issyscmn, isrev
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from t_acct_transaction_cat
-		where trxcode = #{trxcode,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from t_acct_transaction_cat
-		where trxcode = #{trxcode,jdbcType=VARCHAR}
-	</delete>
-	<insert id="insert"
-		parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
-		insert into t_acct_transaction_cat (trxcode, trxcat, trxname,
-		showinpage, showinmer, trxdir,
-		priority, nameforacct, merentry,
-		iscalucost, isreal, issett,
-		resend, issyscmn, isrev)
-		values (#{trxcode,jdbcType=VARCHAR}, #{trxcat,jdbcType=TINYINT},
-		#{trxname,jdbcType=VARCHAR},
-		#{showinpage,jdbcType=CHAR}, #{showinmer,jdbcType=CHAR}, #{trxdir,jdbcType=VARCHAR},
-		#{priority,jdbcType=CHAR}, #{nameforacct,jdbcType=VARCHAR},
-		#{merentry,jdbcType=CHAR},
-		#{iscalucost,jdbcType=TINYINT}, #{isreal,jdbcType=CHAR}, #{issett,jdbcType=CHAR},
-		#{resend,jdbcType=CHAR}, #{issyscmn,jdbcType=CHAR},
-		#{isrev,jdbcType=TINYINT})
-	</insert>
-	<insert id="insertSelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
-		insert into t_acct_transaction_cat
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="trxcode != null">
-				trxcode,
-			</if>
-			<if test="trxcat != null">
-				trxcat,
-			</if>
-			<if test="trxname != null">
-				trxname,
-			</if>
-			<if test="showinpage != null">
-				showinpage,
-			</if>
-			<if test="showinmer != null">
-				showinmer,
-			</if>
-			<if test="trxdir != null">
-				trxdir,
-			</if>
-			<if test="priority != null">
-				priority,
-			</if>
-			<if test="nameforacct != null">
-				nameforacct,
-			</if>
-			<if test="merentry != null">
-				merentry,
-			</if>
-			<if test="iscalucost != null">
-				iscalucost,
-			</if>
-			<if test="isreal != null">
-				isreal,
-			</if>
-			<if test="issett != null">
-				issett,
-			</if>
-			<if test="resend != null">
-				resend,
-			</if>
-			<if test="issyscmn != null">
-				issyscmn,
-			</if>
-			<if test="isrev != null">
-				isrev,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="trxcode != null">
-				#{trxcode,jdbcType=VARCHAR},
-			</if>
-			<if test="trxcat != null">
-				#{trxcat,jdbcType=TINYINT},
-			</if>
-			<if test="trxname != null">
-				#{trxname,jdbcType=VARCHAR},
-			</if>
-			<if test="showinpage != null">
-				#{showinpage,jdbcType=CHAR},
-			</if>
-			<if test="showinmer != null">
-				#{showinmer,jdbcType=CHAR},
-			</if>
-			<if test="trxdir != null">
-				#{trxdir,jdbcType=VARCHAR},
-			</if>
-			<if test="priority != null">
-				#{priority,jdbcType=CHAR},
-			</if>
-			<if test="nameforacct != null">
-				#{nameforacct,jdbcType=VARCHAR},
-			</if>
-			<if test="merentry != null">
-				#{merentry,jdbcType=CHAR},
-			</if>
-			<if test="iscalucost != null">
-				#{iscalucost,jdbcType=TINYINT},
-			</if>
-			<if test="isreal != null">
-				#{isreal,jdbcType=CHAR},
-			</if>
-			<if test="issett != null">
-				#{issett,jdbcType=CHAR},
-			</if>
-			<if test="resend != null">
-				#{resend,jdbcType=CHAR},
-			</if>
-			<if test="issyscmn != null">
-				#{issyscmn,jdbcType=CHAR},
-			</if>
-			<if test="isrev != null">
-				#{isrev,jdbcType=TINYINT},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
-		update t_acct_transaction_cat
-		<set>
-			<if test="trxcat != null">
-				trxcat = #{trxcat,jdbcType=TINYINT},
-			</if>
-			<if test="trxname != null">
-				trxname = #{trxname,jdbcType=VARCHAR},
-			</if>
-			<if test="showinpage != null">
-				showinpage = #{showinpage,jdbcType=CHAR},
-			</if>
-			<if test="showinmer != null">
-				showinmer = #{showinmer,jdbcType=CHAR},
-			</if>
-			<if test="trxdir != null">
-				trxdir = #{trxdir,jdbcType=VARCHAR},
-			</if>
-			<if test="priority != null">
-				priority = #{priority,jdbcType=CHAR},
-			</if>
-			<if test="nameforacct != null">
-				nameforacct = #{nameforacct,jdbcType=VARCHAR},
-			</if>
-			<if test="merentry != null">
-				merentry = #{merentry,jdbcType=CHAR},
-			</if>
-			<if test="iscalucost != null">
-				iscalucost = #{iscalucost,jdbcType=TINYINT},
-			</if>
-			<if test="isreal != null">
-				isreal = #{isreal,jdbcType=CHAR},
-			</if>
-			<if test="issett != null">
-				issett = #{issett,jdbcType=CHAR},
-			</if>
-			<if test="resend != null">
-				resend = #{resend,jdbcType=CHAR},
-			</if>
-			<if test="issyscmn != null">
-				issyscmn = #{issyscmn,jdbcType=CHAR},
-			</if>
-			<if test="isrev != null">
-				isrev = #{isrev,jdbcType=TINYINT},
-			</if>
-		</set>
-		where trxcode = #{trxcode,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
-		update t_acct_transaction_cat
-		set trxcat = #{trxcat,jdbcType=TINYINT},
-		trxname = #{trxname,jdbcType=VARCHAR},
-		showinpage = #{showinpage,jdbcType=CHAR},
-		showinmer = #{showinmer,jdbcType=CHAR},
-		trxdir = #{trxdir,jdbcType=VARCHAR},
-		priority = #{priority,jdbcType=CHAR},
-		nameforacct = #{nameforacct,jdbcType=VARCHAR},
-		merentry = #{merentry,jdbcType=CHAR},
-		iscalucost = #{iscalucost,jdbcType=TINYINT},
-		isreal = #{isreal,jdbcType=CHAR},
-		issett = #{issett,jdbcType=CHAR},
-		resend = #{resend,jdbcType=CHAR},
-		issyscmn = #{issyscmn,jdbcType=CHAR},
-		isrev = #{isrev,jdbcType=TINYINT}
-		where trxcode = #{trxcode,jdbcType=VARCHAR}
-	</update>
+<mapper namespace="org.yunzhong.account.accounting.dao.AcctTransactionCatMapper">
+    <resultMap id="BaseResultMap" type="org.yunzhong.account.accounting.model.AcctTransactionCat">
+        <id column="trxcode" jdbcType="VARCHAR" property="trxcode" />
+        <result column="trxcat" jdbcType="TINYINT" property="trxcat" />
+        <result column="trxname" jdbcType="VARCHAR" property="trxname" />
+        <result column="showinpage" jdbcType="CHAR" property="showinpage" />
+        <result column="showinmer" jdbcType="CHAR" property="showinmer" />
+        <result column="trxdir" jdbcType="VARCHAR" property="trxdir" />
+        <result column="priority" jdbcType="CHAR" property="priority" />
+        <result column="nameforacct" jdbcType="VARCHAR" property="nameforacct" />
+        <result column="merentry" jdbcType="CHAR" property="merentry" />
+        <result column="iscalucost" jdbcType="TINYINT" property="iscalucost" />
+        <result column="isreal" jdbcType="CHAR" property="isreal" />
+        <result column="issett" jdbcType="CHAR" property="issett" />
+        <result column="resend" jdbcType="CHAR" property="resend" />
+        <result column="issyscmn" jdbcType="CHAR" property="issyscmn" />
+        <result column="isrev" jdbcType="TINYINT" property="isrev" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        trxcode, trxcat, trxname, showinpage, showinmer, trxdir, priority,
+        nameforacct, merentry,
+        iscalucost, isreal, issett, resend, issyscmn, isrev
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_transaction_cat
+        where trxcode = #{trxcode,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from t_acct_transaction_cat
+        where trxcode = #{trxcode,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+        insert into t_acct_transaction_cat (trxcode, trxcat, trxname,
+        showinpage, showinmer, trxdir,
+        priority, nameforacct, merentry,
+        iscalucost, isreal, issett,
+        resend, issyscmn, isrev)
+        values (#{trxcode,jdbcType=VARCHAR}, #{trxcat,jdbcType=TINYINT},
+        #{trxname,jdbcType=VARCHAR},
+        #{showinpage,jdbcType=CHAR}, #{showinmer,jdbcType=CHAR}, #{trxdir,jdbcType=VARCHAR},
+        #{priority,jdbcType=CHAR}, #{nameforacct,jdbcType=VARCHAR},
+        #{merentry,jdbcType=CHAR},
+        #{iscalucost,jdbcType=TINYINT}, #{isreal,jdbcType=CHAR}, #{issett,jdbcType=CHAR},
+        #{resend,jdbcType=CHAR}, #{issyscmn,jdbcType=CHAR},
+        #{isrev,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+        insert into t_acct_transaction_cat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="trxcode != null">
+                trxcode,
+            </if>
+            <if test="trxcat != null">
+                trxcat,
+            </if>
+            <if test="trxname != null">
+                trxname,
+            </if>
+            <if test="showinpage != null">
+                showinpage,
+            </if>
+            <if test="showinmer != null">
+                showinmer,
+            </if>
+            <if test="trxdir != null">
+                trxdir,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="nameforacct != null">
+                nameforacct,
+            </if>
+            <if test="merentry != null">
+                merentry,
+            </if>
+            <if test="iscalucost != null">
+                iscalucost,
+            </if>
+            <if test="isreal != null">
+                isreal,
+            </if>
+            <if test="issett != null">
+                issett,
+            </if>
+            <if test="resend != null">
+                resend,
+            </if>
+            <if test="issyscmn != null">
+                issyscmn,
+            </if>
+            <if test="isrev != null">
+                isrev,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="trxcode != null">
+                #{trxcode,jdbcType=VARCHAR},
+            </if>
+            <if test="trxcat != null">
+                #{trxcat,jdbcType=TINYINT},
+            </if>
+            <if test="trxname != null">
+                #{trxname,jdbcType=VARCHAR},
+            </if>
+            <if test="showinpage != null">
+                #{showinpage,jdbcType=CHAR},
+            </if>
+            <if test="showinmer != null">
+                #{showinmer,jdbcType=CHAR},
+            </if>
+            <if test="trxdir != null">
+                #{trxdir,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=CHAR},
+            </if>
+            <if test="nameforacct != null">
+                #{nameforacct,jdbcType=VARCHAR},
+            </if>
+            <if test="merentry != null">
+                #{merentry,jdbcType=CHAR},
+            </if>
+            <if test="iscalucost != null">
+                #{iscalucost,jdbcType=TINYINT},
+            </if>
+            <if test="isreal != null">
+                #{isreal,jdbcType=CHAR},
+            </if>
+            <if test="issett != null">
+                #{issett,jdbcType=CHAR},
+            </if>
+            <if test="resend != null">
+                #{resend,jdbcType=CHAR},
+            </if>
+            <if test="issyscmn != null">
+                #{issyscmn,jdbcType=CHAR},
+            </if>
+            <if test="isrev != null">
+                #{isrev,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+        update t_acct_transaction_cat
+        <set>
+            <if test="trxcat != null">
+                trxcat = #{trxcat,jdbcType=TINYINT},
+            </if>
+            <if test="trxname != null">
+                trxname = #{trxname,jdbcType=VARCHAR},
+            </if>
+            <if test="showinpage != null">
+                showinpage = #{showinpage,jdbcType=CHAR},
+            </if>
+            <if test="showinmer != null">
+                showinmer = #{showinmer,jdbcType=CHAR},
+            </if>
+            <if test="trxdir != null">
+                trxdir = #{trxdir,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=CHAR},
+            </if>
+            <if test="nameforacct != null">
+                nameforacct = #{nameforacct,jdbcType=VARCHAR},
+            </if>
+            <if test="merentry != null">
+                merentry = #{merentry,jdbcType=CHAR},
+            </if>
+            <if test="iscalucost != null">
+                iscalucost = #{iscalucost,jdbcType=TINYINT},
+            </if>
+            <if test="isreal != null">
+                isreal = #{isreal,jdbcType=CHAR},
+            </if>
+            <if test="issett != null">
+                issett = #{issett,jdbcType=CHAR},
+            </if>
+            <if test="resend != null">
+                resend = #{resend,jdbcType=CHAR},
+            </if>
+            <if test="issyscmn != null">
+                issyscmn = #{issyscmn,jdbcType=CHAR},
+            </if>
+            <if test="isrev != null">
+                isrev = #{isrev,jdbcType=TINYINT},
+            </if>
+        </set>
+        where trxcode = #{trxcode,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
+        update t_acct_transaction_cat
+        set trxcat = #{trxcat,jdbcType=TINYINT},
+        trxname = #{trxname,jdbcType=VARCHAR},
+        showinpage = #{showinpage,jdbcType=CHAR},
+        showinmer = #{showinmer,jdbcType=CHAR},
+        trxdir = #{trxdir,jdbcType=VARCHAR},
+        priority = #{priority,jdbcType=CHAR},
+        nameforacct = #{nameforacct,jdbcType=VARCHAR},
+        merentry = #{merentry,jdbcType=CHAR},
+        iscalucost = #{iscalucost,jdbcType=TINYINT},
+        isreal = #{isreal,jdbcType=CHAR},
+        issett = #{issett,jdbcType=CHAR},
+        resend = #{resend,jdbcType=CHAR},
+        issyscmn = #{issyscmn,jdbcType=CHAR},
+        isrev = #{isrev,jdbcType=TINYINT}
+        where trxcode = #{trxcode,jdbcType=VARCHAR}
+    </update>
 </mapper>
