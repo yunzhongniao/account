@@ -8,4 +8,6 @@ public interface AcctCurrencyTypeService {
 
     List<AcctCurrencyType> selectAll();
 
+    void create(AcctCurrencyType currency);
+
 }

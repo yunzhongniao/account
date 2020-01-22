@@ -449,6 +449,7 @@ CREATE TABLE `t_acct_transaction_cat`  (
   `resend` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否可重发',
   `issyscmn` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否为系统补帐类交易',
   `isrev` tinyint(4) NULL DEFAULT NULL COMMENT '是否为冲正类交易',
+  `abtype` varchar(10) NULL DEFAULT NULL COMMENT '账套类型',
   PRIMARY KEY (`trxcode`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '交易类型定义表' ROW_FORMAT = Dynamic;
 

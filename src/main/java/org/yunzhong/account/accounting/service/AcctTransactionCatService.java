@@ -8,4 +8,5 @@ public interface AcctTransactionCatService {
 
     List<AcctTransactionCat> listByAccountBookType(String abType);
 
+    List<AcctTransactionCat> listByAccountBook(String abId);
 }

@@ -6,10 +6,11 @@
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="sign" jdbcType="TINYINT" property="sign" />
+        <result column="lock_sign" jdbcType="TINYINT" property="lockSign" />
+        <result column="enable_sign" jdbcType="TINYINT" property="enableSign" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, username, password, name, sign
+        id, username, password, name, lock_sign, enable_sign
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select

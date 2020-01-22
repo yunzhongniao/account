@@ -19,4 +19,9 @@ public class AcctCurrencyTypeServiceImpl implements AcctCurrencyTypeService {
         return currencyTypeMapper.selectAll();
     }
 
+    @Override
+    public void create(AcctCurrencyType currency) {
+        currencyTypeMapper.insert(currency);
+    }
+
 }

@@ -1,5 +1,7 @@
 package org.yunzhong.account.accounting.dao;
 
+import java.util.List;
+
 import org.yunzhong.account.accounting.model.AcctTransactionCat;
 
 public interface AcctTransactionCatMapper {
@@ -14,4 +16,6 @@ public interface AcctTransactionCatMapper {
 	int updateByPrimaryKeySelective(AcctTransactionCat record);
 
 	int updateByPrimaryKey(AcctTransactionCat record);
+
+    List<AcctTransactionCat> selectByAccountBookType(String abtype);
 }

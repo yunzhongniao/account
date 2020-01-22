@@ -17,17 +17,25 @@
         <result column="resend" jdbcType="CHAR" property="resend" />
         <result column="issyscmn" jdbcType="CHAR" property="issyscmn" />
         <result column="isrev" jdbcType="TINYINT" property="isrev" />
+        <result column="abtype" jdbcType="VARCHAR" property="abtype" />
     </resultMap>
     <sql id="Base_Column_List">
         trxcode, trxcat, trxname, showinpage, showinmer, trxdir, priority,
         nameforacct, merentry,
-        iscalucost, isreal, issett, resend, issyscmn, isrev
+        iscalucost, isreal, issett, resend, issyscmn,
+        isrev, abtype
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_acct_transaction_cat
         where trxcode = #{trxcode,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByAccountBookType" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_transaction_cat
+        where abtype = #{abtype,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from t_acct_transaction_cat
@@ -36,17 +44,21 @@
     <insert id="insert" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
         insert into t_acct_transaction_cat (trxcode, trxcat, trxname,
         showinpage, showinmer, trxdir,
-        priority, nameforacct, merentry,
+        priority,
+        nameforacct, merentry,
         iscalucost, isreal, issett,
-        resend, issyscmn, isrev)
-        values (#{trxcode,jdbcType=VARCHAR}, #{trxcat,jdbcType=TINYINT},
+        resend, issyscmn, isrev, abtype)
+        values (#{trxcode,jdbcType=VARCHAR},
+        #{trxcat,jdbcType=TINYINT},
         #{trxname,jdbcType=VARCHAR},
         #{showinpage,jdbcType=CHAR}, #{showinmer,jdbcType=CHAR}, #{trxdir,jdbcType=VARCHAR},
         #{priority,jdbcType=CHAR}, #{nameforacct,jdbcType=VARCHAR},
         #{merentry,jdbcType=CHAR},
-        #{iscalucost,jdbcType=TINYINT}, #{isreal,jdbcType=CHAR}, #{issett,jdbcType=CHAR},
+        #{iscalucost,jdbcType=TINYINT}, #{isreal,jdbcType=CHAR},
+        #{issett,jdbcType=CHAR},
         #{resend,jdbcType=CHAR}, #{issyscmn,jdbcType=CHAR},
-        #{isrev,jdbcType=TINYINT})
+        #{isrev,jdbcType=TINYINT},
+        #{abtype,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
         insert into t_acct_transaction_cat
@@ -96,6 +108,9 @@
             <if test="isrev != null">
                 isrev,
             </if>
+            <if test="abtype != null">
+                abtype
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="trxcode != null">
@@ -142,6 +157,9 @@
             </if>
             <if test="isrev != null">
                 #{isrev,jdbcType=TINYINT},
+            </if>
+            <if test="abtype != null">
+                #{abtype,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -190,25 +208,32 @@
             <if test="isrev != null">
                 isrev = #{isrev,jdbcType=TINYINT},
             </if>
+            <if test="abtype != null">
+                isrev = #{abtype,jdbcType=VARCHAR},
+            </if>
         </set>
         where trxcode = #{trxcode,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="org.yunzhong.account.accounting.model.AcctTransactionCat">
         update t_acct_transaction_cat
         set trxcat = #{trxcat,jdbcType=TINYINT},
-        trxname = #{trxname,jdbcType=VARCHAR},
+        trxname =
+        #{trxname,jdbcType=VARCHAR},
         showinpage = #{showinpage,jdbcType=CHAR},
         showinmer = #{showinmer,jdbcType=CHAR},
-        trxdir = #{trxdir,jdbcType=VARCHAR},
+        trxdir =
+        #{trxdir,jdbcType=VARCHAR},
         priority = #{priority,jdbcType=CHAR},
         nameforacct = #{nameforacct,jdbcType=VARCHAR},
-        merentry = #{merentry,jdbcType=CHAR},
+        merentry =
+        #{merentry,jdbcType=CHAR},
         iscalucost = #{iscalucost,jdbcType=TINYINT},
         isreal = #{isreal,jdbcType=CHAR},
         issett = #{issett,jdbcType=CHAR},
         resend = #{resend,jdbcType=CHAR},
         issyscmn = #{issyscmn,jdbcType=CHAR},
         isrev = #{isrev,jdbcType=TINYINT}
+        abtype = #{abtype,jdbcType=VARCHAR}
         where trxcode = #{trxcode,jdbcType=VARCHAR}
     </update>
 </mapper>
