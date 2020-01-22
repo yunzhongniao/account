@@ -1,19 +1,23 @@
 package org.yunzhong.account.accounting.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.yunzhong.account.accounting.model.AcctAccountType;
 
 public interface AcctAccountTypeMapper {
-	int deleteByPrimaryKey(@Param("accountBookType") String accountBookType, @Param("accttype") String accttype);
+    int deleteByPrimaryKey(@Param("accountBookType") String accountBookType, @Param("accttype") String accttype);
 
-	int insert(AcctAccountType record);
+    int insert(AcctAccountType record);
 
-	int insertSelective(AcctAccountType record);
+    int insertSelective(AcctAccountType record);
 
-	AcctAccountType selectByPrimaryKey(@Param("accountBookType") String accountBookType,
-			@Param("accttype") String accttype);
+    AcctAccountType selectByPrimaryKey(@Param("accountBookType") String accountBookType,
+            @Param("accttype") String accttype);
 
-	int updateByPrimaryKeySelective(AcctAccountType record);
+    List<AcctAccountType> selectByAccountBookType(@Param("accountBookType") String accountBookType);
 
-	int updateByPrimaryKey(AcctAccountType record);
+    int updateByPrimaryKeySelective(AcctAccountType record);
+
+    int updateByPrimaryKey(AcctAccountType record);
 }

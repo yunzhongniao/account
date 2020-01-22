@@ -18,6 +18,12 @@
         where account_book_type = #{accountBookType,jdbcType=VARCHAR}
         and accttype = #{accttype,jdbcType=VARCHAR}
     </select>
+    <select id="selectByAccountBookType" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_account_type
+        where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="map">
         delete from t_acct_account_type
         where account_book_type = #{accountBookType,jdbcType=VARCHAR}
