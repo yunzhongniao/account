@@ -6,13 +6,23 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "AcctCustomCreateRequest", description = "AcctCustomCreateRequest")
-public class AcctCustomCreateRequest extends AcctBasicRequestBody{
+public class AcctCustomCreateRequest extends AcctBasicRequestBody {
 
 	@ApiModelProperty(value = "accountBookId", example = "01")
-    private String accountBookId;
-	
+	private String accountBookId;
+
+	/**
+	 * 账户类型
+	 * 
+	 */
 	@ApiModelProperty(value = "acctType", example = "01")
 	private String acctType;
+
+	/**
+	 * 载体类型
+	 */
+	@ApiModelProperty(value = "acctCaType", example = "01")
+	private String acctCaType;
 }

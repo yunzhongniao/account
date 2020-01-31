@@ -29,7 +29,7 @@ public class AcctCustomController {
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	public AcctResponse createCustom(@RequestBody AcctRequest<AcctCustomCreateRequest> request) {
 		try {
-			customService.createCustom(request.getBody());
+			customService.createCustom(request.getHead().getUserName(), request.getBody());
 		} catch (Exception e) {
 			log.error("create custom error", e);
 			return AcctResponseBuilder.createError("创建账户失败：" + e.getLocalizedMessage());
