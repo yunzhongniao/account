@@ -17,6 +17,12 @@
         where catypeid = #{catypeid,jdbcType=VARCHAR}
         and account_book_type = #{accountBookType,jdbcType=VARCHAR}
     </select>
+    <select id="selectByAccountBookType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_acct_catype
+        where account_book_type = #{accountBookType,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="map">
         delete from t_acct_catype
         where catypeid = #{catypeid,jdbcType=VARCHAR}
